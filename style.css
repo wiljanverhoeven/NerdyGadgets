@@ -121,6 +121,7 @@ textarea {
 
 #email {
     background-color: #ebeaea;
+    border: 1px solid #fffafa;
 }
 
 #email:hover {
@@ -129,6 +130,7 @@ textarea {
 
 #bericht {
     background-color: #ebeaea;
+    border: 1px solid #fffafa;
 }
 
 #bericht:hover {
