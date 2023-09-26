@@ -130,12 +130,19 @@ footer {
 
 .geg {
     display: inline-block;
+    margin: 10%;
+    margin-top: 0%;
+    margin-bottom: 0%;
 }
 
 .makers{
     display: inline-block;
+    margin: 10%;
+    margin-top: 0%;
+    margin-bottom: 0%;
 }
 
 #list {
     list-style-type: none;
+    padding: 0px;
 }
