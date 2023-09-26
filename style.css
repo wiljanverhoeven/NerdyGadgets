@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+.logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.section {
+    position: relative;
+    padding: 60px;
+    text-align: center;
+}
+
+.product {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    max-width: 300px;
+}
+
+.product img {
+    max-width: 100%;
+}
+
+.product h3 {
+    margin: 10px 0;
+}
+
+.add-to-cart {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #555;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    margin: 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+.submit-button:hover {
+    margin-bottom: 5px;
+    background-color: #555;
+    width: 101.24px;
+    height: 47.6px;
+}
+
+#naam {
+    background-color: #ebeaea;
+}
+
+#email {
+    background-color: #ebeaea;
+}
+
+#bericht {
+    background-color: #ebeaea;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.geg {
+    display: inline-block;
+}
+
+.makers{
+    display: inline-block;
+}
+
+#list {
+    list-style-type: none;
+}
