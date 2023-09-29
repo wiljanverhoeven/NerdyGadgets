@@ -1,11 +1,16 @@
 body {
+    background-color: #2C75FF;
+    background-image: url('https://www.chromethemer.com/download/hd-wallpapers/blue-technology-3840x2160.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
+    background-color: #23232F;
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -41,6 +46,7 @@ nav a {
 }
 
 .product {
+    color: #fff;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -63,14 +69,14 @@ nav a {
 .add-to-cart {
     background-color: #333;
     color: #fff;
-    border: 1px solid #333;
+    border: 1px solid #fff;
     border-radius: 4px;
     padding: 10px 20px;
     cursor: pointer;
 }
 
 .add-to-cart:hover {
-    background-color: #555;
+    background-color: #39FF14;
     transform: scale(1.1);
 }
 
@@ -94,6 +100,24 @@ textarea {
     border-radius: 4px;
 }
 
+.search-bar {
+    padding: 10px;
+    font-size: 17px;
+    float: left;
+    width: 50%;
+}
+
+.searchSubmit {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    color: grey;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; 
+    cursor: pointer;
+}
+
 .submit-button {
     margin: 15px;
     background-color: #333;
@@ -101,12 +125,12 @@ textarea {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border: 1px solid #333;
+    border: 1px solid #fff;
     border-radius: 4px;
 }
 
 .submit-button:hover {
-    background-color: #555;
+    background-color: #3ffe1ed0;
     transform: scale(1.1);
 }
 
@@ -138,7 +162,7 @@ textarea {
 }
 
 footer {
-    background-color: #333;
+    background-color: #23232F;
     color: #fff;
     text-align: center;
     padding: 10px 0;

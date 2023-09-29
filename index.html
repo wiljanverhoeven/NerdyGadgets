@@ -9,21 +9,29 @@
 </head>
 
 <body>
-
 <header>
-
     <div class="logo">
-        <h1>NerdyGadgets</h1>
+        <a href="index.html">
+            <img src="/images/NerdyGadgets_logo.png" alt="Logo"  width="228" height="114">
+        </a>
     </div>
 
-    <nav>
+    <div class="search-bar">
+        <input type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+        <button class="btn btn-primary searchSubmit" type="submit"> Zoeken </button>
+    </div>
 
+
+
+    <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#products">Producten</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="over-ons.html">Over ons</a></li>
+            <li><a href="producten.html">Producten</a></li>
         </ul>
     </nav>
+
+    <button class="cart" onclick="window.location.href='';">Winkelmandje</button>
 
 </header>
 
@@ -34,9 +42,9 @@
 
 </section>
 
-<section id="products" class="section products">
+<section id="aanbevolen products" class="section products">
 
-    <h2>Onze Producten</h2>
+    <h2>Onze aanbevolen producten</h2>
 
     <div class="product">
         <img src="product1.jpg" alt="Product 1">
@@ -54,7 +62,7 @@
 
     <div class="product">
         <img src="product3.jpg" alt="Product 3">
-        <h3>Product 2</h3>
+        <h3>Product 3</h3>
         <p>Beschrijving van Product 3 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
@@ -80,19 +88,7 @@
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
-    <div class="product">
-        <img src="product7.jpg" alt="Product 7">
-        <h3>Product 7</h3>
-        <p>Beschrijving van Product 7 en prijs hier.</p>
-        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
 
-    <div class="product">
-        <img src="product8.jpg" alt="Product 8">
-        <h3>Product 8</h3>
-        <p>Beschrijving van Product 8 en prijs hier.</p>
-        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
     <!-- Voeg meer producten toe zoals hierboven -->
 </section>
 
@@ -114,10 +110,14 @@
 
 <footer>
 
+    <div class="copyrights">
+        <p>Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</p>
+    </div>
+
     <div class="geg">
         <h2>Contactgegevens</h2>
         <p>Adres: Hospitaaldreef 5, 1315 RC Almere</p>
-        <p>Email: administratief@nerdygadgets.nl</p>
+        <p>Email: administratie@nerdygadgets.nl</p>
         <p>Telefoon: 036-1234567</p>
     </div>
 
@@ -126,10 +126,10 @@
         <h2>Makers</h2>
 
         <ul id="list">
-            <li>Hieu Phan</li>
-            <li>Danyaal Burney</li>
-            <li>Shazaib Saleem</li>
             <li>Alexander Dijkhuizen</li>
+            <li>Danyaal Burney</li>
+            <li>Hieu Phan</li>
+            <li>Shahzaib Saleem</li>
             <li>Wiljan Verhoeven</li>
         </ul>
 
