@@ -102,6 +102,16 @@ label {
     border-radius: 4px;
 }
 
+.cart {
+    width: 10%;
+    padding: 10px;
+    color: grey;
+    font-size: 17px;
+    border: 1px solid grey;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 .search-bar {
     padding: 10px;
     font-size: 17px;
