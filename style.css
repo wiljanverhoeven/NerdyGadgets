@@ -22,7 +22,7 @@ header {
     width: 50%;
 }
 
-.header:hover {
+.paginas:hover {
     color: #39FF14;
     transform: scale(1.1);
 }
