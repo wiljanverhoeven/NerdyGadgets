@@ -1,3 +1,5 @@
+/*styling van de nav-bar en footer */
+
 body {
     background-image: url('https://www.chromethemer.com/download/hd-wallpapers/blue-technology-3840x2160.jpg');
     background-repeat: no-repeat;
@@ -16,10 +18,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-}
-
-.slidein {
-    width: 50%;
 }
 
 
@@ -49,41 +47,6 @@ nav a {
     text-align: center;
 }
 
-.product {
-    color: #fff;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 20px;
-    margin: 20px;
-    text-align: center;
-    max-width: 300px;
-}
-
-.product img {
-    max-width: 100%;
-}
-
-.product h3 {
-    margin: 10px 0;
-}
-
-
-
-.add-to-cart {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.add-to-cart:hover {
-    background-color: #39FF14;
-    transform: scale(1.1);
-}
-
 form {
     max-width: 400px;
     margin: 0 auto;
@@ -102,8 +65,6 @@ label {
     border-radius: 4px;
 }
 
-
-
 .search-bar {
     padding: 10px;
     font-size: 18px;
@@ -121,50 +82,6 @@ label {
     border: 1px solid #39FF14;
     cursor: pointer;
     border-radius: 4px;
-}
-
-
-.submit-button {
-    margin: 15px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    border-radius: 4px;
-}
-
-.submit-button:hover {
-    background-color: #39FF14;
-    transform: scale(1.1);
-}
-
-#naam {
-    background-color: #ebeaea;
-    border: 1px solid #fffafa;
-}
-
-#naam:hover {
-    border: 2px solid #333;
-}
-
-#email {
-    background-color: #ebeaea;
-    border: 1px solid #fffafa;
-}
-
-#email:hover {
-    border: 2px solid #333;
-}
-
-#bericht {
-    background-color: #ebeaea;
-    border: 1px solid #fffafa;
-}
-
-#bericht:hover {
-    border: 2px solid #333;
 }
 
 footer {
