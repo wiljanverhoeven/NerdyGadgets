@@ -25,6 +25,10 @@ header {
     transform: scale(1.1);
 }
 
+.paginas:hover {
+    color: #39FF14;
+    transform: scale(1.1);
+}
 
 .logo h1 {
     margin: 0;
