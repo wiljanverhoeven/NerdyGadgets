@@ -68,6 +68,21 @@ label {
     margin-bottom: 10px;
 }
 
+.cart {
+    position: relative;
+}
+
+.wagen_neon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.wagen_neon:hover {
+    opacity: 1;
+}
+
 .input  {
     width: 100%;
     padding: 10px;
