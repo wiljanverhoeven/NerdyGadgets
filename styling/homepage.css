@@ -83,3 +83,8 @@
 #bericht:hover {
     border: 2px solid #333;
 }
+
+#list {
+    list-style-type: none;
+    padding: 0px;
+}
