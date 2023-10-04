@@ -5,36 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Klantrecensies - NerdyGadgets</title>
-  <link rel="stylesheet" href="/styling/basic-style.css">
-  <link rel="stylesheet" href="/styling/recensiepagina.css">
+  <link rel="stylesheet" href="../styling/basic-style.css">
+  <link rel="stylesheet" href="../styling/recensiepagina.css">
 </head>
 
 <body>
 <header>
   <div class="logo">
-    <a href="/index.html">
-      <img src="/images/NerdyGadgets_logo.png" alt="Logo" width="228" height="114">
+    <a href="../index.html">
+      <img src="../images/NerdyGadgets_logo.png" alt="Logo" width="228" height="114">
     </a>
   </div>
 
   <div>
     <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-    <button class="btn btn-primary searchSubmit" type="submit"> <img src="/images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
+    <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
     </button>
   </div>
 
   <nav>
     <ul>
-      <li><a href="/index.html" class="paginas">Home</a></li>
-      <li><a href="over-ons.html" class="paginas">Over ons</a></li>
-      <li><a href="producten.html" class="paginas">Producten</a></li>
+      <li><a href="../index.html" class="paginas">Home</a></li>
+      <li><a href="../over-ons.html" class="paginas">Over ons</a></li>
+      <li><a href="../producten.html" class="paginas">Producten</a></li>
   </ul>
   </nav>
 
   <div class="cart">
-    <a href="winkelwagen.html">
-      <img class="wagen" src="/images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
-      <img class="wagen_neon" src="/images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
+    <a href="../winkelwagen.html">
+      <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
+      <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
     </a>
   </div>
 </header>
@@ -63,7 +63,6 @@
     <div>
       <label for="sort">Sorteer op:</label>
       <select id="sort" onchange="sortReviews()">
-        <option value="relevantie">Relevantie</option>
         <option value="datum">Datum</option>
         <option value="waardering">Waardering</option>
       </select>
