@@ -2,6 +2,14 @@
 <html lang="nl">
 
 <head>
+    <?php
+    require '../dbconnect.php';
+
+    $query2 = 'SELECT * FROM producten WHERE productid = "'.$_GET['product'].'"';
+    $result2 = mysqli_query($conn, $query2);
+    $pro = mysqli_fetch_assoc($result2);
+    ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets</title>
@@ -12,7 +20,7 @@
 <body>
 <header>
     <div class="logo">
-        <a href="../index.html">
+        <a href="../index.php">
             <img src="../images/NerdyGadgets_logo.png" alt="Logo"  width="228" height="114">
         </a>
     </div>
@@ -44,11 +52,11 @@
 
 <section class="section product-block">
     <div  class="product">
-        <img src="../images/product.png" alt="product">
+        <img src="../<?php echo $pro['imagesrc'];?>" alt="product">
         <div class="product-box">
-            <h3>Productnaam</h3>
-            <p>Product informatie</p>
-            <h1>prijs</h1>
+            <h3><?= $pro['productnaam'] ?></h3>
+            <p><?= $pro['productinformatie'] ?></p>
+            <h1><?= $pro['prijs'] ?></h1>
             <button class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
     </div>
