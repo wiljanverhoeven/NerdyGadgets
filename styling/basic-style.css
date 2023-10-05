@@ -83,6 +83,22 @@ label {
     opacity: 1;
 }
 
+.account {
+    position: relative;
+}
+
+.user_neon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.user_neon:hover {
+    opacity: 1;
+}
+
+
 .input  {
     width: 100%;
     padding: 10px;
