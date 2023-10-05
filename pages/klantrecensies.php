@@ -57,11 +57,69 @@
       <button type="submit" class="btn btn-primary">Plaats recensie</button>
     </form>
   </div>
-
-
-    
-
   <br>
+
+  <script>
+    let reviews = [];
+  
+    // Dummy recensies (voorbeeld)
+    const dummyReviews = [
+      { review: "Goede service en snelle levering! Zal zeker weer bestellen.", rating: 5, date: "2023-10-02" },
+      { review: "NerdyGadgets heeft een geweldig assortiment producten. Erg blij met mijn aankoop.", rating: 4, date: "2023-09-30" },
+      // Voeg meer recensies toe zoals hierboven
+    ];
+  
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsContainer = document.getElementById('reviews');
+  
+    // Functie om recensies weer te geven
+    function displayReviews() {
+      reviewsContainer.innerHTML = '';
+      reviews.forEach(review => {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.classList.add('review');
+        reviewDiv.innerHTML = `
+                      <p>${review.review}</p>
+                      <div class="review-info">
+                          <span>Beoordeling: ${review.rating}/5</span>
+                          <span>Geplaatst op: ${review.date}</span>
+                      </div>
+                  `;
+        reviewsContainer.appendChild(reviewDiv);
+      });
+    }
+  
+    // Voeg event listener toe aan het formulier om een recensie te plaatsen
+    reviewForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const reviewText = document.getElementById('review').value;
+      const rating = document.getElementById('rating').value;
+      const currentDate = new Date().toISOString().split('T')[0]; // Vandaag's datum
+      const newReview = { review: reviewText, rating: rating, date: currentDate };
+      reviews.push(newReview);
+      displayReviews(); // Update de weergave van recensies
+      reviewForm.reset(); // Reset het formulier
+    });
+  
+    // Laad de initiÃ«le recensies bij het laden van de pagina
+    reviews = dummyReviews.slice(); // Kopieer de dummy recensies naar de reviews-array
+    displayReviews();
+  
+    // Functie om recensies te sorteren op basis van geselecteerde optie
+    function sortReviews() {
+      const sortOption = document.getElementById('sort').value;
+  
+      if (sortOption === 'relevantie') {
+        // Geen actie nodig, de volgorde is al zoals de recensies zijn toegevoegd
+      } else if (sortOption === 'datum') {
+        reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (sortOption === 'waardering') {
+        reviews.sort((a, b) => b.rating - a.rating);
+      }
+  
+      displayReviews(); // Update de weergave van recensies na sorteren
+    }
+  </script>
 
 
 

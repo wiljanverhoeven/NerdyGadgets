@@ -2,6 +2,30 @@
 <html lang="nl">
 
 <head>
+
+    <?php
+        require 'dbconnect.php';
+
+        for ($i = 1;$i <= 3; $i++) {
+            $query = "SELECT * FROM producten WHERE productid=$i";
+            $result = mysqli_query($conn, $query);
+
+            if ($i == 1) {
+                $awnser1 = mysqli_fetch_assoc($result);
+                $naam1 = $awnser1['productnaam'];
+                $info1 = $awnser1['productinformatie'];
+            } elseif ($i == 2){
+                $awnser2 = mysqli_fetch_assoc($result);
+                $naam2 = $awnser2['productnaam'];
+                $info2 = $awnser2['productinformatie'];
+            } else {
+                $awnser3 = mysqli_fetch_assoc($result);
+                $naam3 = $awnser3['productnaam'];
+                $info3 = $awnser3['productinformatie'];
+            }
+        };
+     ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets</title>
@@ -56,42 +80,42 @@
     <h2>Onze aanbevolen producten</h2>
 
     <div class="product">
-        <a href="pages/product.html"><img src="images/product.png" alt="Product 1"></a>
-        <h3>Product 1</h3>
-        <p>Beschrijving van Product 1 en prijs hier.</p>
+        <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo $awnser1['imagesrc']; ?>" alt="Product 1"></a>
+        <h3><?= $naam1 ?></h3>
+        <p><?= $info1 ?></p>
         <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img src="images/product.png" alt="Product 2"></a>
-        <h3>Product 2</h3>
-        <p>Beschrijving van Product 2 en prijs hier.</p>
+        <a href="pages/product.php?product=<?php $product = $awnser2; echo $product['productid']; ?>"><img height="200px" src="images/product.png" alt="Product 2"></a>
+        <h3><?= $naam2 ?></h3>
+        <p><?= $info2 ?></p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img src="images/product.png" alt="Product 3"></a>
-        <h3>Product 3</h3>
-        <p>Beschrijving van Product 3 en prijs hier.</p>
+    <a href="pages/product.php?product=<?php $product = $awnser3; echo $product['productid']; ?>"><img height="200px" src="images/product.png" alt="Product 3"></a>
+        <h3><?= $naam3 ?></h3>
+        <p><?= $info3 ?></p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img src="images/product.png" alt="Product 4"></a>
+        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 4"></a>
         <h3>Product 4</h3>
         <p>Beschrijving van Product 4 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img src="images/product.png" alt="Product 5"></a>
+        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 5"></a>
         <h3>Product 5</h3>
         <p>Beschrijving van Product 5 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img src="images/product.png" alt="Product 6"></a>
+        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 6"></a>
         <h3>Product 6</h3>
         <p>Beschrijving van Product 6 en prijs hier.</p>
         <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
