@@ -11,7 +11,7 @@ body {
 }
 
 header {
-    background-color: #23232F;
+    background-color: #232F3E;
     font-size: 18px;
     color: #fff;
     display: flex;
@@ -83,6 +83,22 @@ label {
     opacity: 1;
 }
 
+.account {
+    position: relative;
+}
+
+.user_neon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.user_neon:hover {
+    opacity: 1;
+}
+
+
 .input  {
     width: 100%;
     padding: 10px;
@@ -111,7 +127,7 @@ label {
 }
 
 footer {
-    background-color: #23232F;
+    background-color: #232F3E;
     color: #fff;
     text-align: center;
     padding: 10px 0;
