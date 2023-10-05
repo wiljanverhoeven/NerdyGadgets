@@ -35,16 +35,11 @@
 
     <div class="cart">
         <a href="winkelwagen.html">
-            <img class="wagen" src="/images/winkelwagen_icon.png" alt="Winkelwagen"  width="45" height="45">
-            <img class="wagen_neon" src="/images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="45" height="45">
+            <img class="wagen" src="/images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
+            <img class="wagen_neon" src="/images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
         </a>
     </div>
-    <div class="account">
-        <a href="account.html">
-            <img class="user" src="/images/account_icon.png" alt="Account"  width="40" height="40">
-            <img class="user_neon" src="/images/account_icon_neon.png" alt="Account"  width="40" height="40">
-        </a>
-    </div>
+
 </header>
 
 <section class="section product-block">
