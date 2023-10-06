@@ -123,3 +123,9 @@
     color: #fff; /* Kleur van het bullet punt */
     margin-right: 10px;
 }
+
+
+#list {
+    list-style-type: none;
+    padding: 0px;
+}
