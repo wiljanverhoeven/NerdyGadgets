@@ -36,7 +36,7 @@
 <body>
 <header>
     <div class="logo">
-        <a href="index.html">
+        <a href="index.php">
             <img src="images/NerdyGadgets_logo.png" alt="Logo"  width="228" height="114">
         </a>
     </div>
@@ -53,21 +53,21 @@
     
     <nav>
         <ul>
-            <li><a href="index.html" class="paginas">Home</a></li>
-            <li><a href="over-ons.html" class="paginas">Over ons</a></li>
-            <li><a href="producten.html" class="paginas">Producten</a></li>
+            <li><a href="index.php" class="paginas">Home</a></li>
+            <li><a href="over-ons.php" class="paginas">Over ons</a></li>
+            <li><a href="producten.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
 
     <div class="cart">
-        <a href="winkelwagen.html">
+        <a href="winkelwagen.php">
             <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
             <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
         </a>
     </div>
 
     <div class="account">
-        <a href="account.html">
+        <a href="account.php">
             <img class="user" src="images/account_icon.png" alt="Account"  width="40" height="40">
             <img class="user_neon" src="images/account_icon_neon.png" alt="Account"  width="40" height="40">
         </a>
@@ -108,21 +108,21 @@
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 4"></a>
+        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 4"></a>
         <h3>Product 4</h3>
         <p>Beschrijving van Product 4 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 5"></a>
+        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 5"></a>
         <h3>Product 5</h3>
         <p>Beschrijving van Product 5 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 6"></a>
+        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 6"></a>
         <h3>Product 6</h3>
         <p>Beschrijving van Product 6 en prijs hier.</p>
         <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
