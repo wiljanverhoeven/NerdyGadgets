@@ -152,7 +152,7 @@
     <div class="section-content">
         <h2>Klantrecensies</h2>
         <p>Lees hieronder de ervaringen van andere klanten met betrekking tot onze producten en service. Sorteer op relevantie, datum of waardering.</p>
-       <a href="pages/klantrecensies.html">
+       <a href="pages/klantrecensies.php">
             <button class="submit-button" onclick="">Bekijk Klantrecensies</button>
         </a>
     </div>
