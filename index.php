@@ -6,6 +6,7 @@
     <?php
         require 'dbconnect.php';
 
+
         for ($i = 1;$i <= 3; $i++) {
             $query = "SELECT * FROM producten WHERE productid=$i";
             $result = mysqli_query($conn, $query);
@@ -31,6 +32,7 @@
     <title>NerdyGadgets</title>
     <link rel="stylesheet" href="styling/basic-style.css">
     <link rel="stylesheet" href="styling/homepage.css">
+
 </head>
 
 <body>
