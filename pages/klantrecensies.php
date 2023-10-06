@@ -138,6 +138,7 @@
       <select id="sort" onchange="sortReviews()">
         <option value="datum">Datum</option>
         <option value="waardering">Waardering</option>
+        <option value="relevantie">relevantie</option>
       </select>
     </div>
     <div id="reviews">
