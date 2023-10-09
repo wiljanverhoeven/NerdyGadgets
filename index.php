@@ -38,38 +38,38 @@
 <body>
 <header>
     <div class="logo">
-        <a href="index.html">
-            <img src="images/NerdyGadgets_logo 4.png" alt="Logo"  width="250" height="90">
+        <a href="index.php">
+            <img src="images/NerdyGadgets_logo.png" alt="Logo"  width="228" height="114">
         </a>
     </div>
 
 
     <div>
-        <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">        
+        <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
 
         <button class="btn btn-primary searchSubmit" type="submit"> <img src="images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
 
     </div>
 
 
-    
+
     <nav>
         <ul>
-            <li><a href="index.html" class="paginas">Home</a></li>
-            <li><a href="over-ons.html" class="paginas">Over ons</a></li>
-            <li><a href="producten.html" class="paginas">Producten</a></li>
+            <li><a href="index.php" class="paginas">Home</a></li>
+            <li><a href="over-ons.php" class="paginas">Over ons</a></li>
+            <li><a href="producten.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
 
     <div class="cart">
-        <a href="winkelwagen.html">
+        <a href="winkelwagen.php">
             <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
             <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
         </a>
     </div>
 
     <div class="account">
-        <a href="account.html">
+        <a href="account.php">
             <img class="user" src="images/account_icon.png" alt="Account"  width="40" height="40">
             <img class="user_neon" src="images/account_icon_neon.png" alt="Account"  width="40" height="40">
         </a>
@@ -80,6 +80,16 @@
 <section id="home" class="section">
 
     <h2>Welkom bij NerdyGadgets</h2>
+    <p>Bij NerdyGadgets zijn we gepassioneerd door innovatieve technologie en streven we ernaar om de nieuwste en meest opwindende gadgets en elektronica naar jou te brengen. Onze missie is om technologie toegankelijk te maken voor iedereen, of je nu een doorgewinterde tech-liefhebber bent of gewoon op zoek bent naar handige en leuke gadgets voor dagelijks gebruik.</p>
+
+    <p>Wat ons uniek maakt, is onze constante zoektocht naar hoogwaardige producten. Ons team van experts test en beoordeelt elk product zorgvuldig om ervoor te zorgen dat het aan onze strenge normen voldoet. We geloven in kwaliteit boven alles, en we selecteren alleen producten waar we zelf achter staan.</p>
+
+    <p>Of je nu op zoek bent naar de nieuwste smartphones, slimme huishoudelijke apparaten, gaming-gear, of andere elektronische snufjes, je vindt het allemaal hier bij NerdyGadgets. Onze online winkel biedt een uitgebreid assortiment aan producten, met gedetailleerde beschrijvingen en eerlijke prijzen.</p>
+
+    <p>We willen niet alleen geweldige producten aanbieden, maar ook de best mogelijke winkelervaring. Ons toegewijde klantenserviceteam staat altijd voor je klaar om al je vragen te beantwoorden en je te helpen bij elke stap van het aankoopproces. We zorgen voor een veilige en gemakkelijke online betalingservaring, en we streven ernaar om je bestelling snel en efficiënt bij je af te leveren.</p>
+
+    <p>Kortom, NerdyGadgets is jouw one-stop-bestemming voor al je technologische behoeften. We verwelkomen je graag in onze gemeenschap van tech-enthousiastelingen en hopen dat je net zo enthousiast zult zijn over onze producten als wij.</p>
+
     <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
 
 </section>
@@ -110,21 +120,21 @@
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 4"></a>
+        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 4"></a>
         <h3>Product 4</h3>
         <p>Beschrijving van Product 4 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 5"></a>
+        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 5"></a>
         <h3>Product 5</h3>
         <p>Beschrijving van Product 5 en prijs hier.</p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.html"><img height="200px" src="images/product.png" alt="Product 6"></a>
+        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 6"></a>
         <h3>Product 6</h3>
         <p>Beschrijving van Product 6 en prijs hier.</p>
         <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
