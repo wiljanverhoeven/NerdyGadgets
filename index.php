@@ -4,9 +4,10 @@
 <head>
 
     <?php
+        //haalt informatie van bijnodigde bestanden op
         require 'dbconnect.php';
 
-
+        //maakt variablenen aan voor de producten op de homepage
         for ($i = 1;$i <= 3; $i++) {
             $query = "SELECT * FROM producten WHERE productid=$i";
             $result = mysqli_query($conn, $query);
