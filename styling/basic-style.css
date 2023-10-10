@@ -13,7 +13,9 @@ body {
 
 header {
     background-color: #23232F;
+    font-family: Arial, sans-serif;
     font-size: 18px;
+    font-weight: bold;
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -141,6 +143,7 @@ label {
 footer {
     background-color: #23232F;
     color: #fff;
+    font-family: Arial, sans-serif;
     text-align: center;
     padding: 10px 0;
     position: relative;
