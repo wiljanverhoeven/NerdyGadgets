@@ -82,8 +82,8 @@
 <div class="main">
 <section id="home" class="section">
     <div class="welkom">
-        <h1>Welkom bij NerdyGadgets</h1>
-        <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
+        <h1 class="WNG">Welkom bij NerdyGadgets</h1>
+        <p class="slogan" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</p>
     </div>
 </section>
 
@@ -156,8 +156,11 @@
     
         <div class="recensies">
         <h2>Klantrecensies</h2>
-        <p>Lees hieronder de ervaringen van andere klanten met betrekking tot onze producten en service.</p> 
-        <p>Sorteer op relevantie, datum of waardering.</p>
+        <div>
+        <h3>Lees hieronder de ervaringen van andere klanten</h3>
+        <h3>met betrekking tot onze producten en service.</h3> 
+        <h3>Sorteer op relevantie, datum of waardering.</h3>
+        </div>
        <a href="pages/klantrecensies.php">
             <button class="submit-button" onclick="">Bekijk Klantrecensies</button>
         </a>
@@ -177,25 +180,8 @@
         </ul>
     </div>
 
-
-    
-
 <br>
 
-
-
-    <h2>Veilige betalingsmogelijkheden</h2>
-    <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
-    <ul id="list">
-    <div class="betaalmiddelen">
-            <a>
-                <img src="images/icon-mastercard.png" width="90" height="56" >
-                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="images/icon-visa.png" width="90" height="56" >
-            
-            </a>
-        </ul>
-    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
 </section>
 
 </div>
@@ -226,6 +212,19 @@
         </ul>
 
     </div>
+
+    <div class="betaalmiddelen">
+    <h2>Veilige betalingsmogelijkheden</h2>
+        <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
+            <ul id="list">
+            <a>
+                <img src="images/icon-mastercard.png" width="90" height="56" >
+                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
+                <img src="images/icon-visa.png" width="90" height="56" >
+            
+            </a>
+        </ul>
+    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
 
 </footer>
 </body>
