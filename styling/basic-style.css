@@ -1,13 +1,14 @@
 /*styling van de nav-bar en footer */
 
 body {
-    background-image: url('https://www.chromethemer.com/download/hd-wallpapers/blue-technology-3840x2160.jpg');
+    background-image: url(../images/background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    
 }
 
 header {
@@ -20,6 +21,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
 }
 
 
@@ -59,6 +61,8 @@ nav a {
     position: relative;
     padding: 60px;
     text-align: center;
+    align-items:center;
+    justify-content:center;
 }
 
 form {
@@ -115,6 +119,8 @@ label {
     width: 75.1%;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
+    
 }
 
 .searchSubmit {
@@ -126,6 +132,12 @@ label {
     border: 1px solid #39FF14;
     cursor: pointer;
     border-radius: 4px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
+}
+
+.searchSubmit:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px #39FF14;
 }
 
 footer {
@@ -135,6 +147,7 @@ footer {
     text-align: center;
     padding: 10px 0;
     position: relative;
+    box-shadow: 0px 0px 50px #23232F;
 }
 
 .geg {

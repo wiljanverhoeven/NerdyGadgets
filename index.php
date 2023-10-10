@@ -80,24 +80,14 @@
 
 <section id="home" class="section">
 
-    <h2>Welkom bij NerdyGadgets</h2>
-    <p>Bij NerdyGadgets zijn we gepassioneerd door innovatieve technologie en streven we ernaar om de nieuwste en meest opwindende gadgets en elektronica naar jou te brengen. Onze missie is om technologie toegankelijk te maken voor iedereen, of je nu een doorgewinterde tech-liefhebber bent of gewoon op zoek bent naar handige en leuke gadgets voor dagelijks gebruik.</p>
-
-    <p>Wat ons uniek maakt, is onze constante zoektocht naar hoogwaardige producten. Ons team van experts test en beoordeelt elk product zorgvuldig om ervoor te zorgen dat het aan onze strenge normen voldoet. We geloven in kwaliteit boven alles, en we selecteren alleen producten waar we zelf achter staan.</p>
-
-    <p>Of je nu op zoek bent naar de nieuwste smartphones, slimme huishoudelijke apparaten, gaming-gear, of andere elektronische snufjes, je vindt het allemaal hier bij NerdyGadgets. Onze online winkel biedt een uitgebreid assortiment aan producten, met gedetailleerde beschrijvingen en eerlijke prijzen.</p>
-
-    <p>We willen niet alleen geweldige producten aanbieden, maar ook de best mogelijke winkelervaring. Ons toegewijde klantenserviceteam staat altijd voor je klaar om al je vragen te beantwoorden en je te helpen bij elke stap van het aankoopproces. We zorgen voor een veilige en gemakkelijke online betalingservaring, en we streven ernaar om je bestelling snel en efficiënt bij je af te leveren.</p>
-
-    <p>Kortom, NerdyGadgets is jouw one-stop-bestemming voor al je technologische behoeften. We verwelkomen je graag in onze gemeenschap van tech-enthousiastelingen en hopen dat je net zo enthousiast zult zijn over onze producten als wij.</p>
-
+    <h1>Welkom bij NerdyGadgets</h1>
     <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
 
 </section>
 
 <section id="aanbevolen products" class="section products">
-
-    <h2>Onze aanbevolen producten</h2>
+    
+    <h1>Onze aanbevolen producten</h1>
 
     <div class="product">
         <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo $awnser1['imagesrc']; ?>" alt="Product 1"></a>
@@ -145,10 +135,12 @@
 
 </section>
 
-<section id="contact" class="section">
+<section id="bottom" class="section">
 
+    <div class="bottom">
+
+    <div class="contact">
     <h2>Contacteer ons</h2>
-
     <form>
         <label for="naam">Naam:</label>
         <input class="input"  type="text" id="naam" name="naam" required>
@@ -158,16 +150,16 @@
         <textarea class="input" id="bericht" name="bericht" rows="4" required></textarea>
         <button class="submit-button" type="submit">Verstuur</button>
     </form>
-
-</section>
-
-<section id="klantrecensies" class="section">
-    <div class="section-content">
+    </div>
+    
+        <div class="recensies">
         <h2>Klantrecensies</h2>
-        <p>Lees hieronder de ervaringen van andere klanten met betrekking tot onze producten en service. Sorteer op relevantie, datum of waardering.</p>
+        <p>Lees hieronder de ervaringen van andere klanten met betrekking tot onze producten en service.</p> 
+        <p>Sorteer op relevantie, datum of waardering.</p>
        <a href="pages/klantrecensies.php">
             <button class="submit-button" onclick="">Bekijk Klantrecensies</button>
         </a>
+        </div>
     </div>
 </section>
 
