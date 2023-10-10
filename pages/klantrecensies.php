@@ -13,7 +13,7 @@
 <header>
   <div class="logo">
     <a href="../index.php">
-      <img src="../images/NerdyGadgets_logo.png" alt="Logo" width="228" height="114">
+      <img img src="images/NerdyGadgets_logo 5.png" alt="Logo"  width="250" height="90">
     </a>
   </div>
 

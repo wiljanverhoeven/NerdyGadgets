@@ -21,7 +21,7 @@
 <header>
     <div class="logo">
         <a href="../index.php">
-            <img src="../images/NerdyGadgets_logo 4.png" alt="Logo"  width="250" height="90">
+            <img src="images/NerdyGadgets_logo 5.png" alt="Logo"  width="250" height="90">
         </a>
     </div>
 
