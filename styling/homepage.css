@@ -1,37 +1,80 @@
 /*styling van "index.html" */
 
-.slidein {
-    width: 40%;
-}
-
 #home{
+    position: relative;
     height: 90vh;
     text-align: center;
     justify-content: center;
     font-size: 150%;
     font-family: andale mono, monospace;
-    text-shadow: 2px 2px #536878;
+    text-shadow: 2px 2px #2C75FF;
 }
 
 .welkom {
     position: relative;
+    margin:auto;
     top: 30%;
+    width: 32.9%;
 }
 
+.WNG {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: .15em solid orange;
+    margin: 0;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0% }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+  }
+
+  .slogan {
+    opacity: 0;
+    animation: 
+        fadeIn 2s;
+    animation-delay: 3.5s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+       opacity: 1;
+    }
+  }
+
 #aanbevolen_producten {
-    background-color: 	#53687885;
-    backdrop-filter: brightness(50%);
+    background-color: #2c76ff14;
     width: 88%;
-    left: 6%;
+    left: 5%;
     justify-self: center;
     border-radius: 10px;
     padding: 10px;
+    border: 4px solid #33333386;
+    margin-bottom: 5%;
+}
+
+#aanbevolen_producten h1 {
+    font-size: 35px;
+    margin: 10px;
 }
 
 .product {
     color: #fff;
+    background-color: #2c76ff00;
     display: inline-block;
-    border: 4px solid #fff;
+    border: 4px solid #ffffff99;
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
@@ -121,16 +164,42 @@
     display: flex;
     align-items:center;
     justify-content:center;
+    height: 520px;
+    border: 4px solid #33333386;
+    background-color: #2c76ff14;
+    border-radius: 10px;
 }
 
 .contact {
     flex: 1;
+    margin-left: 5%;
+    height: 100%;
+    padding: 10px;
 }
 
 .recensies {
+    position: relative;
+    height: 100%;
     flex: 1;
+    margin-right: 5%;
 }
 
+.recensies h2 {
+    padding: 10px;
+}
 
+.recensies h3 {
+    padding: 10px;
+}
+
+.recensies div {
+    position: relative;
+    top:10%;
+}
+
+.recensies button{
+    position: relative;
+    top: 20%;
+}
 
 
