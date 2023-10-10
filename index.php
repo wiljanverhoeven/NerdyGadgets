@@ -83,7 +83,7 @@
 <section id="home" class="section">
     <div class="welkom">
         <h1 class="WNG">Welkom bij NerdyGadgets</h1>
-        <p class="slogan" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</p>
+        <p class="slogan" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen!</p>
     </div>
 </section>
 
