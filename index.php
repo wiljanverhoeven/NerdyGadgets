@@ -61,11 +61,11 @@
             <li><a href="producten.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
-
+    <div class="icons">
     <div class="cart">
         <a href="winkelwagen.php">
-            <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
-            <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
+            <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="42" height="42">
+            <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="42" height="42">
         </a>
     </div>
 
@@ -75,17 +75,19 @@
             <img class="user_neon" src="images/account_icon_neon.png" alt="Account"  width="40" height="40">
         </a>
     </div>
+    </div>
 
 </header>
 
+<div class="main">
 <section id="home" class="section">
-
-    <h1>Welkom bij NerdyGadgets</h1>
-    <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
-
+    <div class="welkom">
+        <h1>Welkom bij NerdyGadgets</h1>
+        <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
+    </div>
 </section>
 
-<section id="aanbevolen products" class="section products">
+<section id="aanbevolen_producten" class="section products">
     
     <h1>Onze aanbevolen producten</h1>
 
@@ -195,6 +197,8 @@
         </ul>
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
 </section>
+
+</div>
 
 <footer>
 
