@@ -61,11 +61,11 @@
             <li><a href="producten.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
-
+    <div class="icons">
     <div class="cart">
         <a href="winkelwagen.php">
-            <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
-            <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
+            <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="42" height="42">
+            <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="42" height="42">
         </a>
     </div>
 
@@ -75,17 +75,19 @@
             <img class="user_neon" src="images/account_icon_neon.png" alt="Account"  width="40" height="40">
         </a>
     </div>
+    </div>
 
 </header>
 
+<div class="main">
 <section id="home" class="section">
-
-    <h1>Welkom bij NerdyGadgets</h1>
-    <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
-
+    <div class="welkom">
+        <h1 class="WNG">Welkom bij NerdyGadgets</h1>
+        <p class="slogan" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</p>
+    </div>
 </section>
 
-<section id="aanbevolen products" class="section products">
+<section id="aanbevolen_producten" class="section products">
     
     <h1>Onze aanbevolen producten</h1>
 
@@ -154,8 +156,11 @@
     
         <div class="recensies">
         <h2>Klantrecensies</h2>
-        <p>Lees hieronder de ervaringen van andere klanten met betrekking tot onze producten en service.</p> 
-        <p>Sorteer op relevantie, datum of waardering.</p>
+        <div>
+        <h3>Lees hieronder de ervaringen van andere klanten</h3>
+        <h3>met betrekking tot onze producten en service.</h3> 
+        <h3>Sorteer op relevantie, datum of waardering.</h3>
+        </div>
        <a href="pages/klantrecensies.php">
             <button class="submit-button" onclick="">Bekijk Klantrecensies</button>
         </a>
@@ -175,26 +180,11 @@
         </ul>
     </div>
 
-
-    
-
 <br>
 
-
-
-    <h2>Veilige betalingsmogelijkheden</h2>
-    <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
-    <ul id="list">
-    <div class="betaalmiddelen">
-            <a>
-                <img src="images/icon-mastercard.png" width="90" height="56" >
-                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="images/icon-visa.png" width="90" height="56" >
-            
-            </a>
-        </ul>
-    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
 </section>
+
+</div>
 
 <footer>
 
@@ -222,6 +212,19 @@
         </ul>
 
     </div>
+
+    <div class="betaalmiddelen">
+    <h2>Veilige betalingsmogelijkheden</h2>
+        <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
+            <ul id="list">
+            <a>
+                <img src="images/icon-mastercard.png" width="90" height="56" >
+                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
+                <img src="images/icon-visa.png" width="90" height="56" >
+            
+            </a>
+        </ul>
+    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
 
 </footer>
 </body>

@@ -2,13 +2,18 @@
 
 body {
     background-image: url(../images/background.jpg);
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    
+}
+
+.main {
+    margin-top: 10vh;
+    filter: brightness(95%);
 }
 
 header {
@@ -22,8 +27,20 @@ header {
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0px 0px 25px rgb(0, 0, 0);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9999;
+    filter:brightness(90%);
 }
 
+.icons {
+    position: relative;
+    display: flex;
+    right: 40px;
+    
+}
 
 .paginas:hover {
     color: #39FF14;
@@ -57,6 +74,7 @@ nav a {
     
 }
 
+
 .section {
     position: relative;
     padding: 60px;
@@ -77,6 +95,8 @@ label {
 
 .cart {
     position: relative;
+    flex: 1;
+    padding-right: 30px;
 }
 
 .wagen_neon {
@@ -92,6 +112,7 @@ label {
 
 .account {
     position: relative;
+    flex: 1;
 }
 
 .user_neon {

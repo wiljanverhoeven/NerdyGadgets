@@ -21,41 +21,46 @@
 <header>
     <div class="logo">
         <a href="../index.php">
-            <img src="images/NerdyGadgets_logo 5.png" alt="Logo"  width="250" height="90">
+            <img src="../images/NerdyGadgets_logo 5.png" alt="Logo"  width="250" height="90">
         </a>
     </div>
 
 
     <div>
-        <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">        
+        <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
 
         <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
 
     </div>
 
+
+
     <nav>
         <ul>
             <li><a href="../index.php" class="paginas">Home</a></li>
-            <li><a href="../over-ons.php" class="paginas">Over ons</a></li>
-            <li><a href="../producten.php" class="paginas">Producten</a></li>
+            <li><a href="over-ons.php" class="paginas">Over ons</a></li>
+            <li><a href="producten.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
-
+    <div class="icons">
     <div class="cart">
-        <a href="../winkelwagen.php">
-            <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen"  width="40" height="40">
-            <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="40" height="40">
+        <a href="winkelwagen.php">
+            <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen"  width="42" height="42">
+            <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="42" height="42">
         </a>
     </div>
 
     <div class="account">
-    <a href="account.php">
-        <img class="user" src="../images/account_icon.png" alt="Account"  width="40" height="40">
-        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account"  width="40" height="40">
-    </a>
+        <a href="account.php">
+            <img class="user" src="../images/account_icon.png" alt="Account"  width="40" height="40">
+            <img class="user_neon" src="../images/account_icon_neon.png" alt="Account"  width="40" height="40">
+        </a>
+    </div>
     </div>
 
 </header>
+
+<div class="main">
 
 <section class="section product-block">
     <div  class="product">
@@ -94,7 +99,7 @@
 
 
 
-
+</div>
 <footer>
 
     <div class="copyrights">
