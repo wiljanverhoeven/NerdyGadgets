@@ -83,7 +83,9 @@
 <section id="home" class="section">
     <div class="welkom">
         <h1 class="WNG">Welkom bij NerdyGadgets</h1>
-        <p class="slogan" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</p>
+        <p class="slogan" behavior="scroll" direction="left"><?php
+$strings = array('Ontdek geweldige producten voor de beste prijzen!', 'Eenvoudige navigatie om snel te vinden wat u zoekt!', 'Veilige betalingsmogelijkheden voor uw gemoedsrust!', 'Snelle levering om uw producten op tijd te ontvangen!');
+echo $strings[array_rand($strings)];?>
     </div>
 </section>
 
