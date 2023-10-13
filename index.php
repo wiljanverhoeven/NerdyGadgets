@@ -227,7 +227,7 @@ echo $strings[array_rand($strings)];?>
             </a>
         </ul>
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
-
+    </div>
 </footer>
 </body>
 </html>
