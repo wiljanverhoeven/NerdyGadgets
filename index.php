@@ -84,7 +84,7 @@
     <div class="welkom">
         <h1 class="WNG">Welkom bij NerdyGadgets</h1>
         <p class="slogan" behavior="scroll" direction="left"><?php
-$strings = array('Ontdek geweldige producten voor de beste prijzen!', 'Eenvoudige navigatie om snel te vinden wat u zoekt!', 'Veilige betalingsmogelijkheden voor uw gemoedsrust!', 'Snelle levering om uw producten op tijd te ontvangen!');
+$strings = array('Ontdek geweldige producten voor de beste prijzen!', 'Eenvoudige navigatie om snel te vinden wat u zoekt!', 'Veilige betalingsmogelijkheden voor uw gemoedsrust!', 'Snelle levering om uw producten op tijd te ontvangen!', 'Niet tevreden met uw product? Geld terug!', 'Wij behandelen de recensies van onze klanten als feedback!', 'Het vertrouwen van de klant is voor ons het belangrijkst!');
 echo $strings[array_rand($strings)];?>
     </div>
 </section>
@@ -172,15 +172,6 @@ echo $strings[array_rand($strings)];?>
 
 <section id="winkelervaring" class="section">
     <div class="section-content">
-        <h2>Verbeter uw winkelervaring bij NerdyGadgets</h2>
-        <p>We streven naar de beste winkelervaring voor onze klanten. Bij NerdyGadgets garanderen wij:</p>
-        <ul id="list">
-            <li>Klantrecensies voor echte feedback</li>
-            <li>Eenvoudige navigatie om snel te vinden wat u zoekt</li>
-            <li>Veilige betalingsmogelijkheden voor uw gemoedsrust</li>
-            <li>Snelle levering om uw producten op tijd te ontvangen</li>
-        </ul>
-    </div>
 
 <br>
 
@@ -226,7 +217,6 @@ echo $strings[array_rand($strings)];?>
             
             </a>
         </ul>
-    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
 
 </footer>
 </body>
