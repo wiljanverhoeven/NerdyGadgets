@@ -92,7 +92,7 @@
     <h1>Onze aanbevolen producten</h1>
 
     <div class="product">
-        <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo $awnser1['imagesrc']; ?>" alt="Product 1"></a>
+        <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser1['imagesrc']; ?>" alt="Product 1"></a>
         <h3><?= $naam1 ?></h3>
         <p><?= $info1 ?></p>
         <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
