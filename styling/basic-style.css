@@ -1,7 +1,8 @@
 /*styling van de nav-bar en footer */
 
 body {
-    background-image: url('https://www.chromethemer.com/download/hd-wallpapers/blue-technology-3840x2160.jpg');
+    background-image: url(../images/background.jpg);
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
@@ -10,14 +11,35 @@ body {
     padding: 0;
 }
 
+.main {
+    margin-top: 10vh;
+    filter: brightness(95%);
+}
+
 header {
     background-color: #23232F;
+    font-family: Arial, sans-serif;
     font-size: 18px;
+    font-weight: bold;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9999;
+    filter:brightness(90%);
+}
+
+.icons {
+    position: relative;
+    display: flex;
+    right: 40px;
+    
 }
 
 .paginas:hover {
@@ -52,10 +74,13 @@ nav a {
     
 }
 
+
 .section {
     position: relative;
     padding: 60px;
     text-align: center;
+    align-items:center;
+    justify-content:center;
 }
 
 form {
@@ -70,6 +95,8 @@ label {
 
 .cart {
     position: relative;
+    flex: 1;
+    padding-right: 30px;
 }
 
 .wagen_neon {
@@ -80,6 +107,22 @@ label {
 }
 
 .wagen_neon:hover {
+    opacity: 1;
+}
+
+.account {
+    position: relative;
+    flex: 1;
+}
+
+.user_neon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.user_neon:hover {
     opacity: 1;
 }
 
@@ -97,6 +140,8 @@ label {
     width: 75.1%;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
+    
 }
 
 .searchSubmit {
@@ -108,14 +153,22 @@ label {
     border: 1px solid #39FF14;
     cursor: pointer;
     border-radius: 4px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
+}
+
+.searchSubmit:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px #39FF14;
 }
 
 footer {
     background-color: #23232F;
     color: #fff;
+    font-family: Arial, sans-serif;
     text-align: center;
     padding: 10px 0;
     position: relative;
+    box-shadow: 0px 0px 50px #23232F;
 }
 
 .geg {
