@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `nerdygadgets` DEFAULT CHARACTER SET utf8 ;
+USE `nerdygadgets` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`producten`
+-- Table `nerdygadgets`.`producten`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`producten` (
+CREATE TABLE IF NOT EXISTS `nerdygadgets`.`producten` (
   `productid` INT NOT NULL AUTO_INCREMENT,
   `productnaam` VARCHAR(45) NULL,
   `prijs` DECIMAL(38,2) NULL,
@@ -31,9 +31,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`recensies`
+-- Table `nerdygadgets`.`recensies`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`recensies` (
+CREATE TABLE IF NOT EXISTS `nerdygadgets`.`recensies` (
   `idrecensies` INT NOT NULL AUTO_INCREMENT,
   `recensie` VARCHAR(200) NULL,
   `rating` INT NULL,
