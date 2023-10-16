@@ -58,7 +58,7 @@
         <ul>
             <li><a href="index.php" class="paginas">Home</a></li>
             <li><a href="over-ons.php" class="paginas">Over ons</a></li>
-            <li><a href="producten.php" class="paginas">Producten</a></li>
+            <li><a href="pages/productoverzicht.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
     <div class="icons">
