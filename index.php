@@ -95,7 +95,7 @@ echo $strings[array_rand($strings)];?>
     <h1>Onze aanbevolen producten</h1>
 
     <div class="product">
-        <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="images/product.png" alt="Product 1"></a>
+        <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser1['imagesrc']; ?>" alt="Product 1"></a>
         <h3><?= $naam1 ?></h3>
         <p><?= $info1 ?></p>
         <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
@@ -218,7 +218,8 @@ echo $strings[array_rand($strings)];?>
             
             </a>
         </ul>
-
+    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
+    </div>
 </footer>
 </body>
 </html>
