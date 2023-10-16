@@ -14,7 +14,7 @@
 <body>
 <header>
     <div class="logo">
-        <a href="index.php">
+        <a href="../index.php">
             <img src="../images/NerdyGadgets_logo 5.png" alt="Logo"  width="250" height="90">
         </a>
     </div>
@@ -307,9 +307,9 @@
         <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
             <ul id="list">
             <a>
-                <img src="images/icon-mastercard.png" width="90" height="56" >
-                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="images/icon-visa.png" width="90" height="56" >
+                <img src="../images/icon-mastercard.png" width="90" height="56" >
+                <img src="../images/IDEAL_Logo.png" width="64.4" height="56" >
+                <img src="../images/icon-visa.png" width="90" height="56" >
             
             </a>
         </ul>
