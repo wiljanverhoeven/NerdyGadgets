@@ -2,18 +2,19 @@
 <html lang="nl">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Klantrecensies - NerdyGadgets</title>
-  <link rel="icon" type="image/png" href="/images/Logo_icon 2">
-  <link rel="stylesheet" href="../styling/basic-style.css">
-  <link rel="stylesheet" href="../styling/recensiepagina.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klantrecensies - NerdyGadgets</title>
+    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
+    <link rel="stylesheet" href="../styling/basic-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="../styling/recensie.css">
 </head>
 
 <body>
 <header>
     <div class="logo">
-        <a href="../index.php">
+        <a href="index.php">
             <img src="../images/NerdyGadgets_logo 5.png" alt="Logo"  width="250" height="90">
         </a>
     </div>
@@ -31,8 +32,8 @@
     <nav>
         <ul>
             <li><a href="../index.php" class="paginas">Home</a></li>
-            <li><a href="over-ons.php" class="paginas">Over ons</a></li>
-            <li><a href="producten.php" class="paginas">Producten</a></li>
+            <li><a href="../over-ons.php" class="paginas">Over ons</a></li>
+            <li><a href="../pages/productoverzicht.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
     <div class="icons">
@@ -52,135 +53,255 @@
     </div>
 
 </header>
+<section id="review" class=""section>
+    <div class="container">
+        <div class="board">
+            <h2 class="text-light">onze reviews</h2>
+            <p class="text-light">top reviews</p>
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
 
-<div class="main">
 
-<section id="home" class="section">
-  <h2>Welkom bij NerdyGadgets</h2>
-  <marquee class="slidein" behavior="scroll" direction="left">Ontdek geweldige producten voor de beste prijzen.</marquee>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
+                        </div>
+
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                saihfgsagfsafsfhuisafgsaufgsafgu
+                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                            </div>
+                            <div class="profile">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
+                                <a href="#">Biggie Daggoe</a>
+                                <span>Founder & CEO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 
-
 <section id="klantrecensies" class="section">
-  <div class="section-content">
-    <h2>Plaats uw recensie</h2>
-    <form id="reviewForm">
-      <label for="review">Uw recensie:</label>
-      <textarea id="review" name="review" rows="5" required></textarea>
-      <label for="rating">Beoordeling (1-5):</label>
-      <input type="number" id="rating" name="rating" min="1" max="5" required>
-      <button type="submit" class="btn btn-primary">Plaats recensie</button>
-    </form>
-  </div>
-  <br>
+    <div class="section-content">
+        <h2>Plaats uw recensie</h2>
+        <form id="reviewForm">
+            <label for="review">Uw recensie:</label>
+            <textarea id="review" name="review" rows="5" required></textarea>
+            <label for="rating">Beoordeling (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+            <button type="submit" class="btn btn-primary">Plaats recensie</button>
+        </form>
+    </div>
+    <br>
 
-  <script>
-    let reviews = [];
-  
-    // Dummy recensies (voorbeeld)
-    const dummyReviews = [
-      { review: "Goede service en snelle levering! Zal zeker weer bestellen.", rating: 5, date: "2023-10-02" },
-      { review: "NerdyGadgets heeft een geweldig assortiment producten. Erg blij met mijn aankoop.", rating: 4, date: "2023-09-30" },
-      // Voeg meer recensies toe zoals hierboven
-    ];
-  
-    const reviewForm = document.getElementById('reviewForm');
-    const reviewsContainer = document.getElementById('reviews');
-  
-    // Functie om recensies weer te geven
-    function displayReviews() {
-      reviewsContainer.innerHTML = '';
-      reviews.forEach(review => {
-        const reviewDiv = document.createElement('div');
-        reviewDiv.classList.add('review');
-        reviewDiv.innerHTML = `
+    <script>
+        let reviews = [];
+
+        // Dummy recensies (voorbeeld)
+        const dummyReviews = [
+            { review: "Goede service en snelle levering! Zal zeker weer bestellen.", rating: 5, date: "2023-10-02" },
+            { review: "NerdyGadgets heeft een geweldig assortiment producten. Erg blij met mijn aankoop.", rating: 4, date: "2023-09-30" },
+            // Voeg meer recensies toe zoals hierboven
+        ];
+
+        const reviewForm = document.getElementById('reviewForm');
+        const reviewsContainer = document.getElementById('reviews');
+
+        // Functie om recensies weer te geven
+        function displayReviews() {
+            reviewsContainer.innerHTML = '';
+            reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.classList.add('review');
+                reviewDiv.innerHTML = `
                       <p>${review.review}</p>
                       <div class="review-info">
                           <span>Beoordeling: ${review.rating}/5</span>
                           <span>Geplaatst op: ${review.date}</span>
                       </div>
                   `;
-        reviewsContainer.appendChild(reviewDiv);
-      });
-    }
-  
-    // Voeg event listener toe aan het formulier om een recensie te plaatsen
-    reviewForm.addEventListener('submit', event => {
-      event.preventDefault();
-      const reviewText = document.getElementById('review').value;
-      const rating = document.getElementById('rating').value;
-      const currentDate = new Date().toISOString().split('T')[0]; // Vandaag's datum
-      const newReview = { review: reviewText, rating: rating, date: currentDate };
-      reviews.push(newReview);
-      displayReviews(); // Update de weergave van recensies
-      reviewForm.reset(); // Reset het formulier
-    });
-  
-    // Laad de initiÃ«le recensies bij het laden van de pagina
-    reviews = dummyReviews.slice(); // Kopieer de dummy recensies naar de reviews-array
-    displayReviews();
-  
-    // Functie om recensies te sorteren op basis van geselecteerde optie
-    function sortReviews() {
-      const sortOption = document.getElementById('sort').value;
-  
-      if (sortOption === 'relevantie') {
-        // Geen actie nodig, de volgorde is al zoals de recensies zijn toegevoegd
-      } else if (sortOption === 'datum') {
-        reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
-      } else if (sortOption === 'waardering') {
-        reviews.sort((a, b) => b.rating - a.rating);
-      }
-  
-      displayReviews(); // Update de weergave van recensies na sorteren
-    }
-  </script>
+                reviewsContainer.appendChild(reviewDiv);
+            });
+        }
+
+        // Voeg event listener toe aan het formulier om een recensie te plaatsen
+        reviewForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const reviewText = document.getElementById('review').value;
+            const rating = document.getElementById('rating').value;
+            const currentDate = new Date().toISOString().split('T')[0]; // Vandaag's datum
+            const newReview = { review: reviewText, rating: rating, date: currentDate };
+            reviews.push(newReview);
+            displayReviews(); // Update de weergave van recensies
+            reviewForm.reset(); // Reset het formulier
+        });
+
+        // Laad de initiÃ«le recensies bij het laden van de pagina
+        reviews = dummyReviews.slice(); // Kopieer de dummy recensies naar de reviews-array
+        displayReviews();
+
+        // Functie om recensies te sorteren op basis van geselecteerde optie
+        function sortReviews() {
+            const sortOption = document.getElementById('sort').value;
+
+            if (sortOption === 'relevantie') {
+                // Geen actie nodig, de volgorde is al zoals de recensies zijn toegevoegd
+            } else if (sortOption === 'datum') {
+                reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortOption === 'waardering') {
+                reviews.sort((a, b) => b.rating - a.rating);
+            }
+
+            displayReviews(); // Update de weergave van recensies na sorteren
+        }
+    </script>
 
 
 
-  <div class="section-content">
-    <h2>Klantrecensies</h2>
-    <div>
-      <label for="sort">Sorteer op:</label>
-      <select id="sort" onchange="sortReviews()">
-        <option value="datum">Datum</option>
-        <option value="waardering">Waardering</option>
-        <option value="relevantie">relevantie</option>
-      </select>
+    <div class="section-content">
+        <h2>Klantrecensies</h2>
+        <div>
+            <label for="sort">Sorteer op:</label>
+            <select id="sort" onchange="sortReviews()">
+                <option value="datum">Datum</option>
+                <option value="waardering">Waardering</option>
+                <option value="relevantie">relevantie</option>
+            </select>
+        </div>
+        <div id="reviews">
+            <!-- Hier worden de recensies dynamisch ingevoegd -->
+        </div>
     </div>
-    <div id="reviews">
-      <!-- Hier worden de recensies dynamisch ingevoegd -->
-    </div>
-  </div>
 </section>
-</div>
 
 <footer>
-  <div class="copyrights">
-    <p>Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</p>
+    <div class="copyrights">
+        <p>Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</p>
+    </div>
+
+    <div class="geg">
+        <h2>Contactgegevens</h2>
+        <p>Adres: Hospitaaldreef 5, 1315 RC Almere</p>
+        <p>Email: administratie@nerdygadgets.nl</p>
+        <p>Telefoon: 036-1234567</p>
+    </div>
+
+    <div class="makers">
+
+        <h2>Makers</h2>
+
+        <ul id="list">
+            <li>Alexander Dijkhuizen</li>
+            <li>Danyaal Burney</li>
+            <li>Hieu Phan</li>
+            <li>Shahzaib Saleem</li>
+            <li>Wiljan Verhoeven</li>
+        </ul>
+
   </div>
 
-  <div class="geg">
-    <h2>Contactgegevens</h2>
-    <p>Adres: Hospitaaldreef 5, 1315 RC Almere</p>
-    <p>Email: administratie@nerdygadgets.nl</p>
-    <p>Telefoon: 036-1234567</p>
-  </div>
-
-  <div class="makers">
-
-    <h2>Makers</h2>
-
-    <ul id="list">
-      <li>Alexander Dijkhuizen</li>
-      <li>Danyaal Burney</li>
-      <li>Hieu Phan</li>
-      <li>Shahzaib Saleem</li>
-      <li>Wiljan Verhoeven</li>
-    </ul>
-
-  </div>
   <div class="betaalmiddelen">
     <h2>Veilige betalingsmogelijkheden</h2>
         <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
@@ -189,10 +310,16 @@
                 <img src="images/icon-mastercard.png" width="90" height="56" >
                 <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
                 <img src="images/icon-visa.png" width="90" height="56" >
+            
+            </a>
+        </ul>
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
     </div>
 
+
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="../main.js"></script>
 </body>
 
 </html>

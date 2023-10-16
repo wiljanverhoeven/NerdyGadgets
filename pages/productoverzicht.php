@@ -5,17 +5,22 @@
     <?php
     require '../dbconnect.php';
 
-    $query2 = 'SELECT * FROM producten WHERE productid = "'.$_GET['product'].'"';
-    $result2 = mysqli_query($conn, $query2);
-    $pro = mysqli_fetch_assoc($result2);
+    for ($i = 1;$i <= 3; $i++) {
+        $sql = "SELECT * FROM producten WHERE productid=$i";
+        $prod = mysqli_query($conn, $sql);
+        $producten = mysqli_fetch_assoc($prod);
+        echo $producten['productnaam'];
+
+    };
+
+    
     ?>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets</title>
-    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="../styling/product.css">
+    <link rel="stylesheet" href="../styling/productoverzicht.css">
 </head>
 
 <body>
@@ -61,44 +66,33 @@
 
 </header>
 
-<div class="main">
+<div class="main section">
 
-<section class="section product-block">
-    <div  class="product">
-        <img src="<?php echo "../images/",$pro['imagesrc'];?>" alt="product">
-        <div class="product-box">
-            <h3><?= $pro['productnaam'] ?></h3>
-            <p><?= $pro['productinformatie'] ?></p>
-            <h1><?= $pro['prijs'] ?></h1>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
-    </div>
-    <div class="aanraders">
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 1"></a>
-            <h3>Product 1</h3>
-            <p>Beschrijving van Product 1 en prijs hier.</p>
+<section class="producten">
+    
+        <div class="product">
+            <a></a><img height="200px" src="" alt="Product 1"></a>
+            <h3> </h3>
+            <p></p>
             <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
-    
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 2"></a>
-            <h3>Product 2</h3>
-            <p>Beschrijving van Product 2 en prijs hier.</p>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
+
+        <div class="product">
+            <a></a><img height="200px" src="" alt="Product 1"></a>
+            <h3> </h3>
+            <p></p>
+            <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
-    
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 3"></a>
-            <h3>Product 3</h3>
-            <p>Beschrijving van Product 3 en prijs hier.</p>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
+
+        <div class="product">
+            <a></a><img height="200px" src="" alt="Product 1"></a>
+            <h3> </h3>
+            <p></p>
+            <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
-    </div>
-    
+        
+<div class="filters"></div>
 </section>
-
-
 
 </div>
 <footer>
@@ -127,16 +121,21 @@
         </ul>
 
     </div>
+
     <div class="betaalmiddelen">
     <h2>Veilige betalingsmogelijkheden</h2>
         <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
             <ul id="list">
             <a>
-                <img src="images/icon-mastercard.png" width="90" height="56" >
-                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="images/icon-visa.png" width="90" height="56" >
+                <img src="../images/icon-mastercard.png" width="90" height="56" >
+                <img src="../images/IDEAL_Logo.png" width="64.4" height="56" >
+                <img src="../images/icon-visa.png" width="90" height="56" >
+            
+            </a>
+        </ul>
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
     </div>
+
 </footer>
 </body>
 </html>
