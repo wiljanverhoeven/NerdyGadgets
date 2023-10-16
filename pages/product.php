@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets</title>
+    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/product.css">
 </head>
@@ -126,7 +127,6 @@
         </ul>
 
     </div>
-
     <div class="betaalmiddelen">
     <h2>Veilige betalingsmogelijkheden</h2>
         <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
@@ -135,12 +135,8 @@
                 <img src="images/icon-mastercard.png" width="90" height="56" >
                 <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
                 <img src="images/icon-visa.png" width="90" height="56" >
-            
-            </a>
-        </ul>
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
     </div>
-
 </footer>
 </body>
 </html>
