@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Klantrecensies - NerdyGadgets</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/Logo_icon 2">
   <link rel="stylesheet" href="../styling/basic-style.css">
   <link rel="stylesheet" href="../styling/recensiepagina.css">
 </head>
