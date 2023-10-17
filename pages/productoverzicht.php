@@ -58,12 +58,33 @@
 
 <div class="main section">
 
+<section class="filters">
+        <?php 
+        
+        function showall($filter) {
+            
+        };    
+
+        function filter1() {
+            
+        };
+
+        ?>
+        <div class="filter">
+            <button class="add-to-cart" onclick="">show all</button>
+            <button class="add-to-cart" onclick="">spelcomputers</button>
+        </div>
+
+</section>
+
 <section class="producten">
-    <?php for ($i = 1;$i <= 3; $i++) {
-            $sql = "SELECT * FROM producten WHERE productid=$i ";
-            $prod = mysqli_query($conn, $sql);
-            ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
-    
+    <?php 
+        
+        if($filter) {
+            for ($i = 1;$i <= 3; $i++) {
+                $sql = "SELECT * FROM producten WHERE categorie='$filter'";
+                $prod = mysqli_query($conn, $sql);
+                ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
         <div class="product">
             <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
             <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
@@ -71,7 +92,21 @@
             <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
 
-        <?php }; ?>
+        <?php };
+        }else {
+            for ($i = 1;$i <= 3; $i++) {
+                $sql = "SELECT * FROM producten WHERE productid=$i";
+                $prod = mysqli_query($conn, $sql);
+                ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
+            <div class="product">
+                <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
+                <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+                <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+                <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+            </div>
+
+        <?php }
+            } ?>
         
 <div class="filters"></div>
 </section>
