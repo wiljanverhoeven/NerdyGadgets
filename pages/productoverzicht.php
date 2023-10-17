@@ -4,16 +4,6 @@
 <head>
     <?php
     require '../dbconnect.php';
-
-    for ($i = 1;$i <= 3; $i++) {
-        $sql = "SELECT * FROM producten WHERE productid=$i";
-        $prod = mysqli_query($conn, $sql);
-        $producten = mysqli_fetch_assoc($prod);
-        echo $producten['productnaam'];
-
-    };
-
-    
     ?>
 
     <meta charset="UTF-8">
@@ -69,27 +59,19 @@
 <div class="main section">
 
 <section class="producten">
+    <?php for ($i = 1;$i <= 3; $i++) {
+            $sql = "SELECT * FROM producten WHERE productid=$i ";
+            $prod = mysqli_query($conn, $sql);
+            ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
     
         <div class="product">
-            <a></a><img height="200px" src="" alt="Product 1"></a>
-            <h3> </h3>
-            <p></p>
+            <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
+            <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+            <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
             <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
 
-        <div class="product">
-            <a></a><img height="200px" src="" alt="Product 1"></a>
-            <h3> </h3>
-            <p></p>
-            <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
-
-        <div class="product">
-            <a></a><img height="200px" src="" alt="Product 1"></a>
-            <h3> </h3>
-            <p></p>
-            <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
+        <?php }; ?>
         
 <div class="filters"></div>
 </section>
