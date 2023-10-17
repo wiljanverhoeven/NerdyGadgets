@@ -30,7 +30,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdyGadgets</title>
+    <title>NerdyGadgets | Home</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="styling/basic-style.css">
     <link rel="stylesheet" href="styling/homepage.css">
@@ -53,30 +53,30 @@
 
     </div>
 
-
-
     <nav>
         <ul>
-            <li><a href="index.php" class="paginas">Home</a></li>
-            <li><a href="over-ons.php" class="paginas">Over ons</a></li>
-            <li><a href="pages/productoverzicht.php" class="paginas">Producten</a></li>
+            <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
+            <li><a href="over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
+            <li><a href="producten.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
         </ul>
     </nav>
-    <div class="icons">
-    <div class="cart">
-        <a href="winkelwagen.php">
-            <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen"  width="42" height="42">
-            <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon"  width="42" height="42">
-        </a>
-    </div>
 
-    <div class="account">
-        <a href="account.php">
-            <img class="user" src="images/account_icon.png" alt="Account"  width="40" height="40">
-            <img class="user_neon" src="images/account_icon_neon.png" alt="Account"  width="40" height="40">
-        </a>
+    <div class="icons">
+        <div class="cart">
+            <a href="winkelwagen.php" title="Bekijk uw winkelwagen">
+                <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
+                <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
+            </a>
+        </div>
+
+        <div class="account">
+            <a href="account.php" title="Ga naar uw account">
+                <img class="user" src="images/account_icon.png" alt="Account" width="40" height="40">
+                <img class="user_neon" src="images/account_icon_neon.png" alt="Account" width="40" height="40">
+            </a>
+        </div>
     </div>
-    </div>
+</div>
 
 </header>
 
@@ -221,6 +221,7 @@ echo $strings[array_rand($strings)];?>
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
     </div>
 </footer>
+
 </body>
 </html>
 

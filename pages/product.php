@@ -12,7 +12,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdyGadgets</title>
+    <title>NerdyGadgets | Product</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/product.css">
@@ -34,8 +34,6 @@
 
     </div>
 
-
-
     <nav>
         <ul>
             <li><a href="../index.php" class="paginas">Home</a></li>
@@ -43,6 +41,7 @@
             <li><a href="producten.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
+
     <div class="icons">
     <div class="cart">
         <a href="winkelwagen.php">
@@ -132,9 +131,9 @@
         <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
             <ul id="list">
             <a>
-                <img src="images/icon-mastercard.png" width="90" height="56" >
-                <img src="images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="images/icon-visa.png" width="90" height="56" >
+                <img src="../images/icon-mastercard.png" width="90" height="56" >
+                <img src="../images/IDEAL_Logo.png" width="64.4" height="56" >
+                <img src="../images/icon-visa.png" width="90" height="56" >
     <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
     </div>
 </footer>
