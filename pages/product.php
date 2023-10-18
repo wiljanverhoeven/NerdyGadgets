@@ -62,9 +62,19 @@
 
 <div class="main">
 
+<section id="product-images">
+        <!-- Voeg hier meerdere afbeeldingen en video's toe -->
+        <img src="link_naar_afbeelding1.jpg" alt="Afbeelding 1">
+        <img src="link_naar_afbeelding2.jpg" alt="Afbeelding 2">
+        <!-- Voeg hier de video toe -->
+        <iframe width="560" height="315" src="link_naar_video" frameborder="0" allowfullscreen></iframe>
+    </section>
+
 <section class="section product-block">
     <div  class="product">
         <img src="<?php echo "../images/",$pro['imagesrc'];?>" alt="product">
+        <img src="<?php echo "../images/",$pro['imagesrc'];?>" alt="product">
+        <iframe width="560" height="315" src="link_naar_video" frameborder="0" allowfullscreen></iframe>
         <div class="product-box">
             <h3><?= $pro['productnaam'] ?></h3>
             <p><?= $pro['productinformatie'] ?></p>
@@ -95,6 +105,24 @@
         </div>
     </div>
     
+    <section id="productdetails">
+        <h2>Gedetailleerde Productinformatie</h2>
+        <ul>
+            <li><strong>Afmetingen:</strong> [B x H x D]</li>
+            <li><strong>Gewicht:</strong> [Gewicht van het product]</li>
+            <li><strong>Materiaal:</strong> [Materiaal van het product]</li>
+            <li><strong>Kleur:</strong> [Beschikbare kleuren]</li>
+            <li><strong>Batterijduur:</strong> [Indien van toepassing]</li>
+        </ul>
+
+        <!-- Voeg hier technische gegevens en beschikbare varianten toe -->
+    </section>
+
+    <section id="productreviews">
+        <h2>Klantbeoordelingen</h2>
+        <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
+    </section>
+
 </section>
 
 

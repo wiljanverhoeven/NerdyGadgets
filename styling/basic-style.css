@@ -170,7 +170,7 @@ footer {
     padding: 10px 0;
     padding-top: 40px;
     padding-bottom: 40px;
-    position: relative;
+    position: static;
     box-shadow: 0px 0px 50px #23232F;
     bottom: 0;
     left: 0;
@@ -184,52 +184,58 @@ footer {
     font-family: Arial, sans-serif;
     font-size: 16px;
     text-align: center;
-    padding: 100px 15%;
+    padding: 173px 15%;
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.contactgegevens {
+.inhoudFooter h3 {
+    line-height: 0rem;
+    text-transform: capitalize;
+    font-size: x-large;
+}
+
+.contact {
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    display: inline-block;
-    margin: 10%;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-right: 145px;
-    width: 100%;
+    display: flex;
+    margin-top: -100px;
+    margin-right: 89%;
+    width: 30%;
     padding: 1px;
     text-align: left;
     justify-content: center;
-    flex-direction: column;
-    & a:hover {
-        text-decoration: underline;
-    }    
+    flex-direction: column;    
 }
 
-.linkjes {
+.links {
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    display: inline-block;
+    display: flex;
     margin: 10%;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-right: -200px;
-    width: 80%;
+    margin-top: -323px;
+    margin-left: 89%;
+    width: 30%;
     text-align: right;
     justify-content: normal;
     flex-direction: column;
+}
+
+.links a:hover {
+    text-decoration: underline;
 }
 
 .betaalmiddelen {
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 11px;
-    display: inline-block;
-    margin-right: 145px;
+    display: flex;
+    margin-top: auto;
+    margin-right: 150px;
     width: 100%;
     padding: 1px;
     text-align: left;
