@@ -8,7 +8,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdyGadgets</title>
+    <title>NerdyGadgets | Producten</title>
+    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/productoverzicht.css">
 </head>

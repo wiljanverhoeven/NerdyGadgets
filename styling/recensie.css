@@ -1,7 +1,7 @@
 :root{
     --color-dark:#2c76ff14;
     --color-secondary-dark:#464c70c3;
-    --color-primary:#EE709D;
+    --color-primary:#C81717;
     --color-text:#8297E2;
     --color-light:#EBEBFB
 }
@@ -77,7 +77,8 @@
 }
 
 .swiper .profile img{
-    width: 30%;
+    width: 66.59;
+    height: 66.59;
     border-radius: 50%;
     border: 5px solid var(--color-primary);
     margin: 10px 0;

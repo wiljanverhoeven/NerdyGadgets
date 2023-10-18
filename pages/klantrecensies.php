@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klantrecensies - NerdyGadgets</title>
+    <title>NerdyGadgets | Klantrecensies</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
@@ -56,8 +56,8 @@
 <section id="review" class=""section>
     <div class="container">
         <div class="board">
-            <h2 class="text-light">onze reviews</h2>
-            <p class="text-light">top reviews</p>
+            <h2 class="text-light">Onze reviews</h2>
+            <p class="text-light">Top reviews</p>
             <!-- Slider main container -->
             <div class="swiper">
                 <!-- Additional required wrapper -->
@@ -66,13 +66,12 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                Zit er geen eten op mijn bord, dan eet ik het hele bord!
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="https://th.bing.com/th?q=Rapper+Bigidagoe&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.3&pid=InlineBlock&mkt=nl-NL&cc=NL&setlang=nl&adlt=strict&t=1&mw=247" width="66.59" height="66.59">
+                                <a href="#">Bigidagoe</a>
+                                <span>Favoriete uitvinding: de frituurpan</span>
                             </div>
                         </div>
 
@@ -82,13 +81,12 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                Double w's in de chat!
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="https://th.bing.com/th/id/OIP.viHhFcj6ud1UVjUxrHmy8gAAAA?pid=ImgDet&rs=1" width="66.59" height="66.59">
+                                <a href="#">IShowSpeed</a>
+                                <span>Fan van Talking Ben</span>
                             </div>
                         </div>
                         </div>
@@ -97,13 +95,12 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                It's very great site. Suiiiiiiiiiiiiiiiii!
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="https://www.beautyfreelancer.nl/files/post/img1/thumb_Kapsel-Ronaldo.png" width="66.59" height="66.59">
+                                <a href="#">Ronaldo</a>
+                                <span>IShowSpeed's best friend</span>
                             </div>
                         </div>
                     </div>
@@ -112,13 +109,12 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                Eyy wie joint m'n minecraft server?
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="../images/BoredHiro.png" width="66.59" height="66.59">
+                                <a href="#">Hieu</a>
+                                <span>Een bully</span>
                             </div>
                         </div>
                     </div>
@@ -126,13 +122,12 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                Can I buy this site too?
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="https://marriedbiography.com/wp-content/uploads/2018/06/elon-150x150.jpg" width="66.59" height="66.59">
+                                <a href="#">Elon Musk</a>
+                                <span>Founder and CEO of ruining Twitter</span>
                             </div>
                         </div>
                     </div>
@@ -141,13 +136,12 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                Als koning der Nederlanden, Prins van Oranje-Nassau en jonkheer van Amsberg verklaar ik deze site als een topsite.
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="https://caribischnetwerk.ntr.nl/files/2013/05/willem-alexander-150x150.jpg" width="66.59" height="66.59">
+                                <a href="#">Willem-Alexander der Nederlanden</a>
+                                <span>Koning Willie is ook goed hoor</span>
                             </div>
                         </div>
                     </div>
@@ -155,17 +149,29 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                saihfgsagfsafsfhuisafgsaufgsafgu
-                                sakfjgaiufhsuifsuaifasgfuisafgugia
+                                Tt goedkoop G! Vraag: zijn hier ook minderjarigen te koop? Vraag 't voor een vriend.
                             </div>
                             <div class="profile">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdrJhW30hpdPpTGO9IAYwQNHWgBmF2CC52401yiIg&s">
-                                <a href="#">Biggie Daggoe</a>
-                                <span>Founder & CEO</span>
+                                <img src="https://th.bing.com/th/id/OIP.l3JAXHjxILhsOXvdiw2qJgCWCW?pid=ImgDet&rs=1" width="66.59" height="66.59">
+                                <a href="#">Anoniem</a>
+                                <span>Naam: Marco Borsato </span>
                             </div>
                         </div>
                     </div>
 
+
+                    <div class="swiper-slide">
+                        <div class="flex">
+                            <div class="comments">
+                                What we do in the physical realm reflects in the spiritual realm (hello karma!), but it's also a powerful reminder to strive to make the lower self in reflection of the higher self, and to remember that we are in unity with the universe, with our bodies being microcosms, a miniture version of the macrocosm, the universe. Btw great site.
+                            </div>
+                            <div class="profile">
+                                <img src="../images/een reviewer.png" width="66.59" height="66.59">
+                                <a href="#">CestLavieMonAmi</a>
+                                <span>the spiritual</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
