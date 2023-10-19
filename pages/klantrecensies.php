@@ -283,49 +283,43 @@
 </section>
 
 <footer>
-    <div class="copyrights">
-        <p>Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</p>
+
+<div class="inhoudFooter">
+    <div class="contactfooter">
+        <h3 style="color: #fff" ;>Contactgegevens</h3>
+        <p style="color: #fff" ;>
+            Adres: Hospitaaldreef 5, Almere
+            <br>
+            Email: administratie@nerdygadgets.nl
+            <br>
+            Telefoonnummer: +31 06 12345678
+        </p>
     </div>
 
-    <div class="geg">
-        <h2>Contactgegevens</h2>
-        <p>Adres: Hospitaaldreef 5, 1315 RC Almere</p>
-        <p>Email: administratie@nerdygadgets.nl</p>
-        <p>Telefoon: 036-1234567</p>
-    </div>
-
-    <div class="makers">
-
-        <h2>Makers</h2>
-
-        <ul id="list">
-            <li>Alexander Dijkhuizen</li>
-            <li>Danyaal Burney</li>
-            <li>Hieu Phan</li>
-            <li>Shahzaib Saleem</li>
-            <li>Wiljan Verhoeven</li>
-        </ul>
-
-  </div>
-
-  <div class="betaalmiddelen">
-    <h2>Veilige betalingsmogelijkheden</h2>
-        <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
+    <div class="betaalmiddelen">
+        <h6>
+            <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
             <ul id="list">
-            <a>
-                <img src="../images/icon-mastercard.png" width="90" height="56" >
-                <img src="../images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="../images/icon-visa.png" width="90" height="56" >
-            
-            </a>
-        </ul>
-    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
+                <a>
+                    <img src="images/icon-mastercard.png" width="64.2" height="40" >
+                    <img src="images/IDEAL_Logo.png" width="46" height="40" >
+                    <img src="images/icon-visa.png" width="64.2" height="40" >
+                </a>
+            </ul>
+            We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
+            <br>
+            Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
     </div>
 
-
+    <div class="links">
+        <h3>Links</h3>
+        <a style="color: #fff" ; href="./">Home</a>
+        <a style="color: #fff" ; href="./#about">Over ons</a>
+        <a style="color: #fff" ; href="./search/">Producten</a>
+        <a style="color: #fff"; href="./account/">Account</a>
+        <a style="color: #fff"; href="./legal/">Legaal</a>
+    </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="../logic/main.js"></script>
-</body>
 
+</body>
 </html>

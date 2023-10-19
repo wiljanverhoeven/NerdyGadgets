@@ -60,100 +60,122 @@
 <div class="main section">
 
 <section class="filters">
-        <?php 
-        
-        function showall($filter) {
-            
-        };    
-
-        function filter1() {
-            
-        };
-
-        ?>
         <div class="filter">
-            <button class="add-to-cart" onclick="">show all</button>
-            <button class="add-to-cart" onclick="">spelcomputers</button>
+            
         </div>
 
 </section>
 
 <section class="producten">
+    <div class="sliders">
+    <div id="slide1">
+        <h2>Aanbevolen producten</h2>
+    <div id="slider">
     <?php 
-        
+       
+        $filter = '';
         if($filter) {
-            for ($i = 1;$i <= 3; $i++) {
+            for ($i = 1;$i <= 4; $i++) {
                 $sql = "SELECT * FROM producten WHERE categorie='$filter'";
                 $prod = mysqli_query($conn, $sql);
                 ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
         <div class="product">
             <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
             <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+            <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
             <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
             <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
 
         <?php };
         }else {
-            for ($i = 1;$i <= 3; $i++) {
+            for ($i = 1;$i <= 4; $i++) {
                 $sql = "SELECT * FROM producten WHERE productid=$i";
                 $prod = mysqli_query($conn, $sql);
                 ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
-            <div class="product">
+            <div class="product ">
                 <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
                 <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+                <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
                 <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
                 <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
             </div>
 
         <?php }
             } ?>
-        
-<div class="filters"></div>
+        </div>
+        </div>
+        <div id="slide2">
+        <h2>Nieuwe producten</h2>
+        <div id="slider">
+        <div class="product">
+            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
+                <h3>Product </h3>
+            <p>Beschrijving van Product en prijs hier.</p>
+            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
+        </div>
+        <div class="product">
+            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
+                <h3>Product </h3>
+            <p>Beschrijving van Product en prijs hier.</p>
+            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
+        </div>
+        <div class="product">
+            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
+                <h3>Product </h3>
+            <p>Beschrijving van Product en prijs hier.</p>
+            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
+        </div>
+        <div class="product">
+            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
+                <h3>Product</h3>
+            <p>Beschrijving van Product en prijs hier.</p>
+            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
+        </div>
+        </div>
+        </div>
+        </div>
 </section>
 
 </div>
 <footer>
 
-    <div class="copyrights">
-        <p>Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</p>
-    </div>
-
-    <div class="geg">
-        <h2>Contactgegevens</h2>
-        <p>Adres: Hospitaaldreef 5, 1315 RC Almere</p>
-        <p>Email: administratie@nerdygadgets.nl</p>
-        <p>Telefoon: 036-1234567</p>
-    </div>
-
-    <div class="makers">
-
-        <h2>Makers</h2>
-
-        <ul id="list">
-            <li>Alexander Dijkhuizen</li>
-            <li>Danyaal Burney</li>
-            <li>Hieu Phan</li>
-            <li>Shahzaib Saleem</li>
-            <li>Wiljan Verhoeven</li>
-        </ul>
-
+<div class="inhoudFooter">
+    <div class="contactfooter">
+        <h3 style="color: #fff" ;>Contactgegevens</h3>
+        <p style="color: #fff" ;>
+            Adres: Hospitaaldreef 5, Almere
+            <br>
+            Email: administratie@nerdygadgets.nl
+            <br>
+            Telefoonnummer: +31 06 12345678
+        </p>
     </div>
 
     <div class="betaalmiddelen">
-    <h2>Veilige betalingsmogelijkheden</h2>
-        <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
+        <h6>
+            <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
             <ul id="list">
-            <a>
-                <img src="../images/icon-mastercard.png" width="90" height="56" >
-                <img src="../images/IDEAL_Logo.png" width="64.4" height="56" >
-                <img src="../images/icon-visa.png" width="90" height="56" >
-            
-            </a>
-        </ul>
-    <p>We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt en om het vertrouwen van onze klanten te vergroten.</p>
+                <a>
+                    <img src="../images/icon-mastercard.png" width="64.2" height="40" >
+                    <img src="../images/IDEAL_Logo.png" width="46" height="40" >
+                    <img src="../images/icon-visa.png" width="64.2" height="40" >
+                </a>
+            </ul>
+            We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
+            <br>
+            Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
     </div>
 
+    <div class="links">
+        <h3>Links</h3>
+        <a style="color: #fff" ; href="./">Home</a>
+        <a style="color: #fff" ; href="./#about">Over ons</a>
+        <a style="color: #fff" ; href="./search/">Producten</a>
+        <a style="color: #fff"; href="./account/">Account</a>
+        <a style="color: #fff"; href="./legal/">Legaal</a>
+    </div>
 </footer>
+
 </body>
 </html>
