@@ -183,14 +183,14 @@ echo $strings[array_rand($strings)];?>
 <footer>
 
 <div class="inhoudFooter">
-    <div class="contact">
+    <div class="contactgegevens">
         <h3 style="color: #fff" ;>Contactgegevens</h3>
         <p style="color: #fff" ;>
             Adres: Hospitaaldreef 5, Almere
             <br>
             Email: administratie@nerdygadgets.nl
             <br>
-            Telefoonnummer: +31 06 12345678
+            Telefoonnummer: +31 6 12345678
         </p>
     </div>
 

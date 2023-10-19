@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../styling/product.css">
 </head>
 
-<body>
+<<body onload="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720')">>
 <header>
     <div class="logo">
         <a href="../index.php">
@@ -60,74 +60,88 @@
 
 </header>
 
-<div class="main">
-
-<section id="product-images">
-        <!-- Voeg hier meerdere afbeeldingen en video's toe -->
-        <img src="link_naar_afbeelding1.jpg" alt="Afbeelding 1">
-        <img src="link_naar_afbeelding2.jpg" alt="Afbeelding 2">
-        <!-- Voeg hier de video toe -->
-        <iframe width="560" height="315" src="link_naar_video" frameborder="0" allowfullscreen></iframe>
-    </section>
-
-<section class="section product-block">
-    <div  class="product">
-        <img src="<?php echo "../images/",$pro['imagesrc'];?>" alt="product">
-        <img src="<?php echo "../images/",$pro['imagesrc'];?>" alt="product">
-        <iframe width="560" height="315" src="link_naar_video" frameborder="0" allowfullscreen></iframe>
-        <div class="product-box">
-            <h3><?= $pro['productnaam'] ?></h3>
-            <p><?= $pro['productinformatie'] ?></p>
-            <h1><?= $pro['prijs'] ?></h1>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
+<div class="product-container">
+    <div class="product-images">
+        <img id="mainImage" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Product Image 1">
+        <div class="thumbnail-container">
+            <img onclick="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720', width=37.89, height=50.521)" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Thumbnail 1">
+            <img onclick="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177671?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720', width=37.89, height=50.521)" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177671?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Thumbnail 2">
+            <img onclick="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177669?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720' , width=37.89, height=50.521)" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177669?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Thumbnail 3">
         </div>
     </div>
-    <div class="aanraders">
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 1"></a>
-            <h3>Product 1</h3>
-            <p>Beschrijving van Product 1 en prijs hier.</p>
-            <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+    <script>
+        function changeImage(imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+        }
+    </script>
+
+    <section id="productinformatie" class="productinformatie">
+
+        <div class="bottom">
+
+        <div class="product-details">
+        <div class="product-name">Productnaam</div>
+        <div class="product-description">Korte beschrijving van het product.</div>
+        <div class="product-info">
+            <p>Kleur: Blauw</p>
+            <p>Grootte: Medium</p>
         </div>
-    
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 2"></a>
-            <h3>Product 2</h3>
-            <p>Beschrijving van Product 2 en prijs hier.</p>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
+        <div class="product-price">€99.99</div>
+        <div class="product-variants">
+            <label for="color">Kies een kleur:</label>
+            <select id="color">
+                <option value="blauw">Blauw</option>
+                <option value="rood">Rood</option>
+                <option value="groen">Groen</option>
+            </select>
         </div>
-    
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 3"></a>
-            <h3>Product 3</h3>
-            <p>Beschrijving van Product 3 en prijs hier.</p>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
+        <button class="add-to-cart">Toevoegen aan winkelwagen</button>
+        <div class="availability">Beschikbaarheid: Op voorraad</div>
     </div>
-    
-    <section id="productdetails">
-        <h2>Gedetailleerde Productinformatie</h2>
-        <ul>
-            <li><strong>Afmetingen:</strong> [B x H x D]</li>
-            <li><strong>Gewicht:</strong> [Gewicht van het product]</li>
-            <li><strong>Materiaal:</strong> [Materiaal van het product]</li>
-            <li><strong>Kleur:</strong> [Beschikbare kleuren]</li>
-            <li><strong>Batterijduur:</strong> [Indien van toepassing]</li>
-        </ul>
-
-        <!-- Voeg hier technische gegevens en beschikbare varianten toe -->
     </section>
-
-    <section id="productreviews">
-        <h2>Klantbeoordelingen</h2>
-        <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
-    </section>
-
-</section>
-
-
-
 </div>
+
+<div class= "productbeschrijving">
+    <h2>Gedetailleerde Productinformatie</h2>
+    <ul>
+        <li>Afmetingen: [B x H x D]</li>
+        <li>Gewicht: [Gewicht van het product]</li>
+        <li>Materiaal: [Materiaal van het product]</li>
+        <li>Kleur: [Beschikbare kleuren]</li>
+        <li>Batterijduur: [Indien van toepassing]</li>
+    </ul>
+
+    <!-- Voeg hier technische gegevens en beschikbare varianten toe -->
+</div>
+
+<div class= "productreviews">
+    <h2>Klantbeoordelingen</h2>
+    <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
+</div>
+<div class="aanraders">
+    <div class="product2">
+        <a href="../pages/product.php"><img src="../images/product.png" alt="Product 1"></a>
+        <h3>Product 1</h3>
+        <p>Beschrijving van Product 1 en prijs hier.</p>
+        <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+    </div>
+
+    <div class="product2">
+        <a href="../pages/product.php"><img src="../images/product.png" alt="Product 2"></a>
+        <h3>Product 2</h3>
+        <p>Beschrijving van Product 2 en prijs hier.</p>
+        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
+    </div>
+
+    <div class="product2">
+        <a href="../pages/product.php"><img src="../images/product.png" alt="Product 3"></a>
+        <h3>Product 3</h3>
+        <p>Beschrijving van Product 3 en prijs hier.</p>
+        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
+    </div>
+</div>
+</div>
+
 <footer>
 
     <div class="copyrights">
