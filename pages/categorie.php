@@ -59,24 +59,17 @@
 
 <div class="main section">
 
-<section class="filters">
-        <a href="categorie.php?categorie=spelcomputers"><img class="filter" height="200px" src="../images/spelcomputers.JPEG" alt="spelcomputers"></a>
-        <a href="categorie.php?categorie=onderdelen"><img class="filter" height="200px" src="../images/onderdelen.JPEG" alt="onderdelen"></a>   
-        <a href="categorie.php?categorie=gadgets"><img class="filter" height="200px" src="../images/gadgets.JPEG" alt="gadgets"></a>
-
-</section>
-
 <section class="producten">
-    <div class="sliders">
-    <div id="slide1">
         <h2>Aanbevolen producten</h2>
-    <div id="slider">
         <?php
-        for ($i = 1;$i <= 4; $i++) {
-                $sql = "SELECT * FROM producten WHERE productid=$i";
+
+            
+           
+        for ($i = 4;$i <= 4; $i++) {  
+            $sql = 'SELECT * FROM producten WHERE categorie="gadgets"';
                 $prod = mysqli_query($conn, $sql);
                 ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
-            <div class="product ">
+            <div class="product">
                 <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
                 <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                 <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
@@ -85,38 +78,6 @@
             </div>
 
         <?php } ?>
-        </div>
-        </div>
-        <div id="slide2">
-        <h2>Nieuwe producten</h2>
-        <div id="slider">
-        <div class="product">
-            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
-                <h3>Product </h3>
-            <p>Beschrijving van Product en prijs hier.</p>
-            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
-        </div>
-        <div class="product">
-            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
-                <h3>Product </h3>
-            <p>Beschrijving van Product en prijs hier.</p>
-            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
-        </div>
-        <div class="product">
-            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
-                <h3>Product </h3>
-            <p>Beschrijving van Product en prijs hier.</p>
-            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
-        </div>
-        <div class="product">
-            <a href="pages/product.php"><img height="200px" src="../images/product.png" alt="Product "></a>
-                <h3>Product</h3>
-            <p>Beschrijving van Product en prijs hier.</p>
-            <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
-        </div>
-        </div>
-        </div>
-        </div>
 </section>
 
 </div>

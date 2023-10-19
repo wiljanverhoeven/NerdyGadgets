@@ -97,8 +97,8 @@ echo $strings[array_rand($strings)];?>
     
     <h1>Onze aanbevolen producten</h1>
 
-    <div class="product">
-        <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser1['imagesrc']; ?>" alt="Product 1"></a>
+    <div class="product"> <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser1['imagesrc']; ?>" alt="Product 1"></a>
+       
         <h3><?= $naam1 ?></h3>
         <p><?= $prijs1 ?></p>
         <p><?= $info1 ?></p>
