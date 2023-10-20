@@ -57,9 +57,9 @@
 
 </header>
 
-<div class="main section">
+<section class="main section">
 
-<section class="producten section">
+<div class="producten section">
         
         <h2>Alle <?php echo $_GET['categorie']; ?></h2>
         <?php
@@ -80,9 +80,9 @@
             </div>
 
         <?php } } }?>
-</section>
-
 </div>
+
+</section>
 <footer>
 
 <div class="inhoudFooter">
