@@ -102,7 +102,7 @@
 </div>
 
 <div class= "productbeschrijving">
-    <h2>Gedetailleerde Productinformatie</h2>
+    <h2>Productinformatie</h2>
     <ul>
         <li>Afmetingen: [B x H x D]</li>
         <li>Gewicht: [Gewicht van het product]</li>
