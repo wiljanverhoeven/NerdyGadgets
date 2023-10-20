@@ -59,7 +59,7 @@
     <nav>
         <ul>
             <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
-            <li><a href="over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
+            <li><a href="../pages/over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
             <li><a href="pages/productoverzicht.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
         </ul>
     </nav>
@@ -217,11 +217,11 @@ echo $strings[array_rand($strings)];?>
 
     <div class="links">
         <h3>Links</h3>
-        <a style="color: #fff" ; href="./">Home</a>
-        <a style="color: #fff" ; href="./#about">Over ons</a>
-        <a style="color: #fff" ; href="./search/">Producten</a>
-        <a style="color: #fff"; href="./account/">Account</a>
-        <a style="color: #fff"; href="./legal/">Legaal</a>
+        <a style="color: #fff" ; href="../index.php">Home</a>
+        <a style="color: #fff" ; href="../pages/over-ons.php">Over ons</a>
+        <a style="color: #fff" ; href="../pages/productoverzicht.php">Producten</a>
+        <a style="color: #fff"; href="../pages/account.php">Account</a>
+        <a style="color: #fff"; href="../pages/legal.php">Legaal</a>
     </div>
 </footer>
 
