@@ -169,7 +169,7 @@ footer {
     text-align: center;
     padding: 10px 0;
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 0px;
     position: static;
     box-shadow: 0px 0px 50px #23232F;
     bottom: 0;
@@ -197,13 +197,13 @@ footer {
     font-size: x-large;
 }
 
-.contactfooter {
+.contactgegevens {
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 16px;
     display: flex;
-    margin-top: -100px;
-    margin-right: 89%;
+    margin-top: -170px;
+    margin-right: 93%;
     width: 30%;
     padding: 1px;
     text-align: left;
@@ -217,8 +217,8 @@ footer {
     font-size: 16px;
     display: flex;
     margin: 10%;
-    margin-top: -323px;
-    margin-left: 89%;
+    margin-top: -279px;
+    margin-left: -89%;
     width: 30%;
     text-align: right;
     justify-content: normal;
@@ -235,7 +235,7 @@ footer {
     font-size: 11px;
     display: flex;
     margin-top: auto;
-    margin-right: 150px;
+    margin-right: 198px;
     width: 100%;
     padding: 1px;
     text-align: left;
