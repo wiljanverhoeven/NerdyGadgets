@@ -57,7 +57,7 @@
 
 </header>
 
-<section class="main section">
+<section class="outer main section">
 
 <div class="producten section">
         
@@ -81,7 +81,9 @@
 
         <?php } } }?>
 </div>
-
+<div class="sorteerblok section">
+    
+</div>
 </section>
 <footer>
 
