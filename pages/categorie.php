@@ -11,7 +11,7 @@
     <title>NerdyGadgets | Producten</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="../styling/productoverzicht.css">
+    <link rel="stylesheet" href="../styling/categorie.css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
         <ul>
             <li><a href="../index.php" class="paginas">Home</a></li>
             <li><a href="../pages/over-ons.php" class="paginas">Over ons</a></li>
-            <li><a href="../pages/producten.php" class="paginas">Producten</a></li>
+            <li><a href="../pages/productoverzicht.php" class="paginas">Producten</a></li>
         </ul>
     </nav>
     <div class="icons">
@@ -59,7 +59,7 @@
 
 <div class="main section">
 
-<section class="producten">
+<section class="producten section">
         
         <h2>Alle <?php echo $_GET['categorie']; ?></h2>
         <?php
@@ -71,7 +71,7 @@
                     // Fetch one and one row
                     while ($row = mysqli_fetch_row($result)) {
                 ?>
-            <div class="product">
+            <div id="product">
                 <a href="product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "../images/",$row[4]; ?>" alt="Product"></a>
                 <h3><?php echo $row[1]; ?></h3>
                 <p><?php echo "€",$row[2]; ?></p>
