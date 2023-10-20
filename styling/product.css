@@ -1,13 +1,14 @@
 /*styling van "product.html"*/
 
 body {
-    background-image: url(https://th.bing.com/th/id/R.ad9b173fcdd6424d8d8c04d5d99f9bf9?rik=8Go%2b6H%2fxYH6Oyw&riu=http%3a%2f%2ftlap.com%2fwp-content%2fuploads%2f2011%2f05%2fblack.png&ehk=fgGKuh%2b6ThKfgiE%2fQgWOHVjUaJtia9LPEdjcKcU6ODc%3d&risl=&pid=ImgRaw&r=0);
+    background-image: url(../images/background.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
+    margin-top: 100px;
     padding: 0;
 }
 
