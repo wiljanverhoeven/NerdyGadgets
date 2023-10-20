@@ -320,6 +320,7 @@
         <a style="color: #fff"; href="../pages/legal.php">Legaal</a>
     </div>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="./main.js"></script>
 </body>
 </html>
