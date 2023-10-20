@@ -218,7 +218,7 @@ footer {
     display: flex;
     margin: 10%;
     margin-top: -279px;
-    margin-left: -89%;
+    margin-left: 100%;
     width: 30%;
     text-align: right;
     justify-content: normal;
@@ -235,7 +235,7 @@ footer {
     font-size: 11px;
     display: flex;
     margin-top: auto;
-    margin-right: 198px;
+    margin-right: 235px;
     width: 100%;
     padding: 1px;
     text-align: left;
