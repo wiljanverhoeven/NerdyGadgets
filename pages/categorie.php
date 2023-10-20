@@ -60,24 +60,26 @@
 <div class="main section">
 
 <section class="producten">
-        <h2>Aanbevolen producten</h2>
+        
+        <h2>Alle <?php echo $_GET['categorie']; ?></h2>
         <?php
 
-            
            
-        for ($i = 4;$i <= 4; $i++) {  
-            $sql = 'SELECT * FROM producten WHERE categorie="gadgets"';
-                $prod = mysqli_query($conn, $sql);
-                ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
+        for ($i = 6;$i <= 6; $i++) {  
+            $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'"';
+                if ($result = mysqli_query($conn, $sql)) {
+                    // Fetch one and one row
+                    while ($row = mysqli_fetch_row($result)) {
+                ?>
             <div class="product">
-                <a href="product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "../images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
-                <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
-                <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
-                <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+                <a href="product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "../images/",$row[4]; ?>" alt="Product"></a>
+                <h3><?php echo $row[1]; ?></h3>
+                <p><?php echo "€",$row[2]; ?></p>
+                <p><?php echo $row[3]; ?></p>
                 <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
             </div>
 
-        <?php } ?>
+        <?php } } }?>
 </section>
 
 </div>
