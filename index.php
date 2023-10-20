@@ -16,14 +16,17 @@
                 $awnser1 = mysqli_fetch_assoc($result);
                 $naam1 = $awnser1['productnaam'];
                 $info1 = $awnser1['productinformatie'];
+                $prijs1 = $awnser1['prijs'];
             } elseif ($i == 2){
                 $awnser2 = mysqli_fetch_assoc($result);
                 $naam2 = $awnser2['productnaam'];
                 $info2 = $awnser2['productinformatie'];
+                $prijs2 = $awnser2['prijs'];
             } else {
                 $awnser3 = mysqli_fetch_assoc($result);
                 $naam3 = $awnser3['productnaam'];
                 $info3 = $awnser3['productinformatie'];
+                $prijs3 = $awnser3['prijs'];
             }
         };
      ?>
@@ -57,7 +60,7 @@
         <ul>
             <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
             <li><a href="over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
-            <li><a href="producten.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
+            <li><a href="pages/productoverzicht.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
         </ul>
     </nav>
 
@@ -97,20 +100,23 @@ echo $strings[array_rand($strings)];?>
     <div class="product">
         <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser1['imagesrc']; ?>" alt="Product 1"></a>
         <h3><?= $naam1 ?></h3>
+        <p><?= $prijs1 ?></p>
         <p><?= $info1 ?></p>
         <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-        <a href="pages/product.php?product=<?php $product = $awnser2; echo $product['productid']; ?>"><img height="200px" src="images/product.png" alt="Product 2"></a>
+        <a href="pages/product.php?product=<?php $product = $awnser2; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser2['imagesrc']; ?>" alt="Product 2"></a>
         <h3><?= $naam2 ?></h3>
+        <p><?= $prijs2 ?></p>
         <p><?= $info2 ?></p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
 
     <div class="product">
-    <a href="pages/product.php?product=<?php $product = $awnser3; echo $product['productid']; ?>"><img height="200px" src="images/product.png" alt="Product 3"></a>
+    <a href="pages/product.php?product=<?php $product = $awnser3; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser3['imagesrc']; ?>" alt="Product 3"></a>
         <h3><?= $naam3 ?></h3>
+        <p><?= $prijs3 ?></p>
         <p><?= $info3 ?></p>
         <button class="add-to-cart">Voeg toe aan winkelwagen</button>
     </div>
