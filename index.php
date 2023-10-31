@@ -80,7 +80,6 @@
         </div>
     </div>
 </div>
-
 </header>
 
 <div class="main">
@@ -91,10 +90,28 @@
 $strings = array('Ontdek geweldige producten voor de beste prijzen!', 'Eenvoudige navigatie om snel te vinden wat u zoekt!', 'Veilige betalingsmogelijkheden voor uw gemoedsrust!', 'Snelle levering om uw producten op tijd te ontvangen!', 'Niet tevreden met uw product? Geld terug!', 'Wij behandelen de recensies van onze klanten als feedback!', 'Het vertrouwen van de klant is voor ons het belangrijkst!');
 echo $strings[array_rand($strings)];?>
     </div>
+    <img id="scrollBtn" src="images/arrow.png">
 </section>
 
-<button id="scrollButton" class="hidden" onclick="scrollToTop()">▼</button>
-    <script src="script.js"></script>
+  
+
+  <script >
+;(()=>{
+   var lastPos = 0;
+   var scrollToPos = 800;
+
+   scrollBtn.addEventListener("click", () => {
+       window.scrollTo({
+           top: scrollToPos,
+           behavior: 'smooth'
+       });
+   });
+
+   addEventListener("scroll", () => {
+      
+   }, false);
+})();
+</script>
 
 <section id="aanbevolen_producten" class="section products">
     
