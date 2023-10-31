@@ -93,6 +93,9 @@ echo $strings[array_rand($strings)];?>
     </div>
 </section>
 
+<button id="scrollButton" class="hidden" onclick="scrollToTop()">▼</button>
+    <script src="script.js"></script>
+
 <section id="aanbevolen_producten" class="section products">
     
     <h1>Onze aanbevolen producten</h1>
@@ -216,7 +219,6 @@ echo $strings[array_rand($strings)];?>
     </div>
 
     <div class="links">
-        <h3>Links</h3>
         <a style="color: #fff" ; href="../index.php">Home</a>
         <a style="color: #fff" ; href="../pages/over-ons.php">Over ons</a>
         <a style="color: #fff" ; href="../pages/productoverzicht.php">Producten</a>
@@ -224,6 +226,3 @@ echo $strings[array_rand($strings)];?>
         <a style="color: #fff"; href="../pages/legal.php">Legaal</a>
     </div>
 </footer>
-
-</body>
-</html>
