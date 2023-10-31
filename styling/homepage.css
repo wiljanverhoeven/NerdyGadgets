@@ -20,8 +20,11 @@
         fadeIn 2s;
     animation-delay: 2s;
     animation-fill-mode: forwards;
-    rotate: 90;
   }
+
+#scrollBtn:hover{
+    transform: scale(1.1);
+}
 
 .welkom {
     position: relative;
