@@ -81,8 +81,10 @@
 
         <?php } } }?>
 </div>
-<div class="sorteerblok section">
-    
+
+<div id="filters"> 
+
+
 </div>
 </section>
 <footer>
