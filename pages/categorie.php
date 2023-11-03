@@ -64,7 +64,20 @@
         <h2>Alle <?php echo $_GET['categorie']; ?></h2>
         <?php
 
-           
+        $sort = "";
+
+        if(isset($_POST['sort'])) {
+            if(is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
+                $sort = $_POST['sort'];
+                $_GET['categorie'];
+            }
+        }
+        print($sort);
+
+
+    
+        if ($sort == NULL) {
+
         for ($i = 6;$i <= 6; $i++) {  
             $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'"';
                 if ($result = mysqli_query($conn, $sql)) {
@@ -79,10 +92,29 @@
                 <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
             </div>
 
-        <?php } } }?>
+        <?php } } } } elseif ($sort == 1) {
+                for ($i = 6;$i <= 6; $i++) {  
+                    $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" AND productnaam="Product"';
+                        if ($result = mysqli_query($conn, $sql)) {
+                            // Fetch one and one row
+                            while ($row = mysqli_fetch_row($result)) {
+                        ?>
+                    <div id="product">
+                        <a href="product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "../images/",$row[4]; ?>" alt="Product"></a>
+                        <h3><?php echo $row[1]; ?></h3>
+                        <p><?php echo "€",$row[2]; ?></p>
+                        <p><?php echo $row[3]; ?></p>
+                        <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+                    </div>
+            <?php } } } }?>
 </div>
-<div class="sorteerblok section">
-    
+
+<div id="filters"> 
+    <form action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
+    <input type="radio" name="sort" value="1" />
+    <br /><input type="submit" value="Apply" />
+</form>             
+
 </div>
 </section>
 <footer>
