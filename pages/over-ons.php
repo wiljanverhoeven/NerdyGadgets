@@ -25,7 +25,7 @@
         <nav>
             <ul>
                 <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
-                <li><a href="over-ons.php" class="paginas current" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
+                <li><a href="../pages/over-ons.php" class="paginas current" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
                 <li><a href="producten.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
             </ul>
         </nav>
