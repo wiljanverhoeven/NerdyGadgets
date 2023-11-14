@@ -81,7 +81,7 @@
                     <div class="swiper-slide">
                         <div class="flex">
                             <div class="comments">
-                                Double w's in de chat!
+                                W's in de chat!
                             </div>
                             <div class="profile">
                                 <img src="https://th.bing.com/th/id/OIP.viHhFcj6ud1UVjUxrHmy8gAAAA?pid=ImgDet&rs=1" width="66.59" height="66.59">
