@@ -33,6 +33,10 @@
     margin-bottom: 5%;
 }
 
+#sorting {
+    position: relative;
+    top: 20px;
+}
 .sorteerblok {
     flex: 1;
     height: 100%;
