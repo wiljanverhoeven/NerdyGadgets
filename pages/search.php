@@ -70,13 +70,7 @@
 
         $sort = "";
         $order = "";
-        $where = "";
         
-        if(isset($_POST['search'])) {
-            $like = $_POST['search'];
-            $where = "AND `productnaam` LIKE '%{$like}%' ";
-        }
-
         if(isset($_POST['sort'])) {
             if(is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
                 $sort = $_POST['sort'];
@@ -103,7 +97,7 @@
 
     
         if ($sort == NULL) {
-            $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" '. $where .' ';
+            $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'"';
                 if ($result = mysqli_query($conn, $sql)) {
                     // Fetch one and one row
                     while ($row = mysqli_fetch_row($result)) {
@@ -118,7 +112,7 @@
 
         <?php } } } elseif ($sort !== NULL) {
                 
-                    $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" '. $where .' '. $order .'';
+                    $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" '. $order .'';
                         if ($result = mysqli_query($conn, $sql)) {
                             // Fetch one and one row
                             while ($row = mysqli_fetch_row($result)) {
@@ -135,7 +129,7 @@
 
 <div id="filters"> 
     <div id="sorting">
-    <form action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
+    <form action="search.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
     <input type="text" name="search" placeholder="Waar zoek je naar?" />
     <br />
     <label>Sort by date descending</label>
