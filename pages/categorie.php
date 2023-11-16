@@ -136,20 +136,20 @@
 <div id="filters"> 
     <div id="sorting">
     <form action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
-    <input type="text" name="search" placeholder="Waar zoek je naar?" />
+    <input class="search-bar1" id="input" type="text" name="search" placeholder="Waar zoek je naar?" />
     <br />
     <label>Sort by date descending</label>
-    <input type="radio" name="sort" value="1" />
+    <input id="input" type="radio" name="sort" value="1" />
     <br />
     <label>Sort by date ascending</label>
-    <input type="radio" name="sort" value="2" />
+    <input id="input" type="radio" name="sort" value="2" />
     <br />
     <label>Sort by price ascending</label>
-    <input type="radio" name="sort" value="3" />
+    <input id="input" type="radio" name="sort" value="3" />
     <br />
     <label>Sort by price descending</label>
-    <input type="radio" name="sort" value="4" />
-    <br /><input type="submit" value="Apply" />
+    <input  id="input" type="radio" name="sort" value="4" />
+    <br /><input class="apply" id="input" type="submit" value="Apply"/>
     </div>
 </form>             
 
