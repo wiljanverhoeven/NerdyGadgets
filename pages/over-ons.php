@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over Ons | NerdyGadgets</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
-    <link rel="stylesheet" href="styling/basic-style.css">
-    <link rel="stylesheet" href="styling/over-ons.css">
+    <link rel="stylesheet" href="../styling/basic-style.css">
+
 </head>
 <body>
     <header>
@@ -31,7 +31,7 @@
         </nav>
 
         <div class="icons">
-            <!-- Voeg hier de winkelwagen en accountknoppen toe als dat nodig is -->
+
         </div>
     </header>
 
@@ -44,35 +44,35 @@ Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, m
 U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
 Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.
             </p>
-        </section>
 
-        <!-- Voorbeeld van productinformatie sectie -->
-        <section class="product-info">
-            <h2>Product 1</h2>
-            <p>
-Dit is een beschrijving van ons geweldige product 1. Ontdek de functies en voordelen.
-            </p>
-        </section>
 
-        <section class="product-info">
-            <h2>Product 2</h2>
-            <p>
-Hier is een beschrijving van ons fantastische product 2. Leer meer over wat het te bieden heeft.
-            </p>
-        </section>
+
+
+            <h2>Ons Team</h2>
+            <p><strong>Alexander Dijkhuizen</strong> - Scrum Master</p>
+            <p><strong>Wiljan Verhoeven</strong> - Lead Developer</p>
+            <p><strong>Hieu Phan</strong> - Leerling</p>
+            <p><strong>Danyaal Burney</strong> -Webontwikkelaar</p>
+            <p><strong>Shahzaib Saleem</strong> - Hieu Hater</p>
+
+
+
+
+            <p>Bij eventuele vragen kunt u contact met ons opnemen</p>
     </main>
 
     <footer>
+
         <div class="inhoudFooter">
-            <div class="contact">
-                <h3 style="color: #fff">Contactgegevens</h3>
-                <p style="color: #fff">
-    Adres: Hospitaaldreef 5, Almere
-<br>
+            <div class="contactfooter">
+                <h3 style="color: #fff" ;>Contactgegevens</h3>
+                <p style="color: #fff" ;>
+                    Adres: Hospitaaldreef 5, Almere
+                    <br>
                     Email: administratie@nerdygadgets.nl
-<br>
+                    <br>
                     Telefoonnummer: +31 06 12345678
-</p>
+                </p>
             </div>
 
             <div class="betaalmiddelen">
@@ -80,19 +80,22 @@ Hier is een beschrijving van ons fantastische product 2. Leer meer over wat het 
                     <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
                     <ul id="list">
                         <a>
-                            <img src="images/icon-mastercard.png" width="64.2" height="40">
-                            <img src="images/IDEAL_Logo.png" width="46" height="40">
-                            <img src="images/icon-visa.png" width="64.2" height="40">
+                            <img src="images/icon-mastercard.png" width="64.2" height="40" >
+                            <img src="images/IDEAL_Logo.png" width="46" height="40" >
+                            <img src="images/icon-visa.png" width="64.2" height="40" >
                         </a>
                     </ul>
-We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
+                    We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
                     <br>
-Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.
-                </h6>
+                    Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
             </div>
 
             <div class="links">
                 <h3>Links</h3>
-                <a style="color: #fff" href="../index.php">Home</a>
-                <a style="color: #fff" href="over-ons.php">Over ons</a>
-                <a style="color: #fff" href
+                <a style="color: #fff" ; href="./">Home</a>
+                <a style="color: #fff" ; href="./#about">Over ons</a>
+                <a style="color: #fff" ; href="./search/">Producten</a>
+                <a style="color: #fff"; href="./account/">Account</a>
+                <a style="color: #fff"; href="./legal/">Legaal</a>
+            </div>
+    </footer>
