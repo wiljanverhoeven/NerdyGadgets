@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over Ons | NerdyGadgets</title>
-    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
+    <link rel="icon" type="image/png" href="../images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
 
 </head>
@@ -12,13 +12,13 @@
     <header>
         <div class="logo">
             <a href="../index.php">
-                <img src="images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
+                <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
             </a>
         </div>
 
         <div>
             <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-            <button class="btn btn-primary searchSubmit" type="submit"> <img src="images/zoeken_icon.png" alt="Zoeken" width="15.5" height="15.5">
+            <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Zoeken" width="15.5" height="15.5">
             </button>
         </div>
 
@@ -31,7 +31,18 @@
         </nav>
 
         <div class="icons">
-
+        <div class="cart">
+            <a href="winkelwagen.php" title="Bekijk uw winkelwagen">
+                <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
+                <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
+            </a>
+        </div>
+        <div class="account">
+            <a href="account.php" title="Ga naar uw account">
+                <img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40">
+            </a>
+        </div>
         </div>
     </header>
 
@@ -80,9 +91,9 @@ Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We beha
                     <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
                     <ul id="list">
                         <a>
-                            <img src="images/icon-mastercard.png" width="64.2" height="40" >
-                            <img src="images/IDEAL_Logo.png" width="46" height="40" >
-                            <img src="images/icon-visa.png" width="64.2" height="40" >
+                            <img src="../images/icon-mastercard.png" width="64.2" height="40" >
+                            <img src="../images/IDEAL_Logo.png" width="46" height="40" >
+                            <img src="../images/icon-visa.png" width="64.2" height="40" >
                         </a>
                     </ul>
                     We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
