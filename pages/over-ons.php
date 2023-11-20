@@ -16,11 +16,12 @@
             </a>
         </div>
 
-        <div>
-            <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-            <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Zoeken" width="15.5" height="15.5">
-            </button>
-        </div>
+        <div id="search">
+        <form action="../pages/search.php" method="POST">
+            <input  class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+            <button  class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
+        </form>
+    </div>
 
         <nav>
             <ul>

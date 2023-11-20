@@ -37,6 +37,9 @@
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="styling/basic-style.css">
     <link rel="stylesheet" href="styling/homepage.css">
+    <link rel="stylesheet" href="styling/logincss.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
 
 </head>
 
@@ -49,11 +52,11 @@
     </div>
 
 
-    <div>
-        
-        <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-        <button class="btn btn-primary searchSubmit" type="submit"> <img src="images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
-        
+    <div id="search">
+        <form action="pages/search.php" method="POST">
+            <input  class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+            <button  class="btn btn-primary searchSubmit" type="submit"> <img src="images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
+        </form>
     </div>
 
     <nav>
@@ -71,16 +74,76 @@
                 <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
             </a>
         </div>
-
+       
         <div class="account">
-            <a href="account.php" title="Ga naar uw account">
-                <img class="user" src="images/account_icon.png" alt="Account" width="40" height="40">
-                <img class="user_neon" src="images/account_icon_neon.png" alt="Account" width="40" height="40">
-            </a>
+        <a class="btnlogin-popup"><img class="user" src="images/account_icon.png" alt="Account" width="40" height="40">
+       <img class="user_neon" src="images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+        </a>
         </div>
     </div>
 </div>
+
 </header>
+
+<section id="block">
+<div class="wrapper">
+    <span class="close-icon">
+        <i class='bx bx-x'></i>
+    </span>
+
+    <div class="form-box login">
+    <form action="logic/loginB.php" method="post">
+    <h1> Login </h1>
+        <div class="input-box">
+            <input type="text" placeholder="username" required >
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" required >
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+        <div class="remember-forgot">
+            <label><input type="checkbox" name="remember"> remember me</label>
+            <a href="#"> Forgot password</a>
+        </div>
+
+        <button type="submit" class="btn">login</button>
+        <div class="register-login">
+            <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
+        </div>
+
+
+    </form>
+</div>
+    <div class="form-box register">
+
+        <form action="logic/loginB.php" method="post">
+            <h1> Register </h1>
+            <div class="input-box">
+                <input type="text" placeholder="username" required name="usernamelogin">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="E-mail" required name="Email">
+                <i class='bx bx-envelope' ></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required name="passwordlogin">
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="agree">
+                <label><input type="checkbox"> Agree to the terms and services</label>
+
+                <button type="submit" class="btn">Make account</button>
+                <div class="register-login">
+                    <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                </div>
+        </form>
+    </div>
+</div>
+</section>
+
+<script src="logic/script.js"></script>
 
 <div class="main">
 <section id="home" class="section">
