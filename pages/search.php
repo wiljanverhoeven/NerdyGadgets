@@ -23,11 +23,11 @@
     </div>
 
 
-    <div>
-        <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-
-        <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
-
+    <div id="search">
+        <form action="../pages/search.php" method="POST">
+            <input  class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+            <button  class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
+        </form>
     </div>
 
 
@@ -65,16 +65,19 @@
 
 <div class="producten section">
         
-        <h2>Alle <?php echo $_GET['categorie']; ?></h2>
         <?php
 
         $sort = "";
         $order = "";
+
+        if(isset($_POST['keyword'])) {
+            $like = $_POST['keyword'];
+            $where = "WHERE `productnaam` LIKE '%{$like}%' OR `categorie` LIKE '%{$like}%'";
+        }
         
         if(isset($_POST['sort'])) {
             if(is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
                 $sort = $_POST['sort'];
-                $_GET['categorie'];
 
                 switch ($sort) {
                 case 1:
@@ -97,7 +100,7 @@
 
     
         if ($sort == NULL) {
-            $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'"';
+            $sql = 'SELECT * FROM producten '. $where .'';
                 if ($result = mysqli_query($conn, $sql)) {
                     // Fetch one and one row
                     while ($row = mysqli_fetch_row($result)) {
@@ -112,7 +115,7 @@
 
         <?php } } } elseif ($sort !== NULL) {
                 
-                    $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" '. $order .'';
+                    $sql = 'SELECT * FROM producten '. $where .' '. $order .'';
                         if ($result = mysqli_query($conn, $sql)) {
                             // Fetch one and one row
                             while ($row = mysqli_fetch_row($result)) {
@@ -129,9 +132,7 @@
 
 <div id="filters"> 
     <div id="sorting">
-    <form action="search.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
-    <input type="text" name="search" placeholder="Waar zoek je naar?" />
-    <br />
+    <form action="search.php" method="post">
     <label>Sort by date descending</label>
     <input type="radio" name="sort" value="1" />
     <br />
@@ -143,6 +144,7 @@
     <br />
     <label>Sort by price descending</label>
     <input type="radio" name="sort" value="4" />
+    <input type="hidden" name="keyword" value="<?=$like?>">
     <br /><input type="submit" value="Apply" />
     </div>
 </form>             
