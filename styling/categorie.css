@@ -5,13 +5,14 @@
 }
 
 .search-bar1 {
+    margin-bottom: 10px;
+    margin-top: 10px;
     padding: 10px;
     font-size: 18px;
     width: 170px;
     border: 1px solid #ccc;
     border-radius: 50px;
     box-shadow: 0px 0px 25px rgb(0, 0, 0);
-    
 }
 
 .producten {
@@ -73,7 +74,14 @@
 }
 
 #input {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 18px;
+    width: 190px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-shadow: 0px 0px 25px rgb(0, 0, 0);
+
 }
 
 .sorteerblok {
