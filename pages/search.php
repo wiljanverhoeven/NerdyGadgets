@@ -191,24 +191,20 @@
             <?php } } }?>
 </div>
 
+
 <div id="filters"> 
     <div id="sorting">
-    <form action="search.php" method="post">
-    <label>Sort by date descending</label>
-    <input type="radio" name="sort" value="1" />
-    <br />
-    <label>Sort by date ascending</label>
-    <input type="radio" name="sort" value="2" />
-    <br />
-    <label>Sort by price ascending</label>
-    <input type="radio" name="sort" value="3" />
-    <br />
-    <label>Sort by price descending</label>
-    <input type="radio" name="sort" value="4" />
-    <input type="hidden" name="keyword" value="<?=$like?>">
-    <br /><input type="submit" value="Apply" />
+    <form action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
+    <label>Filter</label>
+    <select id="input" name="sort">
+        <option value="1">date descending</option>
+        <option value="2">date ascending</option>
+        <option value="3">price ascending</option>
+        <option value="4">price descending</option>
+    </select>
+    <br /><input class="apply" id="input" type="submit" value="Apply"/>
     </div>
-</form>             
+</form>            
 
 </div>
 </section>
