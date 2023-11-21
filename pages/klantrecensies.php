@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="../styling/recensie.css">
+    <link rel="stylesheet" href="../styling/logincss.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -45,15 +47,75 @@
     </div>
 
     <div class="account">
-        <a href="account.php">
-            <img class="user" src="../images/account_icon.png" alt="Account"  width="40" height="40">
-            <img class="user_neon" src="../images/account_icon_neon.png" alt="Account"  width="40" height="40">
+        <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
         </a>
     </div>
     </div>
 
 </header>
-<section id="review" class=""section>
+
+<section id="block">
+<div class="wrapper">
+    <span class="close-icon">
+        <i class='bx bx-x'></i>
+    </span>
+
+    <div class="form-box login">
+    <form action="../logic/loginB.php" method="post">
+    <h1> Login </h1>
+        <div class="input-box">
+            <input type="text" placeholder="username" required >
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" required >
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+        <div class="remember-forgot">
+            <label><input type="checkbox" name="remember"> remember me</label>
+            <a href="#"> Forgot password</a>
+        </div>
+
+        <button type="submit" class="btn">login</button>
+        <div class="register-login">
+            <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
+        </div>
+
+
+    </form>
+</div>
+    <div class="form-box register">
+
+        <form action="../logic/loginB.php" method="post">
+            <h1> Register </h1>
+            <div class="input-box">
+                <input type="text" placeholder="username" required name="usernamelogin">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="E-mail" required name="Email">
+                <i class='bx bx-envelope' ></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required name="passwordlogin">
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="agree">
+                <label><input type="checkbox"> Agree to the terms and services</label>
+
+                <button type="submit" class="btn">Make account</button>
+                <div class="register-login">
+                    <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                </div>
+        </form>
+    </div>
+</div>
+</section>
+
+<script src="../logic/script.js"></script>
+
+<section id="review" class="section">
     <div class="container">
         <div class="board">
             <h2 class="text-light">Onze reviews</h2>
