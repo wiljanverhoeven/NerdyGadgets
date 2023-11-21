@@ -136,15 +136,16 @@
         
         if(isset($_POST['search'])) {
             $like = $_POST['search'];
-            $where = "AND `productnaam` LIKE '%{$like}%' ";
+            $sanword = mysqli_real_escape_string($conn, $like);
+            $where = "AND `productnaam` LIKE '%{$sanword}%' ";
         }
 
         if(isset($_POST['sort'])) {
             if(is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
                 $sort = $_POST['sort'];
-                $_GET['categorie'];
+                $sansort = mysqli_real_escape_string($conn, $sort);
 
-                switch ($sort) {
+                switch ($sansort) {
                 case 1:
                     $order = "ORDER BY datum DESC";
                     break;
@@ -180,7 +181,7 @@
 
         <?php } } } elseif ($sort !== NULL) {
                 
-                    $sql = 'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" '. $where .' '. $order .'';
+                    $sql =  'SELECT * FROM producten WHERE categorie="'.$_GET['categorie'].'" '. $where .' '. $order .'';
                         if ($result = mysqli_query($conn, $sql)) {
                             // Fetch one and one row
                             while ($row = mysqli_fetch_row($result)) {

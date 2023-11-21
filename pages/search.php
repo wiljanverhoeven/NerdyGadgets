@@ -133,14 +133,16 @@
 
         if(isset($_POST['keyword'])) {
             $like = $_POST['keyword'];
-            $where = "WHERE `productnaam` LIKE '%{$like}%' OR `categorie` LIKE '%{$like}%'";
+            $sanword = mysqli_real_escape_string($conn, $like);
+            $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%'";
         }
         
         if(isset($_POST['sort'])) {
             if(is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
                 $sort = $_POST['sort'];
+                $sansort = mysqli_real_escape_string($conn, $sort);
 
-                switch ($sort) {
+                switch ($sansort) {
                 case 1:
                     $order = "ORDER BY datum DESC";
                     break;
@@ -161,7 +163,7 @@
 
     
         if ($sort == NULL) {
-            $sql = 'SELECT * FROM producten '. $where .'';
+            $sql =  'SELECT * FROM producten '. $where .'';
                 if ($result = mysqli_query($conn, $sql)) {
                     // Fetch one and one row
                     while ($row = mysqli_fetch_row($result)) {
@@ -194,7 +196,7 @@
 
 <div id="filters"> 
     <div id="sorting">
-    <form action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>" method="post">
+    <form action="search.php" method="post">
     <label>Filter</label>
     <select id="input" name="sort">
         <option value="1">date descending</option>
@@ -202,6 +204,7 @@
         <option value="3">price ascending</option>
         <option value="4">price descending</option>
     </select>
+    <input type="hidden" name="keyword" value="<?=$like?>">
     <br /><input class="apply" id="input" type="submit" value="Apply"/>
     </div>
 </form>            
