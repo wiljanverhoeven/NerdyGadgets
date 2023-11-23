@@ -1,12 +1,12 @@
 <?php
 
-function usernameExists($conn, $mail){
-    $query = "SELECT * FROM users WHERE username = ?;";
+function mailExists($conn, $mail){
+    $query = "SELECT * FROM user WHERE email = ?;";
     $stmt = $conn->prepare($query) or die ("prepare failed.");
 
-    $stmt->bind_param('s', $name);
+    $stmt->bind_param('s', $mail);
 
-    $stmt->execute() or die ('username exists failed');
+    $stmt->execute() or die ('email exists failed');
     
     $resultSet = $stmt->get_result();
 
@@ -18,8 +18,6 @@ function usernameExists($conn, $mail){
         return false;
     }
 
-    $conn = null;
-    $stmt = null;
 }
 
 function createUser($conn, $Fname, $prefix, $lname, $mail, $pass, $street, $HNM, $Pcode, $city){
@@ -31,6 +29,7 @@ function createUser($conn, $Fname, $prefix, $lname, $mail, $pass, $street, $HNM,
     $stmt->bind_param('sssssssss',$Fname, $prefix, $lname, $mail, $hashedpwd, $street, $HNM, $Pcode, $city);
     
     session_start();
+    setcookie('email', $mail, 0, '/');
     header('location: ../index.php');
 
     $stmt->execute() or die ('execution failed.');
@@ -39,7 +38,13 @@ function createUser($conn, $Fname, $prefix, $lname, $mail, $pass, $street, $HNM,
 }
 
 function loginUser($conn, $mail, $pwd) {
-    $userExists = usernameExists($conn, $mail, $mail);
+    $userExists = mailExists($conn, $mail);
+
+
+    if ($userExists === false) {
+        echo "user doesnt exist";
+        exit();
+    }
 
     $DBPwd = $userExists[0][2];
     $hashedPwd = hash('sha512', $pwd);
@@ -53,7 +58,7 @@ function loginUser($conn, $mail, $pwd) {
     }
     else if ($checkPwd) {
         session_start();
-        setcookie('username', $userExists[0][1], 0, '/');
+        setcookie('email', $userExists[0][1], 0, '/');
         header('location: ../index.php');
         exit();
     }

@@ -4,6 +4,8 @@
               require '../logic/functions.php';
         ?>
 
+    <link rel="stylesheet" href="../styling/basic-style.css">   
+
     </head>
     <body>
         <form action="register.php" method="post">

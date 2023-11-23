@@ -4,6 +4,7 @@
 <head>
     <?php
     require '../dbconnect.php';
+    session_start();
     ?>
 
     <meta charset="UTF-8">
@@ -49,11 +50,26 @@
         </a>
     </div>
 
-    <div class="account">
-        <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
-        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-        </a>
-    </div>
+    <?php 
+            if(isset($_COOKIE['email'])) {
+                ?>  
+                    <nav>
+                    <div class="account">
+                        <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
+                    </div>
+                    </nav>
+                 <?php
+            } else { 
+                ?>  
+                    <div class="account">
+                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                    <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                    </a>
+                    </div>
+                    
+                <?php
+            } 
+        ?>
     </div>
 
     <link rel="stylesheet"href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
