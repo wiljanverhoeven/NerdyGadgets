@@ -61,7 +61,7 @@
 
     <nav>
         <ul>
-            <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
+            <li><a href="index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
             <li><a href="pages/over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
             <li><a href="pages/productoverzicht.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
         </ul>
@@ -109,6 +109,7 @@
 
         <button type="submit" class="btn">login</button>
         <div class="register-login">
+            <a href="pages/register.php">register</a>
             <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
         </div>
 

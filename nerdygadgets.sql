@@ -49,7 +49,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `User` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(80) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(500) NOT NULL,
   `first_name` VARCHAR(30) NOT NULL,
   `surname_prefix` VARCHAR(20) NULL DEFAULT NULL,
   `surname` VARCHAR(30) NOT NULL,
@@ -77,12 +77,12 @@ CREATE TABLE IF NOT EXISTS `recensies` (
   INDEX `fk_recensies_User1_idx` (`User_id` ASC) ,
   CONSTRAINT `fk_recensies_Product`
     FOREIGN KEY (`Product_id`)
-    REFERENCES `nerdy_gadgets_start`.`Product` (`productid`)
+    REFERENCES `Producten` (`productid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_recensies_User1`
     FOREIGN KEY (`User_id`)
-    REFERENCES `nerdy_gadgets_start`.`User` (`id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `Order` (
   INDEX `fk_Order_User1_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_Order_User1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `nerdy_gadgets_start`.`User` (`id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -118,12 +118,12 @@ CREATE TABLE IF NOT EXISTS `Order_item` (
   INDEX `fk_Order_has_Product_Order_idx` (`order_id` ASC) ,
   CONSTRAINT `fk_Order_has_Product_Order`
     FOREIGN KEY (`order_id`)
-    REFERENCES `nerdy_gadgets_start`.`Order` (`id`)
+    REFERENCES `Order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Order_has_Product_Product1`
     FOREIGN KEY (`product_id`)
-    REFERENCES `nerdy_gadgets_start`.`Product` (`productid`)
+    REFERENCES `Producten` (`productid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
