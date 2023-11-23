@@ -22,13 +22,12 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema nerdy_gadgets_start
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `nerdy_gadgets_start` DEFAULT CHARACTER SET utf8mb4 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
 -- Table `nerdy_gadgets_start`.`Product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `nerdy_gadgets_start`.`Product` (
+CREATE TABLE IF NOT EXISTS `Product` (
   `productid` INT(11) NOT NULL,
   `productnaam` VARCHAR(250) NOT NULL,
   `description` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin' NULL,
@@ -47,10 +46,10 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `nerdy_gadgets_start`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `nerdy_gadgets_start`.`User` (
+CREATE TABLE IF NOT EXISTS `User` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(80) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(500) NOT NULL,
   `first_name` VARCHAR(30) NOT NULL,
   `surname_prefix` VARCHAR(20) NULL DEFAULT NULL,
   `surname` VARCHAR(30) NOT NULL,
@@ -67,7 +66,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `mydb`.`recensies`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`recensies` (
+CREATE TABLE IF NOT EXISTS `recensies` (
   `idrecensies` INT NOT NULL AUTO_INCREMENT,
   `inhoud` VARCHAR(250) NULL,
   `rating` INT NOT NULL,
@@ -78,12 +77,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`recensies` (
   INDEX `fk_recensies_User1_idx` (`User_id` ASC) ,
   CONSTRAINT `fk_recensies_Product`
     FOREIGN KEY (`Product_id`)
-    REFERENCES `nerdy_gadgets_start`.`Product` (`productid`)
+    REFERENCES `Producten` (`productid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_recensies_User1`
     FOREIGN KEY (`User_id`)
-    REFERENCES `nerdy_gadgets_start`.`User` (`id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -93,7 +92,7 @@ USE `nerdy_gadgets_start` ;
 -- -----------------------------------------------------
 -- Table `nerdy_gadgets_start`.`Order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `nerdy_gadgets_start`.`Order` (
+CREATE TABLE IF NOT EXISTS `Order` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `order_date` DATETIME NOT NULL,
   `user_id` INT(11) NOT NULL,
@@ -101,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `nerdy_gadgets_start`.`Order` (
   INDEX `fk_Order_User1_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_Order_User1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `nerdy_gadgets_start`.`User` (`id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -112,7 +111,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `nerdy_gadgets_start`.`Order_item`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `nerdy_gadgets_start`.`Order_item` (
+CREATE TABLE IF NOT EXISTS `Order_item` (
   `order_id` INT(11) NOT NULL,
   `product_id` INT(11) NOT NULL,
   `quantity` INT(5) NOT NULL,
@@ -121,12 +120,12 @@ CREATE TABLE IF NOT EXISTS `nerdy_gadgets_start`.`Order_item` (
   INDEX `fk_Order_has_Product_Order_idx` (`order_id` ASC) ,
   CONSTRAINT `fk_Order_has_Product_Order`
     FOREIGN KEY (`order_id`)
-    REFERENCES `nerdy_gadgets_start`.`Order` (`id`)
+    REFERENCES `Order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Order_has_Product_Product1`
     FOREIGN KEY (`product_id`)
-    REFERENCES `nerdy_gadgets_start`.`Product` (`productid`)
+    REFERENCES `Producten` (`productid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
