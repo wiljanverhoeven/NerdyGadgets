@@ -109,6 +109,7 @@
 
         <button type="submit" class="btn">login</button>
         <div class="register-login">
+            <a href="pages/register.php">register</a>
             <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
         </div>
 
