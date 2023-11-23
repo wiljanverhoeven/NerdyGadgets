@@ -27,6 +27,7 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `nerdy_gadgets_start`.`Product`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `Producten` (
   `productid` INT(11) NOT NULL,
   `productnaam` VARCHAR(250) NOT NULL,
