@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `recensies` (
   INDEX `fk_recensies_User1_idx` (`User_id` ASC) ,
   CONSTRAINT `fk_recensies_Product`
     FOREIGN KEY (`Product_id`)
-    REFERENCES `Product` (`productid`)
+    REFERENCES `Producten` (`productid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_recensies_User1`
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `Order_item` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Order_has_Product_Product1`
     FOREIGN KEY (`product_id`)
-    REFERENCES `Product` (`productid`)
+    REFERENCES `Producten` (`productid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
