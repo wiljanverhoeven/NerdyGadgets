@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <?php 
+    session_start();
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over Ons | NerdyGadgets</title>
@@ -39,11 +42,26 @@
                 <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
             </a>
         </div>
-        <div class="account">
-        <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
-        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-        </a>
-    </div>
+        <?php 
+            if(isset($_COOKIE['email'])) {
+                ?>  
+                    <nav>
+                    <div class="account">
+                        <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
+                    </div>
+                    </nav>
+                 <?php
+            } else { 
+                ?>  
+                    <div class="account">
+                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                    <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                    </a>
+                    </div>
+                    
+                <?php
+            } 
+        ?>
         </div>
     </header>
 

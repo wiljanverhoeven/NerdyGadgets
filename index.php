@@ -7,6 +7,10 @@
         //haalt informatie van bijnodigde bestanden op
         require 'dbconnect.php';
 
+        session_start();
+
+        
+
         //maakt variablenen aan voor de producten op de homepage
         for ($i = 1;$i <= 3; $i++) {
             $query = "SELECT * FROM producten WHERE productid=$i";
@@ -74,16 +78,38 @@
                 <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
             </a>
         </div>
-       
-        <div class="account">
-        <a class="btnlogin-popup"><img class="user" src="images/account_icon.png" alt="Account" width="40" height="40">
-       <img class="user_neon" src="images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-        </a>
-        </div>
+        <?php 
+            if(isset($_COOKIE['email'])) {
+                ?>  
+                    <nav>
+                    <div class="account">
+                        <a class="paginas" title="ga naar uw account" href="pages/logout.php">log uit</a>
+                    </div>
+                    </nav>
+                 <?php
+            } else { 
+                ?>  
+                    <div class="account">
+                    <a class="btnlogin-popup"><img class="user" src="images/account_icon.png" alt="Account" width="40" height="40">
+                    <img class="user_neon" src="images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                    </a>
+                    </div>
+                    
+                <?php
+            } 
+        ?>
+        
     </div>
 </div>
 
 </header>
+<?php
+if(isset($_COOKIE['email'])) { 
+    print($_COOKIE['email']);
+}
+?>
+
+
 
 <section id="block">
 <div class="wrapper">
@@ -92,14 +118,14 @@
     </span>
 
     <div class="form-box login">
-    <form action="logic/loginB.php" method="post">
+    <form action="pages/login.php" method="post">
     <h1> Login </h1>
         <div class="input-box">
-            <input type="text" placeholder="username" required >
+            <input type="text" placeholder="email" name="mail" required >
             <i class='bx bxs-user'></i>
         </div>
         <div class="input-box">
-            <input type="password" placeholder="Password" required >
+            <input type="password" placeholder="Password" name="pass" required >
             <i class='bx bxs-lock-alt' ></i>
         </div>
         <div class="remember-forgot">
@@ -107,7 +133,7 @@
             <a href="#"> Forgot password</a>
         </div>
 
-        <button type="submit" class="btn">login</button>
+        <button type="submit" name="apply" class="btn">login</button>
         <div class="register-login">
             <a href="pages/register.php">register</a>
             <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
@@ -118,7 +144,7 @@
 </div>
     <div class="form-box register">
 
-        <form action="logic/loginB.php" method="post">
+        <form action="pages/login.php" method="post">
             <h1> Register </h1>
             <div class="input-box">
                 <input type="text" placeholder="username" required name="usernamelogin">
