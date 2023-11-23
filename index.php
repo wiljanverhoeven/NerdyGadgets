@@ -95,11 +95,11 @@
     <form action="logic/loginB.php" method="post">
     <h1> Login </h1>
         <div class="input-box">
-            <input type="text" placeholder="username" required >
+            <input type="text" placeholder="email" name="mail" required >
             <i class='bx bxs-user'></i>
         </div>
         <div class="input-box">
-            <input type="password" placeholder="Password" required >
+            <input type="password" placeholder="Password" name="pass" required >
             <i class='bx bxs-lock-alt' ></i>
         </div>
         <div class="remember-forgot">
@@ -107,7 +107,7 @@
             <a href="#"> Forgot password</a>
         </div>
 
-        <button type="submit" class="btn">login</button>
+        <button type="submit" name="apply" class="btn">login</button>
         <div class="register-login">
             <a href="pages/register.php">register</a>
             <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
