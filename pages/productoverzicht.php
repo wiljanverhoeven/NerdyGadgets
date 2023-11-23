@@ -150,7 +150,7 @@
         <h2>Aanbevolen producten</h2>
     <div id="slider">
         <?php
-        for ($i = 1;$i <= 4; $i++) {
+        for ($i = 0;$i <= 3; $i++) {
                 $sql = "SELECT * FROM producten WHERE productid=$i";
                 $prod = mysqli_query($conn, $sql);
                 ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
