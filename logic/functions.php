@@ -1,5 +1,6 @@
 <?php
 
+//functie die checked of de gebruiker bestaat
 function mailExists($conn, $mail){
     $query = "SELECT * FROM user WHERE email = ?;";
     $stmt = $conn->prepare($query) or die ("prepare failed.");
@@ -20,6 +21,7 @@ function mailExists($conn, $mail){
 
 }
 
+//functie om een gebruiker aan te maken
 function createUser($conn, $Fname, $prefix, $lname, $mail, $pass, $street, $HNM, $Pcode, $city){
     $query = "INSERT INTO user (first_name, surname_prefix, surname, email, password, street_name, apartment_nr, postal_code, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($query) or die ("prepare failed.");
@@ -37,6 +39,7 @@ function createUser($conn, $Fname, $prefix, $lname, $mail, $pass, $street, $HNM,
     $stmt = null;
 }
 
+//functie om bestaande gebruiker in te loggen
 function loginUser($conn, $mail, $pwd) {
     $userExists = mailExists($conn, $mail);
 
