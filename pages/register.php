@@ -52,14 +52,19 @@
         $Pcode = $_POST["Pcode"];
         $city = $_POST["city"];
 
-        if (!filter_var($mail, FILTER_VALIDATE_EMAIL) || PostcodeCheck($Pcode) === false ) {
-            echo "Invalid email format";
-          } else {
-            createuser($conn, $Fname, $prefix, $Lname, $mail, $pass, $street, $HNM, $Pcode, $city);
-          }
-  
-
+        $check = "SELECT email FROM user WHERE email = '.$mail.'";
+        $result = mysqli_query($conn, $check);
         
+
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            echo "Invalid email format";
+          } elseif (PostcodeCheck($Pcode) === false) {
+            echo "Invalid postalcode format";
+        } elseif($result == true) {
+            echo"email is already in use";
+        } else {
+            createuser($conn, $Fname, $prefix, $Lname, $mail, $pass, $street, $HNM, $Pcode, $city);
+        } 
     }
     
     
