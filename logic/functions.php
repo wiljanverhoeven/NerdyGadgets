@@ -1,4 +1,14 @@
 <?php
+function PostcodeCheck($Pcode){
+    $remove = str_replace(" ","", $Pcode);
+    $upper = strtoupper($remove);
+
+    if( preg_match("/^\W*[1-9]{1}[0-9]{3}\W*[a-zA-Z]{2}\W*$/",  $upper)) {
+        return $upper;
+    } else {
+        return false;
+    }
+}
 
 //functie die checked of de gebruiker bestaat
 function mailExists($conn, $mail){
