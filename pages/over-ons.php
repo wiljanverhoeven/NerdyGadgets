@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <?php 
+    <?php
     session_start();
     ?>
     <meta charset="UTF-8">
@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../styling/over-ons.css">
+
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="../index.php">
-                <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
-            </a>
-        </div>
+<header>
+    <div class="logo">
+        <a href="../index.php">
+            <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
+        </a>
+    </div>
 
         <div id="search">
         <form action="../pages/search.php" method="POST">
@@ -42,28 +44,46 @@
                 <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
             </a>
         </div>
-        <?php 
+        <?php
             if(isset($_COOKIE['email'])) {
-                ?>  
+                ?>
                     <nav>
                     <div class="account">
                         <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
                     </div>
                     </nav>
                  <?php
-            } else { 
-                ?>  
+            } else {
+                ?>
                     <div class="account">
                     <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
                     <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
                     </a>
                     </div>
-                    
+
                 <?php
-            } 
+            }
         ?>
         </div>
     </header>
+
+<main>
+    <section id="over-ons" class="section">
+        <div class="container">
+            <h1 class="title">Over Ons</h1>
+            <div class="about-content">
+                <div class="image">
+                    <img src="../images/NerdyGadgets_logo.png">
+                </div>
+                <div class="content">
+                    <p>Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
+                        Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
+                        U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
+                        Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.</p>
+                    <a href="" class="leesmeer">Lees Meer</a>
+                </div>
+            </div>
+        </div>
 
     <section id="block">
 <div class="wrapper">
@@ -138,32 +158,32 @@ Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We beha
 
 
 
-            <h2>Ons Team</h2>
-            <p><strong>Alexander Dijkhuizen</strong> - Scrum Master</p>
-            <p><strong>Wiljan Verhoeven</strong> - Lead Developer</p>
-            <p><strong>Hieu Phan</strong> - Leerling</p>
-            <p><strong>Danyaal Burney</strong> -Webontwikkelaar</p>
-            <p><strong>Shahzaib Saleem</strong> - Hieu Hater</p>
+        <h2>Ons Team</h2>
+        <p><strong>Alexander Dijkhuizen</strong> - Scrum Master</p>
+        <p><strong>Wiljan Verhoeven</strong> - Lead Developer</p>
+        <p><strong>Hieu Phan</strong> - Leerling</p>
+        <p><strong>Danyaal Burney</strong> -Webontwikkelaar</p>
+        <p><strong>Shahzaib Saleem</strong> - Hieu Hater</p>
 
 
 
 
-            <p>Bij eventuele vragen kunt u contact met ons opnemen</p>
-    </main>
+        <p>Bij eventuele vragen kunt u contact met ons opnemen</p>
+</main>
 
-    <footer>
+<footer>
 
-        <div class="inhoudFooter">
-            <div class="contactfooter">
-                <h3 style="color: #fff" ;>Contactgegevens</h3>
-                <p style="color: #fff" ;>
-                    Adres: Hospitaaldreef 5, Almere
-                    <br>
-                    Email: administratie@nerdygadgets.nl
-                    <br>
-                    Telefoonnummer: +31 06 12345678
-                </p>
-            </div>
+    <div class="inhoudFooter">
+        <div class="contactfooter">
+            <h3 style="color: #fff" ;>Contactgegevens</h3>
+            <p style="color: #fff" ;>
+                Adres: Hospitaaldreef 5, Almere
+                <br>
+                Email: administratie@nerdygadgets.nl
+                <br>
+                Telefoonnummer: +31 06 12345678
+            </p>
+        </div>
 
             <div class="betaalmiddelen">
                 <h6>
@@ -179,13 +199,27 @@ Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We beha
                     <br>
                     Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
             </div>
+        <div class="betaalmiddelen">
+            <h6>
+                <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
+                <ul id="list">
+                    <a>
+                        <img src="../images/icon-mastercard.png" width="64.2" height="40" >
+                        <img src="../images/IDEAL_Logo.png" width="46" height="40" >
+                        <img src="../images/icon-visa.png" width="64.2" height="40" >
+                    </a>
+                </ul>
+                We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
+                <br>
+                Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
+        </div>
 
-            <div class="links">
-                <h3>Links</h3>
-                <a style="color: #fff" ; href="./">Home</a>
-                <a style="color: #fff" ; href="./#about">Over ons</a>
-                <a style="color: #fff" ; href="./search/">Producten</a>
-                <a style="color: #fff"; href="./account/">Account</a>
-                <a style="color: #fff"; href="./legal/">Legaal</a>
-            </div>
-    </footer>
+        <div class="links">
+            <h3>Links</h3>
+            <a style="color: #fff" ; href="./">Home</a>
+            <a style="color: #fff" ; href="./#about">Over ons</a>
+            <a style="color: #fff" ; href="./search/">Producten</a>
+            <a style="color: #fff"; href="./account/">Account</a>
+            <a style="color: #fff"; href="./legal/">Legaal</a>
+        </div>
+</footer>
