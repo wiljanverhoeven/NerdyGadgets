@@ -189,7 +189,7 @@
                 <h3><?php echo $row[1]; ?></h3>
                 <p><?php echo "€",$row[3]; ?></p>
                 <p><?php echo $row[8]; ?></p>
-                <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+                <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
             </div>
 
         <?php } } } elseif ($sort !== NULL) {
@@ -204,7 +204,7 @@
                         <h3><?php echo $row[1]; ?></h3>
                         <p><?php echo "€",$row[3]; ?></p>
                         <p><?php echo $row[8]; ?></p>
-                        <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+                        <button class="add-to-cart" name="toevoegen" value=" <?php $row[0]; ?>">Voeg toe aan winkelwagen</button>
                     </div>
             <?php } } }?>
 </div>
