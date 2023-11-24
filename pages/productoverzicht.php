@@ -159,7 +159,7 @@
                 <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                 <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
                 <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
+                <button  class="add-to-cart" name="toevoegen" value="<? echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
             </div>
 
         <?php } ?>
