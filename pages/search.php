@@ -149,6 +149,7 @@
 
         if(isset($_POST['keyword'])) {
             $like = $_POST['keyword'];
+            $_SESSION['search'] = $like;
             $sanword = mysqli_real_escape_string($conn, $like);
             $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%'";
         }
@@ -208,6 +209,8 @@
                     </div>
             <?php } } }?>
 </div>
+<?php 
+?>
 
 
 <div id="filters"> 
