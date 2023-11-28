@@ -7,32 +7,9 @@
         //haalt informatie van bijnodigde bestanden op
         require 'dbconnect.php';
 
+        error_reporting(0);
+
         session_start();
-
-        
-
-        //maakt variablenen aan voor de producten op de homepage
-        for ($i = 1;$i <= 3; $i++) {
-            $query = "SELECT * FROM producten WHERE productid=$i";
-            $result = mysqli_query($conn, $query);
-
-            if ($i == 1) {
-                $awnser1 = mysqli_fetch_assoc($result);
-                $naam1 = $awnser1['productnaam'];
-                $info1 = $awnser1['productinformatie'];
-                $prijs1 = $awnser1['prijs'];
-            } elseif ($i == 2){
-                $awnser2 = mysqli_fetch_assoc($result);
-                $naam2 = $awnser2['productnaam'];
-                $info2 = $awnser2['productinformatie'];
-                $prijs2 = $awnser2['prijs'];
-            } else {
-                $awnser3 = mysqli_fetch_assoc($result);
-                $naam3 = $awnser3['productnaam'];
-                $info3 = $awnser3['productinformatie'];
-                $prijs3 = $awnser3['prijs'];
-            }
-        };
      ?>
 
     <meta charset="UTF-8">
@@ -103,11 +80,7 @@
 </div>
 
 </header>
-<?php
-if(isset($_COOKIE['email'])) { 
-    print($_COOKIE['email']);
-}
-?>
+
 
 
 
@@ -207,50 +180,61 @@ echo $strings[array_rand($strings)];?>
     
     <h1>Onze aanbevolen producten</h1>
 
-    <div class="product"> <a href="pages/product.php?product=<?php $product = $awnser1; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser1['imagesrc']; ?>" alt="Product 1"></a>
-       
-        <h3><?= $naam1 ?></h3>
-        <p><?= $prijs1 ?></p>
-        <p><?= $info1 ?></p>
-        <button  class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
+    <?php
 
-    <div class="product">
-        <a href="pages/product.php?product=<?php $product = $awnser2; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser2['imagesrc']; ?>" alt="Product 2"></a>
-        <h3><?= $naam2 ?></h3>
-        <p><?= $prijs2 ?></p>
-        <p><?= $info2 ?></p>
-        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
+    
+    $appel = $_SESSION['search'];
+    $used = 0;
+    
+    if ($appel != null) { 
+            $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" ';
+                if ($result = mysqli_query($conn, $sql)) {
+                
+                  for ($i = 0; $i < 3; $i++) {
+                        $row = mysqli_fetch_row($result);
+                    if ($row != null) { ?>
+                        <div class="product">
+                            <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/",$row[5]; ?>" alt="Product"></a>
+                            <h3><?php echo $row[1]; ?></h3>
+                            <p><?php echo "€",$row[3]; ?></p>
+                            <p><?php echo $row[8]; ?></p>
+                            <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>" >Voeg toe aan winkelwagen</button>
+                        </div>
+    <?php   $cata = $row[4]; 
+            $pid = $row[0];    
+            } elseif ($row == null){
+                        $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = '.$pid.' AND NOT productid = '.$used.' ';
+                        if ($result2 = mysqli_query($conn, $sql2)) {
+                            $row2 = mysqli_fetch_row($result2);
+                            $used = $row2[0];
+                            ?>
+                            <div class="product">
+                            <a href="pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "images/",$row2[5]; ?>" alt="Product"></a>
+                            <h3><?php echo $row2[1]; ?></h3>
+                            <p><?php echo "€",$row2[3]; ?></p>
+                            <p><?php echo $row2[8]; ?></p>
+                            <button class="add-to-cart" name="toevoegen" value=" <?php echo $row2[0]; ?>" >Voeg toe aan winkelwagen</button>
+                            </div>
+    <?php 
 
-    <div class="product">
-    <a href="pages/product.php?product=<?php $product = $awnser3; echo $product['productid']; ?>"><img height="200px" src="<?php echo "images/",$awnser3['imagesrc']; ?>" alt="Product 3"></a>
-        <h3><?= $naam3 ?></h3>
-        <p><?= $prijs3 ?></p>
-        <p><?= $info3 ?></p>
-        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
 
-    <div class="product">
-        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 4"></a>
-        <h3>Product 4</h3>
-        <p>Beschrijving van Product 4 en prijs hier.</p>
-        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
 
-    <div class="product">
-        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 5"></a>
-        <h3>Product 5</h3>
-        <p>Beschrijving van Product 5 en prijs hier.</p>
-        <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-    </div>
+     } } } } } else {
+                for ($i = 0;$i < 3; $i++) {
+                    $sql = "SELECT * FROM producten WHERE productid=$i";
+                    $prod = mysqli_query($conn, $sql);
+                    ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
+                <div class="product ">
+                    <a href="pages/product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
+                    <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+                    <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
+                    <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+                    <button  class="add-to-cart" name="toevoegen" value="<? echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+                </div>
 
-    <div class="product">
-        <a href="pages/product.php"><img height="200px" src="images/product.png" alt="Product 6"></a>
-        <h3>Product 6</h3>
-        <p>Beschrijving van Product 6 en prijs hier.</p>
-        <button class="add-to-cart" >Voeg toe aan winkelwagen</button>
-    </div>
+             <?php  } } 
+     
+    ?>
 
 
 
