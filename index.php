@@ -8,6 +8,7 @@
         require 'dbconnect.php';
 
         session_start();
+        $appel = "";
      ?>
 
     <meta charset="UTF-8">
@@ -190,21 +191,20 @@ echo $strings[array_rand($strings)];?>
             <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
             <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
             <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-            <button  class="add-to-cart" name="toevoegen" value="<? echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+            <button class="add-to-cart" name="toevoegen" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
         </div>
-<?php }
-    } else {
-    $appel = $_SESSION['search'];
-    }
-    $appel = "";
+<?php } } else {
+            $appel = $_SESSION['search'];
+        }
+    
     $used = 0;
     
     if ($appel != null) { 
             $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" ';
-                if ($result = mysqli_query($conn, $sql)) {
+            if ($result = mysqli_query($conn, $sql)) {
                 
-                  for ($i = 0; $i < 3; $i++) {
-                        $row = mysqli_fetch_row($result);
+                for ($i = 0; $i < 3; $i++) {
+                    $row = mysqli_fetch_row($result);
                     if ($row != null) { ?>
                         <div class="product">
                             <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/",$row[5]; ?>" alt="Product"></a>
@@ -213,24 +213,23 @@ echo $strings[array_rand($strings)];?>
                             <p><?php echo $row[8]; ?></p>
                             <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>" >Voeg toe aan winkelwagen</button>
                         </div>
-    <?php   $cata = $row[4]; 
-            $pid = $row[0];    
-            } elseif ($row == null){
-                        $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = '.$pid.' AND NOT productid = '.$used.' ';
-                        if ($result2 = mysqli_query($conn, $sql2)) {
-                            $row2 = mysqli_fetch_row($result2);
-                            $used = $row2[0];
-                            ?>
-                            <div class="product">
+<?php   
+        $cata = $row[4]; 
+        $pid = $row[0];    
+        } elseif ($row == null){
+        $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = '.$pid.' AND NOT productid = '.$used.' ';
+                if ($result2 = mysqli_query($conn, $sql2)) {
+                        $row2 = mysqli_fetch_row($result2);
+                        $used = $row2[0];
+?>
+                        <div class="product">
                             <a href="pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "images/",$row2[5]; ?>" alt="Product"></a>
                             <h3><?php echo $row2[1]; ?></h3>
                             <p><?php echo "€",$row2[3]; ?></p>
                             <p><?php echo $row2[8]; ?></p>
                             <button class="add-to-cart" name="toevoegen" value=" <?php echo $row2[0]; ?>" >Voeg toe aan winkelwagen</button>
-                            </div>
-    <?php 
-
-     } } } } } ?>
+                        </div>
+<?php } } } } } ?>
 
 
 
