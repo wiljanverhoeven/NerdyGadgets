@@ -7,8 +7,6 @@
         //haalt informatie van bijnodigde bestanden op
         require 'dbconnect.php';
 
-        error_reporting(0);
-
         session_start();
      ?>
 
@@ -182,8 +180,23 @@ echo $strings[array_rand($strings)];?>
 
     <?php
 
-    
+    if(empty($_SESSION['search'])) {
+        for ($i = 0;$i < 3; $i++) {
+            $sql = "SELECT * FROM producten WHERE productid=$i";
+            $prod = mysqli_query($conn, $sql);
+            ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
+        <div class="product ">
+            <a href="pages/product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
+            <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+            <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
+            <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+            <button  class="add-to-cart" name="toevoegen" value="<? echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+        </div>
+<?php }
+    } else {
     $appel = $_SESSION['search'];
+    }
+    $appel = "";
     $used = 0;
     
     if ($appel != null) { 
@@ -217,24 +230,7 @@ echo $strings[array_rand($strings)];?>
                             </div>
     <?php 
 
-
-
-     } } } } } else {
-                for ($i = 0;$i < 3; $i++) {
-                    $sql = "SELECT * FROM producten WHERE productid=$i";
-                    $prod = mysqli_query($conn, $sql);
-                    ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
-                <div class="product ">
-                    <a href="pages/product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "images/",${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
-                    <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
-                    <p><?php echo "€",${"producten$i"}["prijs"]; ?></p>
-                    <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                    <button  class="add-to-cart" name="toevoegen" value="<? echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
-                </div>
-
-             <?php  } } 
-     
-    ?>
+     } } } } } ?>
 
 
 
