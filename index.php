@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="styling/basic-style.css">
     <link rel="stylesheet" href="styling/homepage.css">
+    <link rel="stylesheet" href="styling/carts.css">
     <link rel="stylesheet" href="styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
@@ -24,6 +25,9 @@
 </head>
 
 <body>
+
+
+    <div class="container2">
 <header>
     <div class="logo">
         <a href="index.php">
@@ -48,11 +52,14 @@
     </nav>
 
     <div class="icons">
-        <div class="cart">
-            <a href="winkelwagen.php" title="Bekijk uw winkelwagen">
+        
+
+        <div class="iconcart">
+            
                 <img class="wagen" src="images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
                 <img class="wagen_neon" src="images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
-            </a>
+            
+            <div class="totalquantity">0</div>
         </div>
         <?php 
             if(isset($_COOKIE['email'])) {
@@ -76,7 +83,7 @@
         ?>
         
     </div>
-</div>
+
 
 </header>
 
@@ -235,6 +242,11 @@ echo $strings[array_rand($strings)];?>
 
 </section>
 
+
+
+
+
+
 <section id="bottom" class="section">
 
     <div class="bottom">
@@ -312,3 +324,35 @@ echo $strings[array_rand($strings)];?>
         <a style="color: #fff"; href="../pages/legal.php">Legaal</a>
     </div>
 </footer>
+</div>
+<div class="cart">
+    <h2>CART</h2>
+    <div class="listcart">
+        <div class="item">
+            <img src="images/product.png">
+            <div class="content">
+                <div class="name">
+                    product name
+                </div>
+                <div class="price">
+                 $50/1 product
+             </div>
+            </div>
+            <div class="quantity">
+                <button>-</button>
+                <span class="value">3</span>
+                <button>+</button>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="close">CLOSE</div>
+        <div class="checkout">
+            <a href="checkout.html">
+                CHECKOUT
+        </div>
+        <script src="logic/app.js"></script>
+    </div>
+</div>
+</div>
+
