@@ -73,7 +73,7 @@
             <h1 class="title">Over Ons</h1>
             <div class="about-content">
                 <div class="image">
-                    <img src="../images/NerdyGadgets_logo.png">
+                    <img src="../images/overons.jpg">
                 </div>
                 <div class="content">
                     <p>Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
@@ -147,13 +147,6 @@
 
     <main>
         <section id="over-ons" class="section">
-            <h1>Over Ons</h1>
-            <p>
-Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
-Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
-U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
-Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.
-            </p>
 
 
 
@@ -199,20 +192,7 @@ Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We beha
                     <br>
                     Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
             </div>
-        <div class="betaalmiddelen">
-            <h6>
-                <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
-                <ul id="list">
-                    <a>
-                        <img src="../images/icon-mastercard.png" width="64.2" height="40" >
-                        <img src="../images/IDEAL_Logo.png" width="46" height="40" >
-                        <img src="../images/icon-visa.png" width="64.2" height="40" >
-                    </a>
-                </ul>
-                We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
-                <br>
-                Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
-        </div>
+
 
         <div class="links">
             <h3>Links</h3>
