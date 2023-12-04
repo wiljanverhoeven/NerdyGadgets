@@ -8,7 +8,3 @@ $dbName = "mydb";
 
 //connectie met de database
 $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
-
-
-
-?>

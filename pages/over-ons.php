@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
-    <?php 
+    <?php
     session_start();
     ?>
     <meta charset="UTF-8">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -21,11 +23,11 @@
         </div>
 
         <div id="search">
-        <form action="../pages/search.php" method="POST">
-            <input  class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-            <button  class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen"  width="15.5" height="15.5">
-        </form>
-    </div>
+            <form action="../pages/search.php" method="POST">
+                <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+                <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
+            </form>
+        </div>
 
         <nav>
             <ul>
@@ -36,103 +38,103 @@
         </nav>
 
         <div class="icons">
-        <div class="cart">
-            <a href="winkelwagen.php" title="Bekijk uw winkelwagen">
-                <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
-                <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
-            </a>
-        </div>
-        <?php 
-            if(isset($_COOKIE['email'])) {
-                ?>  
-                    <nav>
+            <div class="cart">
+                <a href="winkelwagen.php" title="Bekijk uw winkelwagen">
+                    <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
+                    <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
+                </a>
+            </div>
+            <?php
+            if (isset($_COOKIE['email'])) {
+            ?>
+                <nav>
                     <div class="account">
                         <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
                     </div>
-                    </nav>
-                 <?php
-            } else { 
-                ?>  
-                    <div class="account">
+                </nav>
+            <?php
+            } else {
+            ?>
+                <div class="account">
                     <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
-                    <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
                     </a>
-                    </div>
-                    
-                <?php
-            } 
-        ?>
+                </div>
+
+            <?php
+            }
+            ?>
         </div>
     </header>
 
     <section id="block">
-<div class="wrapper">
-    <span class="close-icon">
-        <i class='bx bx-x'></i>
-    </span>
+        <div class="wrapper">
+            <span class="close-icon">
+                <i class='bx bx-x'></i>
+            </span>
 
-    <div class="form-box login">
-    <form action="../logic/loginB.php" method="post">
-    <h1> Login </h1>
-        <div class="input-box">
-            <input type="text" placeholder="username" required >
-            <i class='bx bxs-user'></i>
-        </div>
-        <div class="input-box">
-            <input type="password" placeholder="Password" required >
-            <i class='bx bxs-lock-alt' ></i>
-        </div>
-        <div class="remember-forgot">
-            <label><input type="checkbox" name="remember"> remember me</label>
-            <a href="#"> Forgot password</a>
-        </div>
+            <div class="form-box login">
+                <form action="../logic/loginB.php" method="post">
+                    <h1> Login </h1>
+                    <div class="input-box">
+                        <input type="text" placeholder="username" required>
+                        <i class='bx bxs-user'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Password" required>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox" name="remember"> remember me</label>
+                        <a href="#"> Forgot password</a>
+                    </div>
 
-        <button type="submit" class="btn">login</button>
-        <div class="register-login">
-            <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
-        </div>
+                    <button type="submit" class="btn">login</button>
+                    <div class="register-login">
+                        <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
+                    </div>
 
 
-    </form>
-</div>
-    <div class="form-box register">
-
-        <form action="../logic/loginB.php" method="post">
-            <h1> Register </h1>
-            <div class="input-box">
-                <input type="text" placeholder="username" required name="usernamelogin">
-                <i class='bx bxs-user'></i>
+                </form>
             </div>
-            <div class="input-box">
-                <input type="text" placeholder="E-mail" required name="Email">
-                <i class='bx bx-envelope' ></i>
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Password" required name="passwordlogin">
-                <i class='bx bxs-lock-alt' ></i>
-            </div>
-            <div class="agree">
-                <label><input type="checkbox"> Agree to the terms and services</label>
+            <div class="form-box register">
 
-                <button type="submit" class="btn">Make account</button>
-                <div class="register-login">
-                    <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
-                </div>
-        </form>
-    </div>
-</div>
-</section>
+                <form action="../logic/loginB.php" method="post">
+                    <h1> Register </h1>
+                    <div class="input-box">
+                        <input type="text" placeholder="username" required name="usernamelogin">
+                        <i class='bx bxs-user'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="E-mail" required name="Email">
+                        <i class='bx bx-envelope'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Password" required name="passwordlogin">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="agree">
+                        <label><input type="checkbox"> Agree to the terms and services</label>
 
-<script src="../logic/script.js"></script>
+                        <button type="submit" class="btn">Make account</button>
+                        <div class="register-login">
+                            <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="../logic/script.js"></script>
 
     <main>
         <section id="over-ons" class="section">
             <h1>Over Ons</h1>
             <p>
-Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
-Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
-U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
-Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.
+                Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
+                Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
+                U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
+                Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.
             </p>
 
 
@@ -170,14 +172,15 @@ Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We beha
                     <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
                     <ul id="list">
                         <a>
-                            <img src="../images/icon-mastercard.png" width="64.2" height="40" >
-                            <img src="../images/IDEAL_Logo.png" width="46" height="40" >
-                            <img src="../images/icon-visa.png" width="64.2" height="40" >
+                            <img src="../images/icon-mastercard.png" width="64.2" height="40">
+                            <img src="../images/IDEAL_Logo.png" width="46" height="40">
+                            <img src="../images/icon-visa.png" width="64.2" height="40">
                         </a>
                     </ul>
                     We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
                     <br>
-                    Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.</h6>
+                    Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.
+                </h6>
             </div>
 
             <div class="links">
@@ -185,7 +188,7 @@ Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We beha
                 <a style="color: #fff" ; href="./">Home</a>
                 <a style="color: #fff" ; href="./#about">Over ons</a>
                 <a style="color: #fff" ; href="./search/">Producten</a>
-                <a style="color: #fff"; href="./account/">Account</a>
-                <a style="color: #fff"; href="./legal/">Legaal</a>
+                <a style="color: #fff" ; href="./account/">Account</a>
+                <a style="color: #fff" ; href="./legal/">Legaal</a>
             </div>
     </footer>
