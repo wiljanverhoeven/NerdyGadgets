@@ -39,6 +39,7 @@ body {
 }
 
 header {
+  z-index: 0;
   background-color: #23232f;
   font-family: Arial, sans-serif;
   font-size: 18px;

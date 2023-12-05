@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  font-family: Poppins;
   background-image: url(../images/background.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -79,13 +78,14 @@ header {
 
 /* cart */
 .cartTab {
+  z-index: 1;
+  top: 135px;
   width: 400px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(50px);
   color: #eee;
   position: fixed;
-  top: 0;
   right: -400px;
   bottom: 0;
   display: grid;
@@ -110,7 +110,6 @@ body.showCart .container {
 .cartTab button {
   background-color: #e8bc0e;
   border: none;
-  font-family: Poppins;
   font-weight: 500;
   cursor: pointer;
 }

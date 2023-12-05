@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/productoverzicht.css">
     <link rel="stylesheet" href="../styling/logincss.css">
+    <link rel="stylesheet" href="../styling/carts.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -44,12 +45,6 @@
             </ul>
         </nav>
         <div class="icons">
-            <div class="cart">
-                <a href="winkelwagen.php">
-                    <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
-                    <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
-                </a>
-            </div>
 
             <?php
             if (isset($_COOKIE['email'])) {
@@ -71,9 +66,24 @@
             <?php
             }
             ?>
+            <div class="icon-cart">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                    </svg>
+                    <span>0</span>
+                </div>
         </div>
 
     </header>
+
+    <div class="cartTab">
+        <h1>Shopping Cart</h1>
+        <div class="listCart"></div>
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="checkOut">Check Out</button>
+        </div>
+    </div>
 
     <section id="block">
         <div class="wrapper">
@@ -239,5 +249,5 @@
     </footer>
 
 </body>
-
+<script src="../logic/app.js"></script>
 </html>
