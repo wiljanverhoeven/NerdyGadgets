@@ -85,7 +85,49 @@
     </div>
     <div class="cartTab">
         <h1>Shopping Cart</h1>
-        <div class="listCart"></div>
+        <div class="listCart">
+        <?php 
+        if (isset($_POST['add'])) {
+            if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = array(); }
+        
+            // check if id is already in cart
+            $isNotPresent = true;
+            foreach ($_SESSION['cart'] as $item) {
+                if ($item['proid'] == $_POST['proid']) {
+                    $isNotPresent = false;
+                    break;
+                }
+            }
+        
+            if ($isNotPresent) {
+                $item_array = array(
+                    'proid' => $_POST['proid']
+                );
+                $_SESSION['cart'][] = $item_array;
+                $length = count($_SESSION['cart']);
+
+                print_r($_SESSION['cart']);
+
+                 } else {
+
+
+                } 
+    
+        foreach ($_SESSION['cart'] as $item) {
+    
+            $sql = 'SELECT * FROM producten WHERE productid LIKE "%' . $item['proid'] . '%"';
+            if ($result = mysqli_query($conn, $sql)) {
+                    $row = mysqli_fetch_row($result);
+                    if ($row != null) { ?>
+                        <div class="product">
+                            <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/", $row[5]; ?>" alt="Product"></a>
+                            <h3><?php echo $row[1]; ?></h3>
+                        </div>    
+        <?php } } } } ?>
+
+
+        </div>
         <div class="btn">
             <button class="close">CLOSE</button>
             <button class="checkOut">Check Out</button>
@@ -204,7 +246,10 @@
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                        <button class="add-to-cart" name="toevoegen" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+                        <form method="post">
+                        <input type="hidden"  name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
+                        <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+                        </form> 
                     </div>
                     <?php }
             } else {
@@ -225,7 +270,10 @@
                                 <h3><?php echo $row[1]; ?></h3>
                                 <p><?php echo "€", $row[3]; ?></p>
                                 <p><?php echo $row[8]; ?></p>
-                                <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
+                                <form method="post">
+                                <input type="hidden"  name="proid" value="<?php echo $row[0]; ?>">
+                                <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                </form>
                             </div>
                             <?php
                             $cata = $row[4];
@@ -241,7 +289,10 @@
                                     <h3><?php echo $row2[1]; ?></h3>
                                     <p><?php echo "€", $row2[3]; ?></p>
                                     <p><?php echo $row2[8]; ?></p>
-                                    <button class="add-to-cart" name="toevoegen" value=" <?php echo $row2[0]; ?>">Voeg toe aan winkelwagen</button>
+                                    <form method="post">
+                                    <input type="hidden"  name="proid" value="<?php echo $row2[0]; ?>">
+                                    <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                    </form>
                                 </div>
             <?php }
                         }
@@ -249,14 +300,7 @@
                 }
             } ?>
 
-
-
         </section>
-
-
-
-
-
 
         <section id="bottom" class="section">
 
