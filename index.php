@@ -8,6 +8,7 @@
     require 'dbconnect.php';
 
     session_start();
+    $_SESSION['token'] = uniqid();
     $appel = "";
     ?>
 
@@ -77,7 +78,6 @@
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                     </svg>
-                    <span>0</span>
                 </div>
             </div>
         </header>
@@ -86,45 +86,95 @@
     <div class="cartTab">
         <h1>Shopping Cart</h1>
         <div class="listCart">
-        <?php 
-        if (isset($_POST['add'])) {
-            if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array(); }
-        
-            // check if id is already in cart
-            $isNotPresent = true;
-            foreach ($_SESSION['cart'] as $item) {
-                if ($item['proid'] == $_POST['proid']) {
-                    $isNotPresent = false;
-                    break;
+            <?php
+            if (isset($_POST['add'])) {
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = array();
+                }
+
+                $proid = $_POST['proid'];
+                $item_exists = false;
+
+                foreach ($_SESSION['cart'] as &$item) {
+                    if ($item['proid'] == $proid) {
+                        // If the item already exists, update its quantity and exit the loop
+                        $item['quantity'] += 1;
+                        $item_exists = true;
+                        break;
+                    }
+                }
+
+                if (!$item_exists) {
+                    // If the item does not exist, add it to the cart
+                    $item_array = array(
+                        'proid' => $proid,
+                        'quantity' => 1,
+                    );
+                    $_SESSION['cart'][] = $item_array;
+                }
+
+                // Redirect to the same or a different page after processing the form
+                header("Location: {$_SERVER['REQUEST_URI']}");
+                exit;
+            }
+            if (!empty($_SESSION['cart'])) {
+                if (isset($_POST['minus'])) {
+                    $proid = $_POST['proid'];
+
+                    // Store the index to unset after the loop
+                    $index_to_unset = null;
+
+                    foreach ($_SESSION['cart'] as $index => &$item) {
+                        if ($item['proid'] == $proid) {
+                            $item['quantity'] -= 1;
+
+                            if ($item['quantity'] <= 0) {
+                                // Set the index to unset after the loop
+                                $index_to_unset = $index;
+                            }
+
+                            break;
+                        }
+                    }
+
+                    // Unset the item if needed outside the loop
+                    if ($index_to_unset !== null) {
+                        unset($_SESSION['cart'][$index_to_unset]);
+                    }
                 }
             }
-        
-            if ($isNotPresent) {
-                $item_array = array(
-                    'proid' => $_POST['proid']
-                );
-                $_SESSION['cart'][] = $item_array;
-                $length = count($_SESSION['cart']);
 
-                print_r($_SESSION['cart']);
+            if (!empty($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $item) {
+                    $proid = $item['proid'];
 
-                 } else {
+                    // Use prepared statement to fetch product information
+                    $sql = 'SELECT * FROM producten WHERE productid = ?';
+                    $stmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($stmt, 'i', $proid);
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
 
+                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                        <div class="item">
+                            <div class="image"><a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "images/", $row['imagesrc']; ?>" alt="Product"></a></div>
+                            <div class="name"><?php echo $row['productnaam']; ?></div>
+                            <div class="totalprice">Total Price: <?php echo $row['prijs'] * $item['quantity']; ?></div>
+                            <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                                <input type="hidden" name="proid" value="<?php echo $proid; ?>">
+                                <button type="submit" name="add">+</button>
+                                <button type="submit" name="minus">-</button>
+                            </form>
+                        </div>
+            <?php
+                    }
+                }
+            } else {
+                // Display a message or take other actions when the cart is empty
+                echo "Your shopping cart is empty.";
+            }
 
-                } 
-    
-        foreach ($_SESSION['cart'] as $item) {
-    
-            $sql = 'SELECT * FROM producten WHERE productid LIKE "%' . $item['proid'] . '%"';
-            if ($result = mysqli_query($conn, $sql)) {
-                    $row = mysqli_fetch_row($result);
-                    if ($row != null) { ?>
-                        <div class="product">
-                            <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/", $row[5]; ?>" alt="Product"></a>
-                            <h3><?php echo $row[1]; ?></h3>
-                        </div>    
-        <?php } } } } ?>
+            ?>
 
 
         </div>
@@ -247,9 +297,9 @@
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
                         <form method="post">
-                        <input type="hidden"  name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
-                        <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
-                        </form> 
+                            <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
+                            <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+                        </form>
                     </div>
                     <?php }
             } else {
@@ -271,8 +321,8 @@
                                 <p><?php echo "€", $row[3]; ?></p>
                                 <p><?php echo $row[8]; ?></p>
                                 <form method="post">
-                                <input type="hidden"  name="proid" value="<?php echo $row[0]; ?>">
-                                <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                    <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
+                                    <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
                                 </form>
                             </div>
                             <?php
@@ -290,8 +340,8 @@
                                     <p><?php echo "€", $row2[3]; ?></p>
                                     <p><?php echo $row2[8]; ?></p>
                                     <form method="post">
-                                    <input type="hidden"  name="proid" value="<?php echo $row2[0]; ?>">
-                                    <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                        <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
+                                        <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
                                     </form>
                                 </div>
             <?php }
