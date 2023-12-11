@@ -296,8 +296,8 @@
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                        <form method="get" action="../pages/product.php">
-                            <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">go to page</button>
+                        <form method="get" action="pages/product.php">
+                            <button class="add-to-cart" name="product" value="<?php echo ${"producten$i"}["productid"]; ?>">go to page</button>
                         </form>
                         <form method="post">
                             <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
