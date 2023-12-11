@@ -10,6 +10,7 @@
     $query2 = 'SELECT * FROM producten WHERE productid = "' . $_GET['product'] . '"';
     $result2 = mysqli_query($conn, $query2);
     $pro = mysqli_fetch_assoc($result2);
+    $id = $_GET['product'];
     ?>
 
     <meta charset="UTF-8">
@@ -211,6 +212,25 @@
             <a href="../pages/product.php"><img src="../images/product.png" alt="Product 1"></a>
             <h3>Product 1</h3>
             <p>Beschrijving van Product 1 en prijs hier.</p>
+
+            <?php
+                $sql = 'SELECT * FROM producten WHERE productid="'.$id.'" ';
+                if ($result = mysqli_query($conn, $sql)) {
+                    // Fetch one and one row
+                    while ($row = mysqli_fetch_row($result)) {
+            ?>
+                        <div id="product">
+                            <a href="product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "../images/", $row[5]; ?>" alt="Product"></a>
+                            <h3><?php echo $row[1]; ?></h3>
+                            <p><?php echo "€", $row[3]; ?></p>
+                            <p><?php echo $row[8]; ?></p>
+                            <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
+                        </div>
+
+                    <?php  }} ?>
+                
+
+                
             <button class="add-to-cart">Voeg toe aan winkelwagen</button>
         </div>
 

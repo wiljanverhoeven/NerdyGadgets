@@ -201,7 +201,10 @@
                             <h3><?php echo $row[1]; ?></h3>
                             <p><?php echo "€", $row[3]; ?></p>
                             <p><?php echo $row[8]; ?></p>
-                            <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
+                            <form method="get" action="../pages/product.php">
+                            <button name="product" value="<?php echo $row[0]; ?>">go to page</button>
+                            </form>
+                           
                         </div>
 
                     <?php }
