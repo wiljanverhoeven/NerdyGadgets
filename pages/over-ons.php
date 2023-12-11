@@ -145,24 +145,72 @@
 
 <script src="../logic/script.js"></script>
 
-    <main>
-        <section id="over-ons" class="section">
+
+        <main>
+            <link rel="stylesheet" type="text/css" href="../styling/over-ons.css">
+
+            <div class="over-ons-section">
+                <h2>Ons Team</h2>
+                <div class="persoon-cards">
+                    <div class="persoon-card">
+                        <div class="persoon-image">
+                            <img src="../images/Hieu_web.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3>Hieu Phan:</h3>
+                            <p>Leerling en 's werelds eerste Covid 19 patiënt</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+                        <div class="persoon-image">
+                            <img src="../images/Danyaal_web.jpeg">
+                        </div>
+                        <div class="card-content">
+                            <h3>Danyaal Burney:</h3>
+                            <p>Baas van Hieu/ervaren webontwikkelaar</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+                        <div class="persoon-image">
+                            <img src="../images/Shahzaib_web.jp">
+                        </div>
+                        <div class="card-content">
+                            <h3>Shahzaib Saleem:</h3>
+                            <p>Gecertificeerde Hieu hater/ervaren webontwikkelaar</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+                        <div class="persoon-image">
+                            <img src="../images/Wiljan_web.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3>Wiljan Verhoeven:</h3>
+                            <p>Lead Developer/Alleskunner</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+                        <div class="persoon-image">
+                            <img src="../images/Alex_web.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3>Alexander Dijkhuizen:</h3>
+                            <p>Aangewezen project leider. (Scrum master van niks.)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </main>
 
 
 
 
-        <h2>Ons Team</h2>
-        <p><strong>Alexander Dijkhuizen</strong> - Scrum Master</p>
-        <p><strong>Wiljan Verhoeven</strong> - Lead Developer</p>
-        <p><strong>Hieu Phan</strong> - Leerling</p>
-        <p><strong>Danyaal Burney</strong> -Webontwikkelaar</p>
-        <p><strong>Shahzaib Saleem</strong> - Hieu Hater</p>
 
 
-
-
-        <p>Bij eventuele vragen kunt u contact met ons opnemen</p>
-</main>
 
 <footer>
 
