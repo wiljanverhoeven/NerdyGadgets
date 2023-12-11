@@ -1,220 +1,227 @@
 /*styling van "index.html" */
 
-#home{
-    position: relative;
-    height: 100vh;
-    text-align: center;
-    justify-content: center;
-    font-size: 150%;
-    font-family: andale mono, monospace;
-    text-shadow: 2px 2px hsl(219, 100%, 59%);
+#home {
+  display: block;
+  position: relative;
+  height: 100vh;
+  text-align: center;
+  justify-content: center;
+  font-size: 150%;
+  font-family: andale mono, monospace;
+  text-shadow: 2px 2px hsl(219, 100%, 59%);
 }
 
 #scrollBtn {
-    position: relative;
-    top: 50%;
-    margin: auto;
-    height: 50px;
-    opacity: 0;
-    animation: 
-        fadeIn 2s;
-    animation-delay: 2s;
-    animation-fill-mode: forwards;
-  }
+  position: relative;
+  top: 50%;
+  margin: auto;
+  height: 50px;
+  opacity: 0;
+  animation: fadeIn 2s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
 
-#scrollBtn:hover{
-    transform: scale(1.1);
+#scrollBtn:hover {
+  transform: scale(1.1);
 }
 
 .welkom {
-    z-index: 0;
-    position: relative;
-    margin:auto;
-    top: 20%;
-    width: 32.9%;
+  z-index: 0;
+  position: relative;
+  margin: auto;
+  top: 20%;
+  width: 32.9%;
 }
 
 .WNG {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: .15em solid #C81717;
-    margin: 0;
-    animation: 
-        typing 2.5s steps(40, end),
-        blink-caret .75s step-end infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid #c81717;
+  margin: 0;
+  animation: typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
-    from { width: 0% }
-    to { width: 100% }
+  from {
+    width: 0%;
   }
-
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #C81717; }
+  to {
+    width: 100%;
   }
+}
 
-  .slogan {
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #c81717;
+  }
+}
+
+.slogan {
+  opacity: 0;
+  animation: fadeIn 2s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: 
-        fadeIn 2s;
-    animation-delay: 2s;
-    animation-fill-mode: forwards;
   }
-
-  @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-       opacity: 1;
-    }
+  to {
+    opacity: 1;
   }
+}
 
 #aanbevolen_producten {
-    background-color: #2c76ff14;
-    width: 88%;
-    left: 5%;
-    justify-self: center;
-    border-radius: 10px;
-    padding: 10px;
-    border: 4px solid #33333386;
-    margin-bottom: 5%;
+  background-color: #2c76ff14;
+  width: 88%;
+  left: 5%;
+  justify-self: center;
+  border-radius: 10px;
+  padding: 10px;
+  border: 4px solid #33333386;
+  margin-bottom: 5%;
+  z-index: 0;
 }
 
 #aanbevolen_producten h1 {
-    font-size: 35px;
-    margin: 10px;
+  font-size: 35px;
+  margin: 10px;
 }
 
 .product {
-    color: #fff;
-    background-color: #2c76ff00;
-    display: inline-block;
-    border: 4px solid #ffffff99;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    text-align: center;
-    width: 340px;
-    backdrop-filter: blur(5px);
+  color: #fff;
+  background-color: #2c76ff00;
+  display: inline-block;
+  border: 4px solid #ffffff99;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  width: 340px;
+  backdrop-filter: blur(5px);
 }
 
 .product img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .product h3 {
-    margin: 0px;
+  margin: 0px;
 }
 
 .product:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .add-to-cart {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .add-to-cart:hover {
-    background-color: #39FF14;
-    box-shadow: 0px 0px 15px #39FF14;
-    transform: scale(1.1);
+  background-color: #39ff14;
+  box-shadow: 0px 0px 15px #39ff14;
+  transform: scale(1.1);
 }
 
 .submit-button {
-    margin: 15px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    border-radius: 4px;
+  margin: 15px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #fff;
+  border-radius: 4px;
 }
 
 .submit-button:hover {
-    background-color: #39FF14;
-    box-shadow: 0px 0px 15px #39FF14;
-    transform: scale(1.1);
+  background-color: #39ff14;
+  box-shadow: 0px 0px 15px #39ff14;
+  transform: scale(1.1);
 }
 
 #naam {
-    background-color: #ebeaea;
-    border: 1px solid #fffafa;
+  background-color: #ebeaea;
+  border: 1px solid #fffafa;
 }
 
 #naam:hover {
-    border: 2px solid #333;
+  border: 2px solid #333;
 }
 
 #email {
-    background-color: #ebeaea;
-    border: 1px solid #fffafa;
+  background-color: #ebeaea;
+  border: 1px solid #fffafa;
 }
 
 #email:hover {
-    border: 2px solid #333;
+  border: 2px solid #333;
 }
 
 #bericht {
-    background-color: #ebeaea;
-    border: 1px solid #fffafa;
+  background-color: #ebeaea;
+  border: 1px solid #fffafa;
 }
 
 #bericht:hover {
-    border: 2px solid #333;
+  border: 2px solid #333;
 }
 
 #list {
-    list-style-type: none;
-    padding: 0px;
+  list-style-type: none;
+  padding: 0px;
 }
 
 .bottom {
-    display: flex;
-    align-items:center;
-    justify-content:center;
-    height: 520px;
-    border: 4px solid #33333386;
-    background-color: #2c76ff14;
-    border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 520px;
+  border: 4px solid #33333386;
+  background-color: #2c76ff14;
+  border-radius: 10px;
 }
 
 .contact {
-    flex: 1;
-    margin-left: 5%;
-    height: 100%;
-    padding: 10px;
+  flex: 1;
+  margin-left: 5%;
+  height: 100%;
+  padding: 10px;
 }
 
 .recensies {
-    position: relative;
-    height: 100%;
-    flex: 1;
-    margin-right: 5%;
+  position: relative;
+  height: 100%;
+  flex: 1;
+  margin-right: 5%;
 }
 
 .recensies h2 {
-    padding: 10px;
+  padding: 10px;
 }
 
 .recensies h3 {
-    padding: 10px;
+  padding: 10px;
 }
 
 .recensies div {
-    position: relative;
-    top:10%;
+  position: relative;
+  top: 10%;
 }
 
-.recensies button{
-    position: relative;
-    top: 20%;
+.recensies button {
+  position: relative;
+  top: 20%;
 }

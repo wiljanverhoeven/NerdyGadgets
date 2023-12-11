@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": " Playstation 5",
+    "price": 400,
+    "image": "../image/1.png"
+  },
+  {
+    "id": 2,
+    "name": " PI rasppberry 2031x",
+    "price": 250,
+    "image": "../image/2.png"
+  },
+  {
+    "id": 3,
+    "name": " PI blueberry deluxe 210",
+    "price": 290,
+    "image": "../image/3.png"
+  },
+  {
+    "id": 4,
+    "name": " RTX 4060 TI",
+    "price": 600,
+    "image": "../image/4.png"
+  },
+  {
+    "id": 5,
+    "name": " Xbox One",
+    "price": 405,
+    "image": "../image/5.png"
+  },
+  {
+    "id": 6,
+    "name": " HDMI",
+    "price": 200,
+    "image": "../image/6.png"
+  },
+  {
+    "id": 7,
+    "name": " Keyboard ",
+    "price": 200,
+    "image": "../image/7.png"
+  },
+  {
+    "id": 8,
+    "name": " Monitor",
+    "price": 200,
+    "image": "../image/8.png"
+  }
+]
