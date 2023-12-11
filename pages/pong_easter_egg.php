@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="nl">
-
-<head>
 
     <?php
     //haalt informatie van bijnodigde bestanden op
@@ -13,10 +9,10 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdyGadgets | Home</title>
+    <title>NerdyGadgets | Pong</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="styling/basic-style.css">
-    <link rel="stylesheet" href="styling/homepage.css">
+    <link rel="stylesheet" href="styling/pong easter egg.css">
     <link rel="stylesheet" href="styling/carts.css">
     <link rel="stylesheet" href="styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -134,9 +130,6 @@
         </div>
     </div>
 
-
-
-
     <section id="block">
         <div class="wrapper">
             <span class="close-icon">
@@ -196,155 +189,114 @@
         </div>
     </section>
 
-    <script src="logic/script.js"></script>
+</head>
+<body>
+    <canvas id="pong" width="600" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('pong');
+        const ctx = canvas.getContext('2d');
 
-    <div class="main">
-        <section id="home" class="section">
-            <div class="welkom">
-                <h1 class="WNG">Welkom bij NerdyGadgets</h1>
-                <p class="slogan" behavior="scroll" direction="left"><?php
-                                                                        $strings = array('Ontdek geweldige producten voor de beste prijzen!', 'Eenvoudige navigatie om snel te vinden wat u zoekt!', 'Veilige betalingsmogelijkheden voor uw gemoedsrust!', 'Snelle levering om uw producten op tijd te ontvangen!', 'Niet tevreden met uw product? Geld terug!', 'Wij behandelen de recensies van onze klanten als feedback!', 'Het vertrouwen van de klant is voor ons het belangrijkst!');
-                                                                        echo $strings[array_rand($strings)]; ?>
-            </div>
-            <img id="scrollBtn" src="images/arrow.png">
-        </section>
+        canvas.addEventListener('mousemove', (e) => {
+            player.y = e.clientY - player.height / 2;
+        });
 
+        const player = {
+            x: 10,
+            y: canvas.height / 2 - 50,
+            width: 10,
+            height: 100,
+            color: '#fff',
+        };
 
+        const ai = {
+            x: canvas.width - 20,
+            y: canvas.height / 2 - 50,
+            width: 10,
+            height: 100,
+            color: '#fff',
+        };
 
-        <script>
-            ;
-            (() => {
-                var lastPos = 0;
-                var scrollToPos = 800;
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 8,
+            color: '#fff',
+            speed: 5,
+            velocityX: 5,
+            velocityY: 5,
+        };
 
-                scrollBtn.addEventListener("click", () => {
-                    window.scrollTo({
-                        top: scrollToPos,
-                        behavior: 'smooth'
-                    });
-                });
+        function drawRect(x, y, width, height, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, width, height);
+        }
 
-                addEventListener("scroll", () => {
+        function drawBall(x, y, radius, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            ctx.closePath();
+            ctx.fill();
+        }
 
-                }, false);
-            })();
-        </script>
+        function game() {
+            update();
+            render();
+            requestAnimationFrame(game);
+        }
 
-        <section id="aanbevolen_producten" class="section products">
+        function update() {
+            ball.x += ball.velocityX;
+            ball.y += ball.velocityY;
 
-            <h1>Onze aanbevolen producten</h1>
-
-            <?php
-
-            if (empty($_SESSION['search'])) {
-                for ($i = 0; $i < 3; $i++) {
-                    $sql = "SELECT * FROM producten WHERE productid=$i";
-                    $prod = mysqli_query($conn, $sql);
-                    ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
-                    <div class="product ">
-                        <a href="pages/product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "images/", ${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
-                        <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
-                        <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
-                        <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                        <form method="post">
-                        <input type="hidden"  name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
-                        <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
-                        </form> 
-                    </div>
-                    <?php }
-            } else {
-                $appel = $_SESSION['search'];
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.velocityY = -ball.velocityY;
             }
 
-            $used = 0;
+            let paddle = ball.x < canvas.width / 2 ? player : ai;
+            if (collision(ball, paddle)) {
+                let angle = (Math.random() - 0.5) * Math.PI / 4;
+                ball.velocityX = -ball.velocityX * 1.1;
+                ball.velocityY = ball.speed * Math.sin(angle);
+            }
 
-            if ($appel != null) {
-                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" ';
-                if ($result = mysqli_query($conn, $sql)) {
+            if (ball.x - ball.radius < 0) {
+                resetBall();
+            } else if (ball.x + ball.radius > canvas.width) {
+                resetBall();
+            }
 
-                    for ($i = 0; $i < 3; $i++) {
-                        $row = mysqli_fetch_row($result);
-                        if ($row != null) { ?>
-                            <div class="product">
-                                <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/", $row[5]; ?>" alt="Product"></a>
-                                <h3><?php echo $row[1]; ?></h3>
-                                <p><?php echo "€", $row[3]; ?></p>
-                                <p><?php echo $row[8]; ?></p>
-                                <form method="post">
-                                <input type="hidden"  name="proid" value="<?php echo $row[0]; ?>">
-                                <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
-                                </form>
-                            </div>
-                            <?php
-                            $cata = $row[4];
-                            $pid = $row[0];
-                        } elseif ($row == null) {
-                            $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = ' . $pid . ' AND NOT productid = ' . $used . ' ';
-                            if ($result2 = mysqli_query($conn, $sql2)) {
-                                $row2 = mysqli_fetch_row($result2);
-                                $used = $row2[0];
-                            ?>
-                                <div class="product">
-                                    <a href="pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "images/", $row2[5]; ?>" alt="Product"></a>
-                                    <h3><?php echo $row2[1]; ?></h3>
-                                    <p><?php echo "€", $row2[3]; ?></p>
-                                    <p><?php echo $row2[8]; ?></p>
-                                    <form method="post">
-                                    <input type="hidden"  name="proid" value="<?php echo $row2[0]; ?>">
-                                    <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
-                                    </form>
-                                </div>
-            <?php }
-                        }
-                    }
-                }
-            } ?>
+            ai.y += (ball.y - (ai.y + ai.height / 2)) * 0.1;
+        }
 
-        </section>
+        function collision(b, p) {
+            return (
+                b.x + b.radius > p.x &&
+                b.x - b.radius < p.x + p.width &&
+                b.y + b.radius > p.y &&
+                b.y - b.radius < p.y + p.height
+            );
+        }
 
-        <section id="bottom" class="section">
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.speed = 5;
+            ball.velocityX = -ball.velocityX;
+            ball.velocityY = (Math.random() - 0.5) * 10;
+        }
 
-            <div class="bottom">
+        function render() {
+            drawRect(0, 0, canvas.width, canvas.height, '#000');
+            drawRect(player.x, player.y, player.width, player.height, player.color);
+            drawRect(ai.x, ai.y, ai.width, ai.height, ai.color);
+            drawBall(ball.x, ball.y, ball.radius, ball.color);
+        }
 
-                <div class="contact">
-                    <h2>Contacteer ons</h2>
-                    <form>
-                        <label for="naam">Naam:</label>
-                        <input class="input" type="text" id="naam" name="naam" required>
-                        <label for="email">E-mail:</label>
-                        <input class="input" type="email" id="email" name="email" required>
-                        <label for="bericht">Bericht:</label>
-                        <textarea class="input" id="bericht" name="bericht" rows="4" required></textarea>
-                        <button class="submit-button" type="submit">Verstuur</button>
-                    </form>
-                </div>
+        game();
+    </script>
+</body>
 
-                <div class="recensies">
-                    <h2>Klantrecensies</h2>
-                    <div>
-                        <h3>Lees hieronder de ervaringen van andere klanten</h3>
-                        <h3>met betrekking tot onze producten en service.</h3>
-                        <h3>Sorteer op relevantie, datum of waardering.</h3>
-                    </div>
-                    <a href="pages/klantrecensies.php">
-                        <button class="submit-button" onclick="">Bekijk Klantrecensies</button>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="winkelervaring" class="section">
-            <div class="section-content">
-
-                <br>
-
-        </section>
-
-        <a href="pages/pong_easter_egg.php" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
-
-    </div>
-
-    
     <footer>
 
         <div class="inhoudFooter">
