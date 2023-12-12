@@ -35,7 +35,7 @@
     <div class="container2">
         <header>
             <div class="logo">
-                <a href="index.php">
+                <a href="../index.php">
                     <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
                 </a>
             </div>
@@ -115,10 +115,12 @@
                     );
                     $_SESSION['cart'][] = $item_array;
                 }
-                
-                $like = isset($_SESSION['search2']) ? $_SESSION['search2'] : '';
-                $sanword = mysqli_real_escape_string($conn, $like);
-                $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%'";
+            
+
+                // Redirect to the same or a different page after processing the form
+                header("Location: {$_SERVER['REQUEST_URI']}");
+                exit;
+            }
 
                 $sort = isset($_SESSION['sort2']) ? $_SESSION['sort2'] : '';
                 $sansort = mysqli_real_escape_string($conn, $sort);
@@ -139,11 +141,13 @@
 
                     default:
                 }
+            
+            
 
-                // Redirect to the same or a different page after processing the form
-                header("Location: {$_SERVER['REQUEST_URI']}");
-                exit;
-            }
+            $like = isset($_SESSION['search2']) ? $_SESSION['search2'] : '';
+            $sanword = mysqli_real_escape_string($conn, $like);
+            $where = "AND (`productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%')";
+
             if (!empty($_SESSION['cart'])) {
                 if (isset($_POST['minus'])) {
                     $proid = $_POST['proid'];
@@ -185,9 +189,9 @@
                     if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
                             <div class="image"><a href="../pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam']; ?></div>
-                            <div class="totalprice">Total Price: €<?php echo $row['prijs'] * $item['quantity']; ?></div>
-                            <form method="post" action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>">
+                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
+                            <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
                                 <button type="submit" name="add">+</button>
                                 <button type="submit" name="minus">-</button>
@@ -281,16 +285,16 @@
             <?php
 
             if (isset($_POST['search'])) {
+                $_SESSION['search2'] = $_POST['search'];
                 $like = $_POST['search'];
-                $_SESSION['search2'] = $like;
                 $sanword = mysqli_real_escape_string($conn, $like);
                 $where = "AND `productnaam` LIKE '%{$sanword}%' ";
             }
 
             if (isset($_POST['sort'])) {
                 if (is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
+                    $_SESSION['sort2'] = $_POST['sort'];
                     $sort = $_POST['sort'];
-                    $_SESSION['sort2'] = $sort;
                     $sansort = mysqli_real_escape_string($conn, $sort);
 
                     switch ($sansort) {
@@ -325,8 +329,8 @@
                             <p><?php echo "€", $row[3]; ?></p>
                             <p><?php echo $row[8]; ?></p>
                             <form method="post" action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>">
-                                        <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
-                                        <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                    <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
+                                    <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
                             </form>
                         </div>
 
@@ -345,8 +349,8 @@
                             <p><?php echo "€", $row[3]; ?></p>
                             <p><?php echo $row[8]; ?></p>
                             <form method="post" action="categorie.php?categorie=<?php echo $_GET['categorie']; ?>">
-                                        <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
-                                        <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                        <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
+                                        <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
                             </form>
                         </div>
             <?php }
