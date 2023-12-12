@@ -122,7 +122,7 @@
 
             $like = isset($_SESSION['search']) ? $_SESSION['search'] : '';
             $sanword = mysqli_real_escape_string($conn, $like);
-            $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%'";
+            $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%' or `merk` LIKE '%{$sanword}%'";
 
             $sort = isset($_SESSION['sort']) ? $_SESSION['sort'] : '';
             $sansort = mysqli_real_escape_string($conn, $sort);
@@ -190,7 +190,7 @@
 
                     if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
-                            <div class="image"><a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
+                            <div class="image"><a href="../pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
                             <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
                             <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
@@ -286,7 +286,7 @@
                 $like = $_POST['keyword'];
                 $_SESSION['search'] = $like;
                 $sanword = mysqli_real_escape_string($conn, $like);
-                $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%'";
+                $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%' or `merk` LIKE '%{$sanword}%'";
             }
 
             if (isset($_POST['sort'])) {

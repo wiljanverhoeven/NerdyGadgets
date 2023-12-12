@@ -308,7 +308,7 @@
             $used = 0;
 
             if ($appel != null) {
-                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" ';
+                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
                 if ($result = mysqli_query($conn, $sql)) {
 
                     for ($i = 0; $i < 3; $i++) {
