@@ -1,129 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
 
-    <?php
-    //haalt informatie van bijnodigde bestanden op
-    require 'dbconnect.php';
-
-    session_start();
-    $appel = "";
-    ?>
-
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets | Pong</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
-    <link rel="stylesheet" href="styling/basic-style.css">
-    <link rel="stylesheet" href="styling/pong easter egg.css">
-    <link rel="stylesheet" href="styling/carts.css">
-    <link rel="stylesheet" href="styling/logincss.css">
+    <link rel="stylesheet" href="../styling/basic-style.css">
+    <link rel="stylesheet" href="styling/pong_easter_egg.css">
+    <link rel="stylesheet" href="../styling/carts.css">
+    <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-
 </head>
 
-<body class="">
+<header>
+        <div class="logo">
+            <a href="../index.php">
+                <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
+            </a>
+        </div>
 
 
-    <div class="container2">
-        <header>
-            <div class="logo">
-                <a href="index.php">
-                    <img src="images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
-                </a>
-            </div>
+        <div id="search">
+            <form action="../pages/search.php" method="POST">
+                <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+                <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
+            </form>
+        </div>
 
+        <nav>
+            <ul>
+                <li><a href="../index.php" class="paginas">Home</a></li>
+                <li><a href="../pages/over-ons.php" class="paginas">Over ons</a></li>
+                <li><a href="../pages/producten.php" class="paginas">Producten</a></li>
+            </ul>
+        </nav>
 
-            <div id="search">
-                <form action="pages/search.php" method="POST">
-                    <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-                    <button class="btn btn-primary searchSubmit" type="submit"> <img src="images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
-                </form>
-            </div>
+        <div class="icons">
 
-            <nav>
-                <ul>
-                    <li><a href="index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
-                    <li><a href="pages/over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
-                    <li><a href="pages/productoverzicht.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
-                </ul>
-            </nav>
-
-            <div class="icons">
-
-                <?php
-                if (isset($_COOKIE['email'])) {
-                ?>
-                    <nav>
-                        <div class="account">
-                            <a class="paginas" title="ga naar uw account" href="pages/logout.php">log uit</a>
-                        </div>
-                    </nav>
-                <?php
-                } else {
-                ?>
+            <?php
+            if (isset($_COOKIE['email'])) {
+            ?>
+                <nav>
                     <div class="account">
-                        <a class="btnlogin-popup"><img class="user" src="images/account_icon.png" alt="Account" width="40" height="40">
-                            <img class="user_neon" src="images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-                        </a>
+                        <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
                     </div>
+                </nav>
+            <?php
+            } else {
+            ?>
+                <div class="account">
+                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                    </a>
+                </div>
 
-                <?php
-                }
-                ?>
-                <div class="icon-cart">
+            <?php
+            }
+            ?>
+            <div class="icon-cart">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                     </svg>
                     <span>0</span>
                 </div>
-            </div>
-        </header>
-        <div class="listProduct"></div>
-    </div>
+        </div>
+
+    </header>
+
     <div class="cartTab">
         <h1>Shopping Cart</h1>
-        <div class="listCart">
-        <?php 
-        if (isset($_POST['add'])) {
-            if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array(); }
-        
-            // check if id is already in cart
-            $isNotPresent = true;
-            foreach ($_SESSION['cart'] as $item) {
-                if ($item['proid'] == $_POST['proid']) {
-                    $isNotPresent = false;
-                    break;
-                }
-            }
-        
-            if ($isNotPresent) {
-                $item_array = array(
-                    'proid' => $_POST['proid']
-                );
-                $_SESSION['cart'][] = $item_array;
-                $length = count($_SESSION['cart']);
-
-                print_r($_SESSION['cart']);
-
-                 } else {
-
-
-                } 
-    
-        foreach ($_SESSION['cart'] as $item) {
-    
-            $sql = 'SELECT * FROM producten WHERE productid LIKE "%' . $item['proid'] . '%"';
-            if ($result = mysqli_query($conn, $sql)) {
-                    $row = mysqli_fetch_row($result);
-                    if ($row != null) { ?>
-                        <div class="product">
-                            <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/", $row[5]; ?>" alt="Product"></a>
-                            <h3><?php echo $row[1]; ?></h3>
-                        </div>    
-        <?php } } } } ?>
-
-
-        </div>
+        <div class="listCart"></div>
         <div class="btn">
             <button class="close">CLOSE</button>
             <button class="checkOut">Check Out</button>
@@ -137,14 +83,14 @@
             </span>
 
             <div class="form-box login">
-                <form action="pages/login.php" method="post">
+                <form action="../logic/loginB.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="email" name="mail" required>
+                        <input type="text" placeholder="username" required>
                         <i class='bx bxs-user'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" name="pass" required>
+                        <input type="password" placeholder="Password" required>
                         <i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="remember-forgot">
@@ -152,9 +98,8 @@
                         <a href="#"> Forgot password</a>
                     </div>
 
-                    <button type="submit" name="apply" class="btn">login</button>
+                    <button type="submit" class="btn">login</button>
                     <div class="register-login">
-                        <a href="pages/register.php">register</a>
                         <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
                     </div>
 
@@ -163,7 +108,7 @@
             </div>
             <div class="form-box register">
 
-                <form action="pages/login.php" method="post">
+                <form action="../logic/loginB.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
                         <input type="text" placeholder="username" required name="usernamelogin">
@@ -188,6 +133,8 @@
             </div>
         </div>
     </section>
+
+    <script src="../logic/script.js"></script>
 
 </head>
 <body>
