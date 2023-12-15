@@ -82,9 +82,18 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                     </svg>
                 </div>
-            </div>
+            </div> 
         </header>
     </div>
+    <?php 
+        if (isset($_POST['keyword']) && $_POST['keyword'] == "maxwell") {
+            ?><img class="maxwell" src="../images/maxwell-cat.gif">
+             <audio src="../audio/maxwell.mp3" visible="false"  type="audio/mpeg" autoplay loop></audio> 
+            <?php
+            exit;
+        }
+    
+    ?>
     <div class="cartTab" id="exampleList">
         <h1>Shopping Cart</h1>
         <div class="listCart">
