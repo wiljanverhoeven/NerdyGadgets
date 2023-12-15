@@ -389,8 +389,11 @@
 
         </section>
 
+        <a href="pages/pong_easter_egg.php" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+
     </div>
 
+    
     <footer>
 
         <div class="inhoudFooter">
