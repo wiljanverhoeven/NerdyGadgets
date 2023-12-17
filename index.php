@@ -205,7 +205,7 @@
                     </div>
                     <div class="remember-forgot">
                         <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="#"> Forgot password</a>
+                        <a href="http://localhost/nerdygadgets-1/pages/memory.html"> Forgot password</a>
                     </div>
 
                     <button type="submit" name="apply" class="btn">login</button>
