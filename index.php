@@ -295,6 +295,9 @@
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+                        <form method="get" action="pages/product.php">
+                            <button class="add-to-cart" name="product" value="<?php echo ${"producten$i"}["productid"]; ?>">go to page</button>
+                        </form>
                         <form method="post">
                             <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
                             <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
@@ -319,6 +322,9 @@
                                 <h3><?php echo $row[1]; ?></h3>
                                 <p><?php echo "€", $row[3]; ?></p>
                                 <p><?php echo $row[8]; ?></p>
+                                <form method="get" action="../pages.product.php">
+                            <button class="add-to-cart" name="add" value="<?php echo $row[0]; ?>">go to page</button>
+                        </form>
                                 <form method="post">
                                     <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
                                     <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
