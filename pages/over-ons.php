@@ -2,75 +2,182 @@
 <html lang="nl">
 
 <head>
+
     <?php
+    //haalt informatie van bijnodigde bestanden op
+    require '../dbconnect.php';
+    require '../logic/functions.php';
+
     session_start();
+    $_SESSION['token'] = uniqid();
+    $appel = "";
     ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over Ons | NerdyGadgets</title>
-    <link rel="icon" type="image/png" href="../images/Logo_icon 2">
+    <title>NerdyGadgets | Home</title>
+    <link rel="icon" type="../image/png" href="../images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="../styling/logincss.css">
+    <link rel="stylesheet" href="../styling/over-ons.css">
     <link rel="stylesheet" href="../styling/carts.css">
+    <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 </head>
 
-<body>
-    <header>
-        <div class="logo">
-            <a href="../index.php">
-                <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
-            </a>
-        </div>
+<body class="">
 
-        <div id="search">
-            <form action="../pages/search.php" method="POST">
-                <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
-                <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
-            </form>
-        </div>
 
-        <nav>
-            <ul>
-                <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
-                <li><a href="../pages/over-ons.php" class="paginas current" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
-                <li><a href="producten.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
-            </ul>
-        </nav>
+    <div class="container2">
+        <header>
+            <div class="logo">
+                <a href="../index.php">
+                    <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
+                </a>
+            </div>
 
-        <div class="icons">
-            <?php
-            if (isset($_COOKIE['email'])) {
-            ?>
-                <nav>
+
+            <div id="search">
+                <form action="../pages/search.php" method="POST">
+                    <input class="search-bar" type="text" name="keyword" autocomplete="off" placeholder="Waar zoek je naar?">
+                    <button class="btn btn-primary searchSubmit" type="submit"> <img src="../images/zoeken_icon.png" alt="Winkelwagen" width="15.5" height="15.5">
+                </form>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.php" class="paginas" title="Ga naar de homepagina">Home<span class="tooltiptext"></span></a></li>
+                    <li><a href="../pages/over-ons.php" class="paginas" title="Meer informatie over ons">Over ons<span class="tooltiptext"></span></a></li>
+                    <li><a href="../pages/productoverzicht.php" class="paginas" title="Bekijk onze producten">Producten<span class="tooltiptext"></span></a></li>
+                </ul>
+            </nav>
+
+            <div class="icons">
+
+                <?php
+                if (isset($_COOKIE['email'])) {
+                ?>
+                    <nav>
+                        <div class="account">
+                            <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
+                        </div>
+                    </nav>
+                <?php
+                } else {
+                ?>
                     <div class="account">
-                        <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
+                        <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                            <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                        </a>
                     </div>
-                </nav>
-            <?php
-            } else {
-            ?>
-                <div class="account">
-                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
-                        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-                    </a>
-                </div>
 
-            <?php
-            }
-            ?>
-            <div class="icon-cart">
+                <?php
+                }
+                ?>
+                <div class="icon-cart">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                     </svg>
-                    <span>0</span>
                 </div>
-        </div>
-    </header>
-
-    <div class="cartTab">
+            </div>
+        </header>
+    </div>
+    <div class="cartTab" id="exampleList">
         <h1>Shopping Cart</h1>
-        <div class="listCart"></div>
+        <div class="listCart">
+            <?php
+            if (isset($_POST['add'])) {
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = array();
+                }
+
+                $proid = $_POST['proid'];
+                $item_exists = false;
+
+                foreach ($_SESSION['cart'] as &$item) {
+                    if ($item['proid'] == $proid) {
+                        // If the item already exists, update its quantity and exit the loop
+                        $item['quantity'] += 1;
+                        $item_exists = true;
+                        break;
+                    }
+                }
+
+                if (!$item_exists) {
+                    // If the item does not exist, add it to the cart
+                    $item_array = array(
+                        'proid' => $proid,
+                        'quantity' => 1,
+                    );
+                    $_SESSION['cart'][] = $item_array;
+                }
+
+                // Redirect to the same or a different page after processing the form
+                header("Location: {$_SERVER['REQUEST_URI']}");
+                exit;
+            }
+            if (!empty($_SESSION['cart'])) {
+                if (isset($_POST['minus'])) {
+                    $proid = $_POST['proid'];
+
+                    // Store the index to unset after the loop
+                    $index_to_unset = null;
+
+                    foreach ($_SESSION['cart'] as $index => &$item) {
+                        if ($item['proid'] == $proid) {
+                            $item['quantity'] -= 1;
+
+                            if ($item['quantity'] <= 0) {
+                                // Set the index to unset after the loop
+                                $index_to_unset = $index;
+                            }
+
+                            break;
+                        }
+                    }
+
+                    // Unset the item if needed outside the loop
+                    if ($index_to_unset !== null) {
+                        unset($_SESSION['cart'][$index_to_unset]);
+                    }
+                }
+            }
+
+            if (!empty($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $item) {
+                    $proid = $item['proid'];
+
+                    // Use prepared statement to fetch product information
+                    $sql = 'SELECT * FROM producten WHERE productid = ?';
+                    $stmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($stmt, 'i', $proid);
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                        <div class="item">
+                            <div class="image"><a href="../pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
+                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
+                            <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                                <input type="hidden" name="proid" value="<?php echo $proid; ?>">
+                                <button type="submit" name="add">+</button>
+                                <button type="submit" name="minus">-</button>
+                            </form>
+                        </div>
+            <?php
+                    }
+                }
+            } else {
+                // Display a message or take other actions when the cart is empty
+                echo "Your shopping cart is empty.";
+            }
+
+            ?>
+
+
+        </div>
         <div class="btn">
             <button class="close">CLOSE</button>
             <button class="checkOut">Check Out</button>

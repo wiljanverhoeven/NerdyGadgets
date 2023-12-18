@@ -81,9 +81,8 @@
                 </div>
             </div>
         </header>
-        <div class="listProduct"></div>
     </div>
-    <div class="cartTab">
+    <div class="cartTab" id="exampleList">
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
@@ -158,8 +157,8 @@
                     if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
                             <div class="image"><a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam']; ?></div>
-                            <div class="totalprice">Total Price: <?php echo $row['prijs'] * $item['quantity']; ?></div>
+                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
                                 <button type="submit" name="add">+</button>
@@ -312,7 +311,7 @@
             $used = 0;
 
             if ($appel != null) {
-                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" ';
+                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
                 if ($result = mysqli_query($conn, $sql)) {
 
                     for ($i = 0; $i < 3; $i++) {
@@ -396,8 +395,11 @@
 
         </section>
 
+        <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+
     </div>
 
+    
     <footer>
 
         <div class="inhoudFooter">

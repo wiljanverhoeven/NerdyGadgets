@@ -132,3 +132,13 @@
   box-shadow: 0px 0px 15px #39ff14;
   transform: scale(1.1);
 }
+
+.maxwell {
+  display: block;
+  position: relative;
+  justify-content: center;
+  padding-top: 20%;
+  margin: auto;
+  width: 500;
+  height: 500;
+}
