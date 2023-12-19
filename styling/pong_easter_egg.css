@@ -17,5 +17,6 @@ body {
 }
 
 canvas {
-    border: 1px solid #fff;
+    display: grid;
+    place-items: center;
 }
