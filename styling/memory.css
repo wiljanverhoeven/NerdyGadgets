@@ -1,0 +1,15 @@
+/* Styling for the memory game cards */
+#memory-game {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.game-card {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+}
