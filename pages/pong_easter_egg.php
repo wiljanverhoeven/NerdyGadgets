@@ -138,7 +138,9 @@
 
 </head>
 <body>
-    <canvas id="pong" width="600" height="400"></canvas>
+    <div class="pong">
+        <canvas id="pong" width="600" height="400"></canvas>
+    </div>
     <script>
         const canvas = document.getElementById('pong');
         const ctx = canvas.getContext('2d');
@@ -242,6 +244,7 @@
 
         game();
     </script>
+
 </body>
 
     <footer>
@@ -263,9 +266,9 @@
                     <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
                     <ul id="list">
                         <a>
-                            <img src="images/icon-mastercard.png" width="64.2" height="40">
-                            <img src="images/IDEAL_Logo.png" width="46" height="40">
-                            <img src="images/icon-visa.png" width="64.2" height="40">
+                            <img src="../images/icon-mastercard.png" width="64.2" height="40">
+                            <img src="../images/IDEAL_Logo.png" width="46" height="40">
+                            <img src="../images/icon-visa.png" width="64.2" height="40">
                         </a>
                     </ul>
                     We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
