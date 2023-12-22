@@ -16,7 +16,9 @@ body {
 
 }
 
-canvas {
-    display: grid;
-    place-items: center;
+.pong {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
