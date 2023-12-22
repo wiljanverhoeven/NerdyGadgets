@@ -142,8 +142,6 @@
 
 <div class="witregel1">
     <h1>Een witregel</h1>
-    <h1>Een witregel</h1>
-    <h1>Een witregel</h1>
 </div>
 
 <div>
