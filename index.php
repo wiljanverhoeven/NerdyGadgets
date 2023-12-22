@@ -81,9 +81,8 @@
                 </div>
             </div>
         </header>
-        <div class="listProduct"></div>
     </div>
-    <div class="cartTab">
+    <div class="cartTab" id="exampleList">
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
@@ -143,7 +142,21 @@
                     }
                 }
             }
-
+            if (!empty($_SESSION['cart'])) {
+            $set = 0;
+            foreach ($_SESSION['cart'] as $item) { 
+                $proid = $item['proid'];
+                $line = 'SELECT * FROM producten WHERE productid = ?';
+                $prepare = mysqli_prepare($conn, $line);
+                mysqli_stmt_bind_param($prepare, 'i', $proid);
+                mysqli_stmt_execute($prepare);
+                $end = mysqli_stmt_get_result($prepare);
+                if ($rows = mysqli_fetch_assoc($end)) { 
+                    $set += $rows['prijs'] * $item['quantity'];
+                }
+            }
+            ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
+        }
             if (!empty($_SESSION['cart'])) {
                 foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
@@ -154,18 +167,20 @@
                     mysqli_stmt_bind_param($stmt, 'i', $proid);
                     mysqli_stmt_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
+                    
 
                     if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
                             <div class="image"><a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam']; ?></div>
-                            <div class="totalprice">Total Price: <?php echo $row['prijs'] * $item['quantity']; ?></div>
+                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
                                 <button type="submit" name="add">+</button>
                                 <button type="submit" name="minus">-</button>
                             </form>
                         </div>
+                        
             <?php
                     }
                 }
@@ -173,8 +188,11 @@
                 // Display a message or take other actions when the cart is empty
                 echo "Your shopping cart is empty.";
             }
+        
+
 
             ?>
+            
 
 
         </div>
@@ -206,7 +224,7 @@
                     </div>
                     <div class="remember-forgot">
                         <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="#"> Forgot password</a>
+                        <a href="http://localhost/nerdygadgets-1/pages/memory.html"> Forgot password</a>
                     </div>
 
                     <button type="submit" name="apply" class="btn">login</button>
@@ -296,6 +314,9 @@
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+                        <form method="get" action="pages/product.php">
+                            <button class="add-to-cart" name="product" value="<?php echo ${"producten$i"}["productid"]; ?>">go to page</button>
+                        </form>
                         <form method="post">
                             <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
                             <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
@@ -309,7 +330,7 @@
             $used = 0;
 
             if ($appel != null) {
-                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" ';
+                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
                 if ($result = mysqli_query($conn, $sql)) {
 
                     for ($i = 0; $i < 3; $i++) {
@@ -320,6 +341,9 @@
                                 <h3><?php echo $row[1]; ?></h3>
                                 <p><?php echo "€", $row[3]; ?></p>
                                 <p><?php echo $row[8]; ?></p>
+                                <form method="get" action="../pages.product.php">
+                            <button class="add-to-cart" name="add" value="<?php echo $row[0]; ?>">go to page</button>
+                        </form>
                                 <form method="post">
                                     <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
                                     <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
@@ -390,8 +414,11 @@
 
         </section>
 
+        <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+
     </div>
 
+    
     <footer>
 
         <div class="inhoudFooter">
