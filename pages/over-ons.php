@@ -22,11 +22,23 @@
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link rel="stylesheet" type="text/css" href="../styling/over-ons.css">
 
 </head>
 
+<body>
+<header>
+    <div class="logo">
+        <a href="../index.php">
+            <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
+        </a>
+    </div>
+
+
+
+
 <body class="">
+
 
 
     <div class="container2">
@@ -37,6 +49,17 @@
                 </a>
             </div>
 
+        <div class="icons">
+        <div class="cart">
+            <a href="winkelwagen.php" title="Bekijk uw winkelwagen">
+                <img class="wagen" src="../images/winkelwagen_icon.png" alt="Winkelwagen" width="42" height="42">
+                <img class="wagen_neon" src="../images/winkelwagen_icon_neon.png" alt="Winkelwagen_neon" width="42" height="42">
+            </a>
+        </div>
+        <?php 
+            if(isset($_COOKIE['email'])) {
+                ?>  
+                    <nav>
 
             <div id="search">
                 <form action="../pages/search.php" method="POST">
@@ -66,11 +89,30 @@
                 <?php
                 } else {
                 ?>
+
                     <div class="account">
                         <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
                             <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
                         </a>
                     </div>
+                    </nav>
+                 <?php
+            } else { 
+                ?>  
+                    <div class="account">
+                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                    </a>
+                    </div>
+                    
+                <?php
+            } 
+        ?>
+        </div>
+    </header>
+
+    <div class="cartTab">
+=======
 
                 <?php
                 }
@@ -84,6 +126,7 @@
         </header>
     </div>
     <div class="cartTab" id="exampleList">
+
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
@@ -198,6 +241,24 @@
         </div>
     </div>
 
+<main>
+    <section id="over-ons" class="section">
+        <div class="container">
+            <h1 class="title">Over Ons</h1>
+            <div class="about-content">
+                <div class="image">
+                    <img src="../images/overons.jpg">
+                </div>
+                <div class="content">
+                    <p>Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
+                        Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
+                        U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
+                        Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.</p>
+                    <a href="" class="leesmeer">Lees Meer</a>
+                </div>
+            </div>
+        </div>
+
     <section id="block">
         <div class="wrapper">
             <span class="close-icon">
@@ -256,16 +317,16 @@
         </div>
     </section>
 
-    <script src="../logic/script.js"></script>
+<script src="../logic/script.js"></script>
 
     <main>
         <section id="over-ons" class="section">
             <h1>Over Ons</h1>
             <p>
-                Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
-                Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
-                U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
-                Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.
+Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
+Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
+U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
+Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.
             </p>
 
 
@@ -284,19 +345,19 @@
             <p>Bij eventuele vragen kunt u contact met ons opnemen</p>
     </main>
 
-    <footer>
+<footer>
 
-        <div class="inhoudFooter">
-            <div class="contactfooter">
-                <h3 style="color: #fff" ;>Contactgegevens</h3>
-                <p style="color: #fff" ;>
-                    Adres: Hospitaaldreef 5, Almere
-                    <br>
-                    Email: administratie@nerdygadgets.nl
-                    <br>
-                    Telefoonnummer: +31 06 12345678
-                </p>
-            </div>
+    <div class="inhoudFooter">
+        <div class="contactfooter">
+            <h3 style="color: #fff" ;>Contactgegevens</h3>
+            <p style="color: #fff" ;>
+                Adres: Hospitaaldreef 5, Almere
+                <br>
+                Email: administratie@nerdygadgets.nl
+                <br>
+                Telefoonnummer: +31 06 12345678
+            </p>
+        </div>
 
             <div class="betaalmiddelen">
                 <h6>
@@ -319,8 +380,7 @@
                 <a style="color: #fff" ; href="./">Home</a>
                 <a style="color: #fff" ; href="./#about">Over ons</a>
                 <a style="color: #fff" ; href="./search/">Producten</a>
-                <a style="color: #fff" ; href="./account/">Account</a>
-                <a style="color: #fff" ; href="./legal/">Legaal</a>
+                <a style="color: #fff"; href="./account/">Account</a>
+                <a style="color: #fff"; href="./legal/">Legaal</a>
             </div>
     </footer>
-    <script src="../logic/app.js"></script>
