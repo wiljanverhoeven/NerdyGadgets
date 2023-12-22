@@ -16,9 +16,17 @@ body {
 
 }
 
-.pong {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.witregel1 {
+    visibility: hidden;
+}
+
+.witregel2 {
+    text-align: center;
 }

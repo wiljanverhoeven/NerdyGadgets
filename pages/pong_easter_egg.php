@@ -137,8 +137,20 @@
     <script src="../logic/script.js"></script>
 
 </head>
+
 <body>
-    <div class="pong">
+
+<div class="witregel1">
+    <h1>Een witregel</h1>
+    <h1>Een witregel</h1>
+    <h1>Een witregel</h1>
+</div>
+
+<div>
+    
+</div>
+
+    <div class="canvas">
         <canvas id="pong" width="600" height="400"></canvas>
     </div>
     <script>
@@ -244,6 +256,10 @@
 
         game();
     </script>
+
+<div>
+    <h1 class="witregel2">Gebruik je muis in de verticale richting om de linkerspeler te besturen</h1>
+</div>
 
 </body>
 
