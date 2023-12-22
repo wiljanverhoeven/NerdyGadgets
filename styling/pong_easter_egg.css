@@ -17,3 +17,11 @@ body {
 }
 
 
+
+.witregel1 {
+    visibility: hidden;
+}
+
+.witregel2 {
+    text-align: center;
+}
