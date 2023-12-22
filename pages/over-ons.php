@@ -18,7 +18,6 @@
     <title>NerdyGadgets | Home</title>
     <link rel="icon" type="../image/png" href="../images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="../styling/over-ons.css">
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -97,22 +96,12 @@
                     </div>
                     </nav>
                  <?php
-            } else { 
-                ?>  
-                    <div class="account">
-                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
-                        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-                    </a>
-                    </div>
-                    
-                <?php
-            } 
+            }
         ?>
         </div>
     </header>
 
     <div class="cartTab">
-=======
 
                 <?php
                 }
