@@ -336,10 +336,17 @@
                             <h3><?php echo $row[1]; ?></h3>
                             <p><?php echo "€", $row[3]; ?></p>
                             <p><?php echo $row[8]; ?></p>
+
+                            <form method="get" action="../pages/product.php">
+                            <button name="product" value="<?php echo $row[0]; ?>">go to page</button>
+                            </form>
+                           
+
                             <form method="post">
                                 <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
                                 <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
                             </form>
+
                         </div>
 
                     <?php }
