@@ -1,20 +1,4 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #000;
-    background-image: url(../images/background.jpg);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin-top: 100px;
-    padding: 0;
 
-}
 
 
 
