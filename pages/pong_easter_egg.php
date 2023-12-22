@@ -6,7 +6,7 @@
     <title>NerdyGadgets | Pong</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="styling/pong_easter_egg.css">
+    <link rel="stylesheet" href="../styling/pong_easter_egg.css">
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>

@@ -16,17 +16,4 @@ body {
 
 }
 
-.canvas {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-
-.witregel1 {
-    visibility: hidden;
-}
-
-.witregel2 {
-    text-align: center;
-}
