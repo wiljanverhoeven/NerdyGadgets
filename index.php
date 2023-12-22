@@ -417,6 +417,51 @@
         <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
 
     </div>
+    <button id="easterEggButton">Geheime Knop</button>
+
+<div id="easterEggQuiz" style="display: none;">
+  <h2>Nerd Quiz</h2>
+  <p>Wat is de favoriete programmeertaal van een computer?</p>
+  <input type="radio" name="question1" value="b"> Binary<br>
+  <input type="radio" name="question1" value="a"> Java<br>
+  <input type="radio" name="question1" value="c"> C-sharp<br>
+
+  <!-- Voeg hier meer vragen toe -->
+
+  <button onclick="checkAnswers()">Indienen</button>
+</div>
+
+<div id="quizResult" style="display: none;">
+  <h2>Resultaat</h2>
+  <p id="resultText"></p>
+</div>
+
+<script>
+  document.getElementById('easterEggButton').addEventListener('click', function() {
+    document.getElementById('easterEggQuiz').style.display = 'block';
+  });
+
+  function checkAnswers() {
+    const answers = document.querySelectorAll('input[name="question1"]:checked');
+    const resultText = document.getElementById('resultText');
+
+    if (answers.length === 1 && answers[0].value === 'b') {
+      const discountCode = generateDiscountCode();
+      resultText.innerHTML = 'Gefeliciteerd! Je hebt een kortingscode van 15% ontvangen'; {discountCode};
+    } else {
+      resultText.innerHTML = 'Helaas, probeer het opnieuw voor de easter egg-expertstatus.';
+    }
+
+    document.getElementById('quizResult').style.display = 'block';
+    document.getElementById('easterEggQuiz').style.display = 'none';
+  }
+
+  function generateDiscountCode() {
+    // Hier kun je een functie toevoegen om een willekeurige kortingscode te genereren
+    // Bijvoorbeeld: implementeer een algoritme om een unieke code te maken
+    return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
+  }
+</script>
 
     
     <footer>
