@@ -6,7 +6,7 @@
     <title>NerdyGadgets | Pong</title>
     <link rel="icon" type="image/png" href="/images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="styling/pong_easter_egg.css">
+    <link rel="stylesheet" href="../styling/pong_easter_egg.css">
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -137,8 +137,20 @@
     <script src="../logic/script.js"></script>
 
 </head>
+
 <body>
-    <div class="pong">
+
+<div class="witregel1">
+    <h1>Een witregel</h1>
+    <h1>Een witregel</h1>
+    <h1>Een witregel</h1>
+</div>
+
+<div>
+    
+</div>
+
+    <div class="canvas">
         <canvas id="pong" width="600" height="400"></canvas>
     </div>
     <script>
@@ -244,6 +256,10 @@
 
         game();
     </script>
+
+<div>
+    <h1 class="witregel2">Gebruik je muis in de verticale richting om de linkerspeler te besturen</h1>
+</div>
 
 </body>
 
