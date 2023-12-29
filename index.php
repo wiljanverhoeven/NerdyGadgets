@@ -212,6 +212,7 @@
             </span>
 
             <div class="form-box login">
+            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="pages/login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -414,10 +415,9 @@
 
         </section>
 
-        <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
 
     </div>
-    <button id="easterEggButton">Geheime Knop</button>
+    <button style="opacity: 0;" id="easterEggButton">Geheime Knop</button>
 
 <div id="easterEggQuiz" style="display: none;">
   <h2>Nerd Quiz</h2>
@@ -425,6 +425,21 @@
   <input type="radio" name="question1" value="b"> Binary<br>
   <input type="radio" name="question1" value="a"> Java<br>
   <input type="radio" name="question1" value="c"> C-sharp<br>
+
+  <p>Wat is het doel van een CSS-selector?</p>
+<input type="radio" name="question2" value="a"> Het selecteren van HTML-elementen voor stijltoepassing<br>
+<input type="radio" name="question2" value="b"> Het definiëren van variabelen in JavaScript<br>
+<input type="radio" name="question2" value="c"> Het filteren van gegevens in een database<br>
+
+<p>Wat is het resultaat van de volgende JavaScript-uitdrukking: 3 + 4 + "5"?</p>
+<input type="radio" name="question3" value="a"> 12<br>
+<input type="radio" name="question3" value="b"> 75<br>
+<input type="radio" name="question3" value="c"> "75"<br>
+
+<p>Wat is het verschil tussen 'let', 'const' en 'var' in JavaScript?</p>
+<input type="radio" name="question4" value="a"> Ze zijn allemaal synoniem en kunnen onderling worden uitgewisseld<br>
+<input type="radio" name="question4" value="b"> 'let' en 'const' zijn block-scoped, terwijl 'var' function-scoped is<br>
+<input type="radio" name="question4" value="c"> 'const' is alleen voor constanten, 'let' is voor variabelen en 'var' is verouderd<br>
 
   <!-- Voeg hier meer vragen toe -->
 

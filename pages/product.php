@@ -13,6 +13,8 @@
     $id = $_GET['product'];
     ?>
 
+    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets | Product</title>
@@ -44,7 +46,7 @@
             <ul>
                 <li><a href="../index.php" class="paginas">Home</a></li>
                 <li><a href="../pages/over-ons.php" class="paginas">Over ons</a></li>
-                <li><a href="../pages/producten.php" class="paginas">Producten</a></li>
+                <li><a href="../pages/productoverzicht.php" class="paginas">Producten</a></li>
             </ul>
         </nav>
 
@@ -149,42 +151,29 @@
 
     <script src="../logic/script.js"></script>
 
-    <div class="product-container">
+    <?php
+                $sql = 'SELECT * FROM producten WHERE productid="'.$id.'" ';
+                if ($result = mysqli_query($conn, $sql)) {
+                    // Fetch one and one row
+                    $row = mysqli_fetch_row($result)
+            ?>
+
+                    
+
+    <div class="product-container" >
         <div class="product-images">
-            <img id="mainImage" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Product Image 1">
-            <div class="thumbnail-container">
-                <img onclick="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720', width=37.89, height=50.521)" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Thumbnail 1">
-                <img onclick="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177671?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720', width=37.89, height=50.521)" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177671?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Thumbnail 2">
-                <img onclick="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177669?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720' , width=37.89, height=50.521)" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177669?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720" alt="Thumbnail 3">
-            </div>
+        <a href="product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "../images/", $row[5]; ?>" alt="Product"></a>
         </div>
-        <script>
-            function changeImage(imageSrc) {
-                document.getElementById('mainImage').src = imageSrc;
-            }
-        </script>
 
         <section id="productinformatie" class="productinformatie">
 
             <div class="bottom">
 
                 <div class="product-details">
-                    <div class="product-name">Productnaam</div>
-                    <div class="product-description">Korte beschrijving van het product.</div>
-                    <div class="product-info">
-                        <p>Kleur: Blauw</p>
-                        <p>Grootte: Medium</p>
-                    </div>
-                    <div class="product-price">€99.99</div>
-                    <div class="product-variants">
-                        <label for="color">Kies een kleur:</label>
-                        <select id="color">
-                            <option value="blauw">Blauw</option>
-                            <option value="rood">Rood</option>
-                            <option value="groen">Groen</option>
-                        </select>
-                    </div>
-                    <button class="add-to-cart">Toevoegen aan winkelwagen</button>
+                    <div class="product-name"><?php echo $row[1]; ?></div>
+                    <div class="product-description"><?php echo $row[8]; ?></div>
+                    <div class="product-price"><?php echo "€", $row[3]; ?></div>
+                    <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
                     <div class="availability">Beschikbaarheid: Op voorraad</div>
                 </div>
         </section>
@@ -192,65 +181,42 @@
 
     <div class="productbeschrijving">
         <h2>Productinformatie</h2>
-        <ul>
-            <li>Afmetingen: [B x H x D]</li>
-            <li>Gewicht: [Gewicht van het product]</li>
-            <li>Materiaal: [Materiaal van het product]</li>
-            <li>Kleur: [Beschikbare kleuren]</li>
-            <li>Batterijduur: [Indien van toepassing]</li>
-        </ul>
+        <div><?php echo $row[2]; ?></div>
 
         <!-- Voeg hier technische gegevens en beschikbare varianten toe -->
     </div>
+    
 
     <div class="productreviews">
         <h2>Klantbeoordelingen</h2>
         <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
     </div>
     <div class="aanraders">
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 1"></a>
-            <h3>Product 1</h3>
-            <p>Beschrijving van Product 1 en prijs hier.</p>        
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
-
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 2"></a>
-            <h3>Product 2</h3>
-            <p>Beschrijving van Product 2 en prijs hier.</p>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
-
-        <div class="product2">
-            <a href="../pages/product.php"><img src="../images/product.png" alt="Product 3"></a>
-            <h3>Product 3</h3>
-            <p>Beschrijving van Product 3 en prijs hier.</p>
-            <button class="add-to-cart">Voeg toe aan winkelwagen</button>
-        </div>
-    </div>
-    </div>
-
-    <?php
-                $sql = 'SELECT * FROM producten WHERE productid="'.$id.'" ';
+        <?php } 
+        $sql = 'SELECT * FROM producten WHERE NOT productnaam LIKE "%' . $row[1] . '%" OR categorie LIKE "%' . $row[4] . '%" or merk LIKE "%' . $row[7] . '%"';
                 if ($result = mysqli_query($conn, $sql)) {
-                    // Fetch one and one row
-                    while ($row = mysqli_fetch_row($result)) {
-            ?>
-                        <div id="product">
-                            <a href="product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "../images/", $row[5]; ?>" alt="Product"></a>
-                            <h3><?php echo $row[1]; ?></h3>
-                            <p><?php echo "€", $row[3]; ?></p>
-                            <p><?php echo $row[8]; ?></p> 
 
-                            <h3><?php echo $row['productnaam']; ?></h3>
-                <p>Price: €<?php echo $row['prijs']; ?></p>
-                <p><?php echo $row['description']; ?></p>
+                    for ($i = 0; $i < 3; $i++) {
+                        $row2 = mysqli_fetch_row($result);
+                        if ($row != null) { ?>
+                            <div class="product2">
+                                <a href="../pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "../images/", $row2[5]; ?>" alt="Product"></a>
+                                <h3><?php echo $row2[1]; ?></h3>
+                                <p><?php echo "€", $row2[3]; ?></p>
+                                <p><?php echo $row2[8]; ?></p>
+                                <form method="get" action="../pages/product.php">
+                            <button class="add-to-cart" name="add" value="<?php echo $row2[0]; ?>">go to page</button>
+                        </form>
+                                <form method="post">
+                                    <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
+                                    <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                </form>
+                            </div>
+    </div>
+    </div>
+    <?php }}} ?>
 
-                            <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
-                        </div>
-
-                    <?php  }} ?>
+   
 
                     
 
