@@ -142,7 +142,21 @@
                     }
                 }
             }
-
+            if (!empty($_SESSION['cart'])) {
+            $set = 0;
+            foreach ($_SESSION['cart'] as $item) { 
+                $proid = $item['proid'];
+                $line = 'SELECT * FROM producten WHERE productid = ?';
+                $prepare = mysqli_prepare($conn, $line);
+                mysqli_stmt_bind_param($prepare, 'i', $proid);
+                mysqli_stmt_execute($prepare);
+                $end = mysqli_stmt_get_result($prepare);
+                if ($rows = mysqli_fetch_assoc($end)) { 
+                    $set += $rows['prijs'] * $item['quantity'];
+                }
+            }
+            ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
+        }
             if (!empty($_SESSION['cart'])) {
                 foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
@@ -153,6 +167,7 @@
                     mysqli_stmt_bind_param($stmt, 'i', $proid);
                     mysqli_stmt_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
+                    
 
                     if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
@@ -165,6 +180,7 @@
                                 <button type="submit" name="minus">-</button>
                             </form>
                         </div>
+                        
             <?php
                     }
                 }
@@ -172,8 +188,11 @@
                 // Display a message or take other actions when the cart is empty
                 echo "Your shopping cart is empty.";
             }
+        
+
 
             ?>
+            
 
 
         </div>
@@ -193,6 +212,7 @@
             </span>
 
             <div class="form-box login">
+            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="pages/login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -205,7 +225,7 @@
                     </div>
                     <div class="remember-forgot">
                         <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="#"> Forgot password</a>
+                        <a href="http://localhost/nerdygadgets-1/pages/memory.html"> Forgot password</a>
                     </div>
 
                     <button type="submit" name="apply" class="btn">login</button>
@@ -395,9 +415,68 @@
 
         </section>
 
-        <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
 
     </div>
+    <button style="opacity: 0;" id="easterEggButton">Geheime Knop</button>
+
+<div id="easterEggQuiz" style="display: none;">
+  <h2>Nerd Quiz</h2>
+  <p>Wat is de favoriete programmeertaal van een computer?</p>
+  <input type="radio" name="question1" value="b"> Binary<br>
+  <input type="radio" name="question1" value="a"> Java<br>
+  <input type="radio" name="question1" value="c"> C-sharp<br>
+
+  <p>Wat is het doel van een CSS-selector?</p>
+<input type="radio" name="question2" value="a"> Het selecteren van HTML-elementen voor stijltoepassing<br>
+<input type="radio" name="question2" value="b"> Het definiëren van variabelen in JavaScript<br>
+<input type="radio" name="question2" value="c"> Het filteren van gegevens in een database<br>
+
+<p>Wat is het resultaat van de volgende JavaScript-uitdrukking: 3 + 4 + "5"?</p>
+<input type="radio" name="question3" value="a"> 12<br>
+<input type="radio" name="question3" value="b"> 75<br>
+<input type="radio" name="question3" value="c"> "75"<br>
+
+<p>Wat is het verschil tussen 'let', 'const' en 'var' in JavaScript?</p>
+<input type="radio" name="question4" value="a"> Ze zijn allemaal synoniem en kunnen onderling worden uitgewisseld<br>
+<input type="radio" name="question4" value="b"> 'let' en 'const' zijn block-scoped, terwijl 'var' function-scoped is<br>
+<input type="radio" name="question4" value="c"> 'const' is alleen voor constanten, 'let' is voor variabelen en 'var' is verouderd<br>
+
+  <!-- Voeg hier meer vragen toe -->
+
+  <button onclick="checkAnswers()">Indienen</button>
+</div>
+
+<div id="quizResult" style="display: none;">
+  <h2>Resultaat</h2>
+  <p id="resultText"></p>
+</div>
+
+<script>
+  document.getElementById('easterEggButton').addEventListener('click', function() {
+    document.getElementById('easterEggQuiz').style.display = 'block';
+  });
+
+  function checkAnswers() {
+    const answers = document.querySelectorAll('input[name="question1"]:checked');
+    const resultText = document.getElementById('resultText');
+
+    if (answers.length === 1 && answers[0].value === 'b') {
+      const discountCode = generateDiscountCode();
+      resultText.innerHTML = 'Gefeliciteerd! Je hebt een kortingscode van 15% ontvangen'; {discountCode};
+    } else {
+      resultText.innerHTML = 'Helaas, probeer het opnieuw voor de easter egg-expertstatus.';
+    }
+
+    document.getElementById('quizResult').style.display = 'block';
+    document.getElementById('easterEggQuiz').style.display = 'none';
+  }
+
+  function generateDiscountCode() {
+    // Hier kun je een functie toevoegen om een willekeurige kortingscode te genereren
+    // Bijvoorbeeld: implementeer een algoritme om een unieke code te maken
+    return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
+  }
+</script>
 
     
     <footer>

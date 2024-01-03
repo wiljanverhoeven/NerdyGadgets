@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Game with Images</title>
+    <style>
+        
+        #memory-game {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .game-card {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: absolute;
+        }
+
+        .game-card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+        transform: rotateY(0deg);
+        background-color: #ccc; 
+        background-image: url('../image/koko.png'); 
+        background-size: cover;
+        background-position: center;
+    }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-size: cover;
+        }
+
+        .card-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="../styling/basic-style.css">
+    <link rel="stylesheet" href="../styling/homepage.css">
+</head>
+
+<body>
+    <h1>Memory Game with Images</h1>
+    <p>Click on the cards to reveal them and find matching pairs.</p>
+
+    <div id="memory-game"></div>
+
+    <script>
+       
+        const imageSources = [
+            '../image/a.png', // Replace with your image paths
+            '../image/b.png',
+            '../image/c.png',
+            '../image/d.jpg',
+            '../image/e.png',
+            '../image/f.png',
+            '../image/g.png',
+            // Pairs of images
+            '../image/a.png',
+            '../image/b.png',
+            '../image/c.png',
+            '../image/d.jpg',
+            '../image/e.png',
+            '../image/f.png',
+            '../image/g.png'
+        ];
+
+        function shuffle(array) {
+            let currentIndex = array.length,
+                tempValue, randomIndex;
+
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                tempValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = tempValue;
+            }
+
+            return array;
+        }
+
+        function initializeMemoryGame() {
+            const memoryGameContainer = document.getElementById('memory-game');
+            let isFlipped = false;
+            let lockBoard = false;
+            let firstCard, secondCard;
+
+            function flipCard() {
+                if (lockBoard) return;
+                if (this === firstCard) return;
+
+                this.classList.add('flip');
+
+                if (!isFlipped) {
+                    isFlipped = true;
+                    firstCard = this;
+                    return;
+                }
+
+                secondCard = this;
+                checkForMatch();
+            }
+
+            function checkForMatch() {
+                let isMatch = firstCard.querySelector('.card-back').style.backgroundImage === secondCard.querySelector('.card-back').style.backgroundImage;
+
+                isMatch ? disableCards() : unflipCards();
+            }
+
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+
+                resetBoard();
+            }
+
+            function unflipCards() {
+                lockBoard = true;
+
+                setTimeout(() => {
+                    firstCard.classList.remove('flip');
+                    secondCard.classList.remove('flip');
+
+                    resetBoard();
+                }, 1000);
+            }
+
+            function resetBoard() {
+                [isFlipped, lockBoard] = [false, false];
+                [firstCard, secondCard] = [null, null];
+            }
+
+            shuffle(imageSources);
+            imageSources.forEach(imageSrc => {
+                const card = document.createElement('div');
+                card.classList.add('game-card');
+
+                const cardInner = document.createElement('div');
+                cardInner.classList.add('card-inner');
+                card.appendChild(cardInner);
+
+                const cardFront = document.createElement('div');
+                cardFront.classList.add('card-face', 'card-front');
+                cardInner.appendChild(cardFront);
+
+                const cardBack = document.createElement('div');
+                cardBack.classList.add('card-face', 'card-back');
+                cardBack.style.backgroundImage = `url(${imageSrc})`;
+                cardInner.appendChild(cardBack);
+
+                card.addEventListener('click', flipCard);
+                memoryGameContainer.appendChild(card);
+            });
+        }
+
+        initializeMemoryGame();
+    </script>
+</body>
+
+</html>

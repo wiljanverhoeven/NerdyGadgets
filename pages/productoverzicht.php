@@ -143,7 +143,21 @@
                     }
                 }
             }
-
+            if (!empty($_SESSION['cart'])) {
+                $set = 0;
+                foreach ($_SESSION['cart'] as $item) { 
+                    $proid = $item['proid'];
+                    $line = 'SELECT * FROM producten WHERE productid = ?';
+                    $prepare = mysqli_prepare($conn, $line);
+                    mysqli_stmt_bind_param($prepare, 'i', $proid);
+                    mysqli_stmt_execute($prepare);
+                    $end = mysqli_stmt_get_result($prepare);
+                    if ($rows = mysqli_fetch_assoc($end)) { 
+                        $set += $rows['prijs'] * $item['quantity'];
+                    }
+                }
+                ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
+            }
             if (!empty($_SESSION['cart'])) {
                 foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
@@ -255,7 +269,7 @@
             <a href="categorie.php?categorie=telefoons"><img class="filter" height="200px" src="../images/telefoons.Jfif" alt="telefoons"></a>
 
         </section>
-
+        <a href="../pages/memory.html" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
         <section class="producten">
             <div class="sliders">
                 <div id="slide1">
