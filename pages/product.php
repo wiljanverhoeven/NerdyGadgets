@@ -98,6 +98,7 @@
             </span>
 
             <div class="form-box login">
+            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="../logic/loginB.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -192,33 +193,37 @@
         <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
     </div>
     <div class="aanraders">
-        <?php } 
-        $sql = 'SELECT * FROM producten WHERE NOT productnaam LIKE "%' . $row[1] . '%" OR categorie LIKE "%' . $row[4] . '%" or merk LIKE "%' . $row[7] . '%"';
-                if ($result = mysqli_query($conn, $sql)) {
-
-                    for ($i = 0; $i < 3; $i++) {
-                        $row2 = mysqli_fetch_row($result);
-                        if ($row != null) { ?>
-                            <div class="product2">
-                                <a href="../pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "../images/", $row2[5]; ?>" alt="Product"></a>
-                                <h3><?php echo $row2[1]; ?></h3>
-                                <p><?php echo "€", $row2[3]; ?></p>
-                                <p><?php echo $row2[8]; ?></p>
-                                <form method="get" action="../pages/product.php">
-                            <button class="add-to-cart" name="add" value="<?php echo $row2[0]; ?>">go to page</button>
-                        </form>
-                                <form method="post">
-                                    <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
-                                    <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
-                                </form>
-                            </div>
+    <?php
+    $sql = 'SELECT * FROM producten WHERE NOT productnaam LIKE "%' . $row[1] . '%" OR categorie LIKE "%' . $row[4] . '%" or merk LIKE "%' . $row[7] . '%"';
+    if ($result = mysqli_query($conn, $sql)) {
+        $counter = 0; // Initialize counter
+        while ($row2 = mysqli_fetch_row($result)) {
+            if ($row2 != null && $counter < 3) { // Limit to 3 recommendations
+                $counter++;
+    ?>
+                <div class="product2">
+                    <a href="../pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "../images/", $row2[5]; ?>" alt="Product"></a>
+                    <h3><?php echo $row2[1]; ?></h3>
+                    <p><?php echo "€", $row2[3]; ?></p>
+                    <p><?php echo $row2[8]; ?></p>
+                    <form method="get" action="../pages/product.php"></form>
+                    <form method="post">
+                        <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
+                        <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                    </form>
+                </div>
+    <?php
+            } else {
+                break; // Exit the loop after 3 recommendations
+            }
+        }
+    }
+    ?>
+</div>
+<?php } ?>
     </div>
-    </div>
-    <?php }}} ?>
 
-   
-
-                    
+           
 
     <footer>
 
