@@ -374,14 +374,14 @@
     <footer>
 
         <div class="inhoudFooter">
-            <div class="contactfooter">
+            <div class="contactgegevens">
                 <h3 style="color: #fff" ;>Contactgegevens</h3>
                 <p style="color: #fff" ;>
                     Adres: Hospitaaldreef 5, Almere
                     <br>
                     Email: administratie@nerdygadgets.nl
                     <br>
-                    Telefoonnummer: +31 06 12345678
+                    Telefoonnummer: +31 6 12345678
                 </p>
             </div>
 
@@ -402,7 +402,6 @@
             </div>
 
             <div class="links">
-                <h3>Links</h3>
                 <a style="color: #fff" ; href="../index.php">Home</a>
                 <a style="color: #fff" ; href="../pages/over-ons.php">Over ons</a>
                 <a style="color: #fff" ; href="../pages/productoverzicht.php">Producten</a>
