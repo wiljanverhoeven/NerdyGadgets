@@ -206,6 +206,7 @@
             </span>
 
             <div class="form-box login">
+            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="../logic/loginB.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
