@@ -421,27 +421,7 @@
 
 <div id="easterEggQuiz" style="display: none;">
   <h2>Nerd Quiz</h2>
-  <p>Wat is de favoriete programmeertaal van een computer?</p>
-  <input type="radio" name="question1" value="b"> Binary<br>
-  <input type="radio" name="question1" value="a"> Java<br>
-  <input type="radio" name="question1" value="c"> C-sharp<br>
-
-  <p>Wat is het doel van een CSS-selector?</p>
-<input type="radio" name="question2" value="a"> Het selecteren van HTML-elementen voor stijltoepassing<br>
-<input type="radio" name="question2" value="b"> Het definiëren van variabelen in JavaScript<br>
-<input type="radio" name="question2" value="c"> Het filteren van gegevens in een database<br>
-
-<p>Wat is het resultaat van de volgende JavaScript-uitdrukking: 3 + 4 + "5"?</p>
-<input type="radio" name="question3" value="a"> 12<br>
-<input type="radio" name="question3" value="b"> 75<br>
-<input type="radio" name="question3" value="c"> "75"<br>
-
-<p>Wat is het verschil tussen 'let', 'const' en 'var' in JavaScript?</p>
-<input type="radio" name="question4" value="a"> Ze zijn allemaal synoniem en kunnen onderling worden uitgewisseld<br>
-<input type="radio" name="question4" value="b"> 'let' en 'const' zijn block-scoped, terwijl 'var' function-scoped is<br>
-<input type="radio" name="question4" value="c"> 'const' is alleen voor constanten, 'let' is voor variabelen en 'var' is verouderd<br>
-
-  <!-- Voeg hier meer vragen toe -->
+  <div id="questionContainer"></div>
 
   <button onclick="checkAnswers()">Indienen</button>
 </div>
@@ -452,17 +432,57 @@
 </div>
 
 <script>
+  const questions = [
+    {
+      question: "Wat is de favoriete programmeertaal van een computer?",
+      options: ["Java", "Binary", "C-sharp"],
+      correctAnswer: "Binary"
+    },
+    {
+      question: "Hoe lost een programmeur een gebroken hart op?",
+      options: ["Met een algoritme", "Door de code te debuggen", "Door een nieuwe relatieklasse te maken"],
+      correctAnswer: "Door de code te debuggen"
+    },
+    {
+      question: "Hoe noem je een programmeur zonder koffie?",
+      options: ["Ontnuchterd", "Slaperig", "Niet-gecompileerd"],
+      correctAnswer: "Niet-gecompileerd"
+    }
+  ];
+
+  let currentQuestion = null;
+
   document.getElementById('easterEggButton').addEventListener('click', function() {
-    document.getElementById('easterEggQuiz').style.display = 'block';
+    const questionContainer = document.getElementById('questionContainer');
+
+    // Controleer of er al een vraag is weergegeven
+    if (!currentQuestion) {
+      currentQuestion = getRandomQuestion();
+      displayQuestion(currentQuestion);
+      document.getElementById('easterEggQuiz').style.display = 'block';
+    }
   });
 
+  function getRandomQuestion() {
+    return questions[Math.floor(Math.random() * questions.length)];
+  }
+
+  function displayQuestion(question) {
+    const questionContainer = document.getElementById('questionContainer');
+    questionContainer.innerHTML = `<p>${question.question}</p>`;
+
+    question.options.forEach((option, index) => {
+      questionContainer.innerHTML += `<input type="radio" name="question" value="${option}"> ${option}<br>`;
+    });
+  }
+
   function checkAnswers() {
-    const answers = document.querySelectorAll('input[name="question1"]:checked');
+    const selectedAnswer = document.querySelector('input[name="question"]:checked');
     const resultText = document.getElementById('resultText');
 
-    if (answers.length === 1 && answers[0].value === 'b') {
+    if (selectedAnswer && selectedAnswer.value === currentQuestion.correctAnswer) {
       const discountCode = generateDiscountCode();
-      resultText.innerHTML = 'Gefeliciteerd! Je hebt een kortingscode van 15% ontvangen'; {discountCode};
+      resultText.innerHTML = `Gefeliciteerd! Je hebt een kortingscode van 15% ontvangen: ${discountCode}`;
     } else {
       resultText.innerHTML = 'Helaas, probeer het opnieuw voor de easter egg-expertstatus.';
     }
@@ -477,6 +497,9 @@
     return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
   }
 </script>
+
+
+
 
     
     <footer>
