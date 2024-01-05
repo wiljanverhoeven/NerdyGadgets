@@ -212,7 +212,7 @@
             </span>
 
             <div class="form-box login">
-            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+            <a href="../pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="pages/login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -223,14 +223,8 @@
                         <input type="password" placeholder="Password" name="pass" required>
                         <i class='bx bxs-lock-alt'></i>
                     </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="http://localhost/nerdygadgets-1/pages/memory.html"> Forgot password</a>
-                    </div>
-
                     <button type="submit" name="apply" class="btn">login</button>
                     <div class="register-login">
-                        <a href="pages/register.php">register</a>
                         <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
                     </div>
 
@@ -239,7 +233,7 @@
             </div>
             <div class="form-box register">
 
-                <form action="pages/login.php" method="post">
+                <form action="../logic/loginB.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
                         <input type="text" placeholder="username" required name="usernamelogin">
@@ -315,9 +309,6 @@
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                        <form method="get" action="pages/product.php">
-                            <button class="add-to-cart" name="product" value="<?php echo ${"producten$i"}["productid"]; ?>">go to page</button>
-                        </form>
                         <form method="post">
                             <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
                             <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
@@ -342,9 +333,6 @@
                                 <h3><?php echo $row[1]; ?></h3>
                                 <p><?php echo "€", $row[3]; ?></p>
                                 <p><?php echo $row[8]; ?></p>
-                                <form method="get" action="../pages.product.php">
-                            <button class="add-to-cart" name="add" value="<?php echo $row[0]; ?>">go to page</button>
-                        </form>
                                 <form method="post">
                                     <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
                                     <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
