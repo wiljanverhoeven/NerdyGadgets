@@ -206,23 +206,18 @@
             </span>
 
             <div class="form-box login">
-            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
-                <form action="../logic/loginB.php" method="post">
+            <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <form action="login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="username" required>
+                        <input type="text" placeholder="email" name="mail" required>
                         <i class='bx bxs-user'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Password" name="pass" required>
                         <i class='bx bxs-lock-alt'></i>
                     </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="#"> Forgot password</a>
-                    </div>
-
-                    <button type="submit" class="btn">login</button>
+                    <button type="submit" name="apply" class="btn">login</button>
                     <div class="register-login">
                         <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
                     </div>
@@ -261,6 +256,7 @@
     <script src="../logic/script.js"></script>
 
 </header>
+
 <section id="review" class=""section>
     <div class="container">
         <div class="board">
@@ -270,116 +266,46 @@
             <div class="swiper">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
+                    <!-- Slides -->               
+                        <?php
+                        $sql = "SELECT r.*, u.first_name, u.surname_prefix, u.surname
+                        FROM recensies r
+                        JOIN user u ON r.User_id = u.id
+                        Where rating > 2
+                        ORDER BY rating DESC";
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0) {
+                        while ($row3 = $result->fetch_assoc()) {
+                        $product_id = $row3['Product_id'];
+                        $inhoud = $row3['inhoud'];
+                        $rating = $row3['rating'];
+                        $name = $row3['first_name'] ." ". $row3['surname_prefix'] ." ". $row3['surname'];              
+                        ?>                
                     <div class="swiper-slide">
                         <div class="flex">
+                            <?php
+                                if ($rating == 1) {
+                                    echo "<span>&starf;&star;&star;&star;&star;</span>";
+                                } else if ($rating == 2) {
+                                    echo "<span>&starf;&starf;&star;&star;&star;</span>";
+                                }else if ($rating == 3) {
+                                    echo "<span>&starf;&starf;&starf;&star;&star;</span>";
+                                }else if ($rating == 4) {
+                                    echo "<span>&starf;&starf;&starf;&starf;&star;</span>";
+                                }else if ($rating == 5) {
+                                    echo "<span>&starf;&starf;&starf;&starf;&starf;</span>";
+                                }
+                            ?>
                             <div class="comments">
-                                Zit er geen eten op mijn bord, dan eet ik het hele bord!
+                                <p><?=$inhoud?></p>
                             </div>
                             <div class="profile">
-                                <img src="https://th.bing.com/th?q=Rapper+Bigidagoe&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.3&pid=InlineBlock&mkt=nl-NL&cc=NL&setlang=nl&adlt=strict&t=1&mw=247" width="66.59" height="66.59">
-                                <a href="#">Bigidagoe</a>
-                                <span>Favoriete uitvinding: de frituurpan</span>
+                                <h4></h4><?=$name?></h4>
                             </div>
-                        </div>
-
-
+                         </div>
                     </div>
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                Double w's in de chat!
-                            </div>
-                            <div class="profile">
-                                <img src="https://th.bing.com/th/id/OIP.viHhFcj6ud1UVjUxrHmy8gAAAA?pid=ImgDet&rs=1" width="66.59" height="66.59">
-                                <a href="#">IShowSpeed</a>
-                                <span>Fan van Talking Ben</span>
-                            </div>
-                        </div>
-                        </div>
-
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                It's very great site. Suiiiiiiiiiiiiiiiii!
-                            </div>
-                            <div class="profile">
-                                <img src="https://www.beautyfreelancer.nl/files/post/img1/thumb_Kapsel-Ronaldo.png" width="66.59" height="66.59">
-                                <a href="#">Ronaldo</a>
-                                <span>IShowSpeed's best friend</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                Eyy wie joint m'n minecraft server?
-                            </div>
-                            <div class="profile">
-                                <img src="../images/BoredHiro.png" width="66.59" height="66.59">
-                                <a href="#">Hieu</a>
-                                <span>Een bully</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                Can I buy this site too?
-                            </div>
-                            <div class="profile">
-                                <img src="https://marriedbiography.com/wp-content/uploads/2018/06/elon-150x150.jpg" width="66.59" height="66.59">
-                                <a href="#">Elon Musk</a>
-                                <span>Founder and CEO of ruining Twitter</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                Als koning der Nederlanden, Prins van Oranje-Nassau en jonkheer van Amsberg verklaar ik deze site als een topsite.
-                            </div>
-                            <div class="profile">
-                                <img src="https://caribischnetwerk.ntr.nl/files/2013/05/willem-alexander-150x150.jpg" width="66.59" height="66.59">
-                                <a href="#">Willem-Alexander der Nederlanden</a>
-                                <span>Koning Willie is ook goed hoor</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                Tt goedkoop G! Vraag: zijn hier ook minderjarigen te koop? Vraag 't voor een vriend.
-                            </div>
-                            <div class="profile">
-                                <img src="https://th.bing.com/th/id/OIP.l3JAXHjxILhsOXvdiw2qJgCWCW?pid=ImgDet&rs=1" width="66.59" height="66.59">
-                                <a href="#">Anoniem</a>
-                                <span>Naam: Marco Borsato </span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <div class="comments">
-                                What we do in the physical realm reflects in the spiritual realm (hello karma!), but it's also a powerful reminder to strive to make the lower self in reflection of the higher self, and to remember that we are in unity with the universe, with our bodies being microcosms, a miniture version of the macrocosm, the universe. Btw great site.
-                            </div>
-                            <div class="profile">
-                                <img src="../images/een reviewer.png" width="66.59" height="66.59">
-                                <a href="#">CestLavieMonAmi</a>
-                                <span>the spiritual</span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    } }?>  
                 </div>
                 <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
@@ -398,17 +324,6 @@
 
 
 <section id="klantrecensies" class="section">
-    <div class="section-content">
-        <h2>Plaats uw recensie</h2>
-        <form id="reviewForm">
-            <label for="review">Uw recensie:</label>
-            <textarea id="review" name="review" rows="5" required></textarea>
-            <label for="rating">Beoordeling (1-5):</label>
-            <input type="number" id="rating" name="rating" min="1" max="5" required>
-            <button type="submit" class="btn btn-primary">Plaats recensie</button>
-        </form>
-    </div>
-    <br>
 
     <script>
         let reviews = [];
@@ -471,23 +386,6 @@
             displayReviews(); // Update de weergave van recensies na sorteren
         }
     </script>
-
-
-
-    <div class="section-content">
-        <h2>Klantrecensies</h2>
-        <div>
-            <label for="sort">Sorteer op:</label>
-            <select id="sort" onchange="sortReviews()">
-                <option value="datum">Datum</option>
-                <option value="waardering">Waardering</option>
-                <option value="relevantie">relevantie</option>
-            </select>
-        </div>
-        <div id="reviews">
-            <!-- Hier worden de recensies dynamisch ingevoegd -->
-        </div>
-    </div>
 </section>
 
 <footer>

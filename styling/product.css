@@ -77,8 +77,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -398px;
-  margin-left: 832px;
+  margin-top: -230px;
+  margin-left: 950px;
+  width: 30%;
 }
 
 .product2 {
@@ -90,7 +91,7 @@ body {
   padding: 20px;
   margin: 20px;
   text-align: center;
-  max-width: 300px;
+  width: 60%;
 }
 
 .product2 img {
@@ -144,6 +145,8 @@ body {
   margin: 20px;
   text-align: left;
   max-width: 750px;
+  margin-top: -1090px;
+  margin-bottom: 500px;
 }
 
 .productinformatie {
@@ -168,4 +171,11 @@ body {
   width: 80px; /* Pas dit aan naar het gewenste pictogramformaat */
   height: 80px;
   cursor: pointer;
+}
+
+.existing-reviews {
+  border: 4px solid #33333386;
+  border-radius: 4px;
+  padding: 10px;
+  padding-left: 30px;
 }

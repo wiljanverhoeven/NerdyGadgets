@@ -4,8 +4,12 @@
 <head>
     <?php
     require '../dbconnect.php';
+    require '../logic/functions.php';
+    ob_start();
 
     session_start();
+    $_SESSION['token'] = uniqid();
+    $appel = "";
 
     $query2 = 'SELECT * FROM producten WHERE productid = "' . $_GET['product'] . '"';
     $result2 = mysqli_query($conn, $query2);
@@ -18,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets | Product</title>
-    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
+    <link rel="icon" type="image/png" href="../images/Logo_icon 2">
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/product.css">
     <link rel="stylesheet" href="../styling/logincss.css">
@@ -26,7 +30,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<<body onload="changeImage('https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_104177670?x=960&y=720&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=960&ey=720&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=960&cdy=720')">>
+<body>
     <header>
         <div class="logo">
             <a href="../index.php">
@@ -76,15 +80,122 @@
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                     </svg>
-                    <span>0</span>
                 </div>
         </div>
 
     </header>
 
-    <div class="cartTab">
+    <div class="cartTab" id="exampleList">
         <h1>Shopping Cart</h1>
-        <div class="listCart"></div>
+        <div class="listCart">
+            <?php
+            if (isset($_POST['add'])) {
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = array();
+                }
+
+                $proid = $_POST['proid'];
+                $item_exists = false;
+
+                foreach ($_SESSION['cart'] as &$item) {
+                    if ($item['proid'] == $proid) {
+                        // If the item already exists, update its quantity and exit the loop
+                        $item['quantity'] += 1;
+                        $item_exists = true;
+                        break;
+                    }
+                }
+
+                if (!$item_exists) {
+                    // If the item does not exist, add it to the cart
+                    $item_array = array(
+                        'proid' => $proid,
+                        'quantity' => 1,
+                    );
+                    $_SESSION['cart'][] = $item_array;
+                }
+            
+
+                // Redirect to the same or a different page after processing the form
+                header("Location: {$_SERVER['REQUEST_URI']}");
+                exit;
+            }
+
+            if (!empty($_SESSION['cart'])) {
+                if (isset($_POST['minus'])) {
+                    $proid = $_POST['proid'];
+
+                    // Store the index to unset after the loop
+                    $index_to_unset = null;
+
+                    foreach ($_SESSION['cart'] as $index => &$item) {
+                        if ($item['proid'] == $proid) {
+                            $item['quantity'] -= 1;
+
+                            if ($item['quantity'] <= 0) {
+                                // Set the index to unset after the loop
+                                $index_to_unset = $index;
+                            }
+
+                            break;
+                        }
+                    }
+
+                    // Unset the item if needed outside the loop
+                    if ($index_to_unset !== null) {
+                        unset($_SESSION['cart'][$index_to_unset]);
+                    }
+                }
+            }
+            if (!empty($_SESSION['cart'])) {
+                $set = 0;
+                foreach ($_SESSION['cart'] as $item) { 
+                    $proid = $item['proid'];
+                    $line = 'SELECT * FROM producten WHERE productid = ?';
+                    $prepare = mysqli_prepare($conn, $line);
+                    mysqli_stmt_bind_param($prepare, 'i', $proid);
+                    mysqli_stmt_execute($prepare);
+                    $end = mysqli_stmt_get_result($prepare);
+                    if ($rows = mysqli_fetch_assoc($end)) { 
+                        $set += $rows['prijs'] * $item['quantity'];
+                    }
+                }
+                ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
+            }
+            if (!empty($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $item) {
+                    $proid = $item['proid'];
+
+                    // Use prepared statement to fetch product information
+                    $sql = 'SELECT * FROM producten WHERE productid = ?';
+                    $stmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($stmt, 'i', $proid);
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                        <div class="item">
+                            <div class="image"><a href="../pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
+                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
+                            <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                                <input type="hidden" name="proid" value="<?php echo $proid; ?>">
+                                <button type="submit" name="add">+</button>
+                                <button type="submit" name="minus">-</button>
+                            </form>
+                        </div>
+            <?php
+                    }
+                }
+            } else {
+                // Display a message or take other actions when the cart is empty
+                echo "Your shopping cart is empty.";
+            }
+
+            ?>
+
+
+        </div>
         <div class="btn">
             <button class="close">CLOSE</button>
             <button class="checkOut">Check Out</button>
@@ -98,23 +209,18 @@
             </span>
 
             <div class="form-box login">
-            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
-                <form action="../logic/loginB.php" method="post">
+            <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <form action="login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="username" required>
+                        <input type="text" placeholder="email" name="mail" required>
                         <i class='bx bxs-user'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Password" name="pass" required>
                         <i class='bx bxs-lock-alt'></i>
                     </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="#"> Forgot password</a>
-                    </div>
-
-                    <button type="submit" class="btn">login</button>
+                    <button type="submit" name="apply" class="btn">login</button>
                     <div class="register-login">
                         <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
                     </div>
@@ -174,7 +280,10 @@
                     <div class="product-name"><?php echo $row[1]; ?></div>
                     <div class="product-description"><?php echo $row[8]; ?></div>
                     <div class="product-price"><?php echo "€", $row[3]; ?></div>
-                    <button class="add-to-cart" name="toevoegen" value=" <?php echo $row[0]; ?>">Voeg toe aan winkelwagen</button>
+                    <form method="post">
+                        <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
+                        <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
+                    </form>
                     <div class="availability">Beschikbaarheid: Op voorraad</div>
                 </div>
         </section>
@@ -186,12 +295,7 @@
 
         <!-- Voeg hier technische gegevens en beschikbare varianten toe -->
     </div>
-    
 
-    <div class="productreviews">
-        <h2>Klantbeoordelingen</h2>
-        <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
-    </div>
     <div class="aanraders">
     <?php
     $sql = 'SELECT * FROM producten WHERE NOT productnaam LIKE "%' . $row[1] . '%" OR categorie LIKE "%' . $row[4] . '%" or merk LIKE "%' . $row[7] . '%"';
@@ -220,6 +324,99 @@
     }
     ?>
 </div>
+    
+
+    <div class="productreviews">
+        <h2>Klantbeoordelingen</h2>
+        <!-- Voeg hier klantbeoordelingen en feedbacksectie toe -->
+        <?php
+        $sql = "SELECT r.*, u.first_name, u.surname_prefix, u.surname
+        FROM recensies r
+        JOIN user u ON r.User_id = u.id
+        WHERE product_id = " . $row[0];
+        $result = $conn->query($sql);
+        if($result->num_rows > 0) {
+        while ($row3 = $result->fetch_assoc()) {
+            $product_id = $row3['Product_id'];
+            $inhoud = $row3['inhoud'];
+            $rating = $row3['rating'];
+            $name = $row3['first_name'] ." ". $row3['surname_prefix'] ." ". $row3['surname'];
+        
+        ?>
+        <div class="existing-reviews">
+            <!-- user name, date and stars -->
+            <div class="review-user">
+                <h4><?=$name?></h4>
+                <?php
+                    if ($rating == 1) {
+                        echo "<span>&starf;&star;&star;&star;&star;</span>";
+                    } else if ($rating == 2) {
+                        echo "<span>&starf;&starf;&star;&star;&star;</span>";
+                    }else if ($rating == 3) {
+                        echo "<span>&starf;&starf;&starf;&star;&star;</span>";
+                    }else if ($rating == 4) {
+                        echo "<span>&starf;&starf;&starf;&starf;&star;</span>";
+                    }else if ($rating == 5) {
+                        echo "<span>&starf;&starf;&starf;&starf;&starf;</span>";
+                    }
+                ?>
+                
+            </div>
+
+            <div class="review-comment">
+                <p><?=$inhoud?></p>
+            </div>
+        </div>
+        <?php
+        } 
+        } else {
+            echo "<div style='width: 100%; height: 300px; display: flex; align-items: center; justify-content: center;'>
+            <p>Dit product heeft nog geen reviews</p>
+        </div>";
+        }
+        if (isset($_COOKIE['email'])) {
+    ?>
+
+        <form method="post">
+                <p>laat zelf een review achter</p>
+                <div class="stars">
+                    <input type="radio" value="1" name="ster">
+                    <input type="radio" value="2" name="ster">
+                    <input type="radio" value="3" name="ster">
+                    <input type="radio" value="4" name="ster">
+                    <input type="radio" value="5" name="ster">
+                </div>
+                <!-- inhoud -->
+                <label for="review">
+                    <textarea name="review" cols="30" rows="10" style="resize: none"></textarea>
+                </label>
+                <input type="submit" class="review-btn" name="submit">
+            </form>
+        <?php } else {
+            ?> <p>log in to leave a review</p> <?php
+        }
+        
+        if (isset($_POST["submit"])) {
+            $rating = $_POST["ster"];
+            $review = $_POST["review"];
+            $prodctid = $row[0];
+            $query = "SELECT * FROM user where email LIKE '".$_COOKIE['email']."' ;";
+            $result = mysqli_query($conn, $query);
+            $rows = mysqli_fetch_row($result);
+            $id = $rows[0];
+    
+
+            $query = "INSERT INTO recensies (inhoud, rating, Product_id, User_id) VALUES (?, ?, ?, ?);";
+            $stmt = $conn->prepare($query) or die("prepare failed.");
+            $stmt->bind_param('ssss', $review, $rating, $prodctid, $id);
+            $stmt->execute() or die('execution failed.');
+            $productLink = "product.php?product=" . $row[0];
+            header("Location: $productLink");
+                
+        }
+        
+        ?>
+    </div>
 <?php } ?>
     </div>
 
