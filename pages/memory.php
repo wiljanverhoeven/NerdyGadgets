@@ -345,8 +345,8 @@ $appel = "";
 
 <body>
     <section class="section">
-    <h1>Memory Game with Images</h1>
-    <p>Click on the cards to reveal them and find matching pairs.</p>
+    <h1>Memory Game</h1>
+    <p>Klik op de kaarten om ze te onthullen en bijpassende paren te vinden.</p>
 
         <div id="memory-game"></div>
 
