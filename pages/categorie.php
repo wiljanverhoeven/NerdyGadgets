@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../styling/footer.css">
 
 
 </head>
@@ -58,15 +59,15 @@
 
             <div class="icons">
 
-                <?php
+            <?php
                 if (isset($_COOKIE['email'])) {
                 ?>
-                    <nav>
-                        <div class="account">
-                            <a class="paginas" title="ga naar uw account" href="../pages/logout.php">log uit</a>
-                        </div>
-                    </nav>
+                    <div class="account">
+                        <a href="logout.php"><img class="user" src="../images/loguit.png" alt="Account" width="40" height="40">
+                        </a>
+                    </div>
                 <?php
+                
                 } else {
                 ?>
                     <div class="account">
@@ -237,23 +238,18 @@
             </span>
 
             <div class="form-box login">
-            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
-                <form action="../logic/loginB.php" method="post">
+            <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <form action="login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="username" required>
+                        <input type="text" placeholder="email" name="mail" required>
                         <i class='bx bxs-user'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Password" name="pass" required>
                         <i class='bx bxs-lock-alt'></i>
                     </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="#"> Forgot password</a>
-                    </div>
-
-                    <button type="submit" class="btn">login</button>
+                    <button type="submit" name="apply" class="btn">login</button>
                     <div class="register-login">
                         <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
                     </div>
@@ -261,26 +257,41 @@
 
                 </form>
             </div>
-            <div class="form-box register">
+            <div class="form-box register" >
 
-                <form action="../logic/loginB.php" method="post">
+                <form action="register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="username" required name="usernamelogin">
-                        <i class='bx bxs-user'></i>
+                        <input type="text" placeholder="firstname" required name="name">
                     </div>
                     <div class="input-box">
-                        <input type="text" placeholder="E-mail" required name="Email">
+                        <input type="text" placeholder="prefix" name="prefix">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Last name" required name="Lname">
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="password" required name="pass">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="E-mail" required name="mail">
                         <i class='bx bx-envelope'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" required name="passwordlogin">
-                        <i class='bx bxs-lock-alt'></i>
+                        <input type="text" placeholder="street" required name="street">
                     </div>
-                    <div class="agree">
-                        <label><input type="checkbox"> Agree to the terms and services</label>
+                    <div class="input-box">
+                        <input type="text" placeholder="House number" required name="HNM">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Postal code" required name="Pcode">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="City" required name="city">
+                    </div>
 
-                        <button type="submit" class="btn">Make account</button>
+                        <button type="submit" class="btn" name="apply">Make account</button>
                         <div class="register-login">
                             <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
                         </div>
@@ -391,45 +402,7 @@
 
         </div>
     </section>
-    <footer>
-
-        <div class="inhoudFooter">
-            <div class="contactfooter">
-                <h3 style="color: #fff" ;>Contactgegevens</h3>
-                <p style="color: #fff" ;>
-                    Adres: Hospitaaldreef 5, Almere
-                    <br>
-                    Email: administratie@nerdygadgets.nl
-                    <br>
-                    Telefoonnummer: +31 06 12345678
-                </p>
-            </div>
-
-            <div class="betaalmiddelen">
-                <h6>
-                    <p>Bij NerdyGadgets bieden wij diverse betalingsmogelijkheden aan om uw betalingservaring veilig en vertrouwd te maken:</p>
-                    <ul id="list">
-                        <a>
-                            <img src="../images/icon-mastercard.png" width="64.2" height="40">
-                            <img src="../images/IDEAL_Logo.png" width="46" height="40">
-                            <img src="../images/icon-visa.png" width="64.2" height="40">
-                        </a>
-                    </ul>
-                    We nemen ook strenge beveiligingsmaatregelen om ervoor te zorgen dat uw betalingen veilig worden verwerkt.
-                    <br>
-                    Copyright © 2023 NerdyGadgets Inc. Alle rechten voorbehouden.
-                </h6>
-            </div>
-
-            <div class="links">
-                <h3>Links</h3>
-                <a style="color: #fff" ; href="../index.php">Home</a>
-                <a style="color: #fff" ; href="../pages/over-ons.php">Over ons</a>
-                <a style="color: #fff" ; href="../pages/productoverzicht.php">Producten</a>
-                <a style="color: #fff" ; href="../pages/account.php">Account</a>
-                <a style="color: #fff" ; href="../pages/legal.php">Legaal</a>
-            </div>
-    </footer>
+    <?php include('footer.php'); ?> 
 
 </body>
 <script src="../logic/app.js"></script>

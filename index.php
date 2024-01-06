@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styling/carts.css">
     <link rel="stylesheet" href="styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styling/footer.css">
 
 
 </head>
@@ -57,12 +58,12 @@
                 <?php
                 if (isset($_COOKIE['email'])) {
                 ?>
-                    <nav>
-                        <div class="account">
-                            <a class="paginas" title="ga naar uw account" href="pages/logout.php">log uit</a>
-                        </div>
-                    </nav>
+                    <div class="account">
+                        <a href="pages/logout.php"><img class="user" src="images/loguit.png" alt="Account" width="40" height="40">
+                        </a>
+                    </div>
                 <?php
+                
                 } else {
                 ?>
                     <div class="account">
@@ -223,40 +224,49 @@
                         <input type="password" placeholder="Password" name="pass" required>
                         <i class='bx bxs-lock-alt'></i>
                     </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox" name="remember"> remember me</label>
-                        <a href="http://localhost/nerdygadgets-1/pages/memory.html"> Forgot password</a>
-                    </div>
-
                     <button type="submit" name="apply" class="btn">login</button>
                     <div class="register-login">
-                        <a href="pages/register.php">register</a>
                         <p>Dont't have a account?<a href="#" class="register-link"> Register</a></p>
                     </div>
 
 
                 </form>
             </div>
-            <div class="form-box register">
+            <div class="form-box register" >
 
-                <form action="pages/login.php" method="post">
+                <form action="pages/register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="username" required name="usernamelogin">
-                        <i class='bx bxs-user'></i>
+                        <input type="text" placeholder="firstname" required name="name">
                     </div>
                     <div class="input-box">
-                        <input type="text" placeholder="E-mail" required name="Email">
+                        <input type="text" placeholder="prefix" name="prefix">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Last name" required name="Lname">
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="password" required name="pass">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="E-mail" required name="mail">
                         <i class='bx bx-envelope'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" required name="passwordlogin">
-                        <i class='bx bxs-lock-alt'></i>
+                        <input type="text" placeholder="street" required name="street">
                     </div>
-                    <div class="agree">
-                        <label><input type="checkbox"> Agree to the terms and services</label>
+                    <div class="input-box">
+                        <input type="text" placeholder="House number" required name="HNM">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Postal code" required name="Pcode">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="City" required name="city">
+                    </div>
 
-                        <button type="submit" class="btn">Make account</button>
+                        <button type="submit" class="btn" name="apply">Make account</button>
                         <div class="register-login">
                             <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
                         </div>
@@ -315,9 +325,6 @@
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
                         <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
                         <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
-                        <form method="get" action="pages/product.php">
-                            <button class="add-to-cart" name="product" value="<?php echo ${"producten$i"}["productid"]; ?>">go to page</button>
-                        </form>
                         <form method="post">
                             <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
                             <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
@@ -328,7 +335,6 @@
                 $appel = $_SESSION['search'];
             }
 
-            $used = 0;
 
             if ($appel != null) {
                 $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
@@ -342,9 +348,6 @@
                                 <h3><?php echo $row[1]; ?></h3>
                                 <p><?php echo "€", $row[3]; ?></p>
                                 <p><?php echo $row[8]; ?></p>
-                                <form method="get" action="../pages.product.php">
-                            <button class="add-to-cart" name="add" value="<?php echo $row[0]; ?>">go to page</button>
-                        </form>
                                 <form method="post">
                                     <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
                                     <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
@@ -352,9 +355,8 @@
                             </div>
                             <?php
                             $cata = $row[4];
-                            $pid = $row[0];
                         } elseif ($row == null) {
-                            $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = ' . $pid . ' AND NOT productid = ' . $used . ' ';
+                            $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%'. $cata. '%";';
                             if ($result2 = mysqli_query($conn, $sql2)) {
                                 $row2 = mysqli_fetch_row($result2);
                                 $used = $row2[0];
@@ -496,14 +498,8 @@
     // Bijvoorbeeld: implementeer een algoritme om een unieke code te maken
     return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
   }
-</script>
-
-
-
-
-    
-    <footer>
-
+</script> 
+<footer>
         <div class="inhoudFooter">
             <div class="contactgegevens">
                 <h3 style="color: #fff" ;>Contactgegevens</h3>

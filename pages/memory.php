@@ -13,9 +13,73 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets | Pong</title>
-    <link rel="icon" type="image/png" href="/images/Logo_icon 2">
+    <style>
+        
+
+        .section {
+            margin: 300px;
+            margin-top: 150px;
+        }
+        #memory-game {
+           
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .game-card {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: absolute;
+        }
+
+        .game-card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+        transform: rotateY(0deg);
+        background-color: #ccc; 
+        background-image: url('../image/koko.png'); 
+        background-size: cover;
+        background-position: center;
+    }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-size: cover;
+        }
+
+        .card-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+    </style>
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="../styling/pong_easter_egg.css">
+    <link rel="stylesheet" href="../styling/homepage.css">
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -270,130 +334,128 @@
 </head>
 
 <body>
+    <section class="section">
+    <h1>Memory Game with Images</h1>
+    <p>Click on the cards to reveal them and find matching pairs.</p>
 
-<div class="witregel1">
-    <h1>Een witregel</h1>
-</div>
+    <div id="memory-game"></div>
 
-<div>
-    
-</div>
-
-    <div class="canvas">
-        <canvas id="pong" width="600" height="400"></canvas>
-    </div>
     <script>
-        const canvas = document.getElementById('pong');
-        const ctx = canvas.getContext('2d');
+       
+        const imageSources = [
+            '../image/a.png', // Replace with your image paths
+            '../image/b.png',
+            '../image/c.png',
+            '../image/d.jpg',
+            '../image/e.png',
+            '../image/f.png',
+            '../image/g.png',
+            // Pairs of images
+            '../image/a.png',
+            '../image/b.png',
+            '../image/c.png',
+            '../image/d.jpg',
+            '../image/e.png',
+            '../image/f.png',
+            '../image/g.png'
+        ];
 
-        canvas.addEventListener('mousemove', (e) => {
-            player.y = e.clientY - player.height / 2;
-        });
+        function shuffle(array) {
+            let currentIndex = array.length,
+                tempValue, randomIndex;
 
-        const player = {
-            x: 10,
-            y: canvas.height / 2 - 50,
-            width: 10,
-            height: 100,
-            color: '#fff',
-        };
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
 
-        const ai = {
-            x: canvas.width - 20,
-            y: canvas.height / 2 - 50,
-            width: 10,
-            height: 100,
-            color: '#fff',
-        };
-
-        const ball = {
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            radius: 8,
-            color: '#fff',
-            speed: 5,
-            velocityX: 5,
-            velocityY: 5,
-        };
-
-        function drawRect(x, y, width, height, color) {
-            ctx.fillStyle = color;
-            ctx.fillRect(x, y, width, height);
-        }
-
-        function drawBall(x, y, radius, color) {
-            ctx.fillStyle = color;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-            ctx.closePath();
-            ctx.fill();
-        }
-
-        function game() {
-            update();
-            render();
-            requestAnimationFrame(game);
-        }
-
-        function update() {
-            ball.x += ball.velocityX;
-            ball.y += ball.velocityY;
-
-            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-                ball.velocityY = -ball.velocityY;
+                tempValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = tempValue;
             }
 
-            let paddle = ball.x < canvas.width / 2 ? player : ai;
-            if (collision(ball, paddle)) {
-                let angle = (Math.random() - 0.5) * Math.PI / 4;
-                ball.velocityX = -ball.velocityX * 1.1;
-                ball.velocityY = ball.speed * Math.sin(angle);
+            return array;
+        }
+
+        function initializeMemoryGame() {
+            const memoryGameContainer = document.getElementById('memory-game');
+            let isFlipped = false;
+            let lockBoard = false;
+            let firstCard, secondCard;
+
+            function flipCard() {
+                if (lockBoard) return;
+                if (this === firstCard) return;
+
+                this.classList.add('flip');
+
+                if (!isFlipped) {
+                    isFlipped = true;
+                    firstCard = this;
+                    return;
+                }
+
+                secondCard = this;
+                checkForMatch();
             }
 
-            if (ball.x - ball.radius < 0) {
-                resetBall();
-            } else if (ball.x + ball.radius > canvas.width) {
-                resetBall();
+            function checkForMatch() {
+                let isMatch = firstCard.querySelector('.card-back').style.backgroundImage === secondCard.querySelector('.card-back').style.backgroundImage;
+
+                isMatch ? disableCards() : unflipCards();
             }
 
-            ai.y += (ball.y - (ai.y + ai.height / 2)) * 0.1;
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+
+                resetBoard();
+            }
+
+            function unflipCards() {
+                lockBoard = true;
+
+                setTimeout(() => {
+                    firstCard.classList.remove('flip');
+                    secondCard.classList.remove('flip');
+
+                    resetBoard();
+                }, 1000);
+            }
+
+            function resetBoard() {
+                [isFlipped, lockBoard] = [false, false];
+                [firstCard, secondCard] = [null, null];
+            }
+
+            shuffle(imageSources);
+            imageSources.forEach(imageSrc => {
+                const card = document.createElement('div');
+                card.classList.add('game-card');
+
+                const cardInner = document.createElement('div');
+                cardInner.classList.add('card-inner');
+                card.appendChild(cardInner);
+
+                const cardFront = document.createElement('div');
+                cardFront.classList.add('card-face', 'card-front');
+                cardInner.appendChild(cardFront);
+
+                const cardBack = document.createElement('div');
+                cardBack.classList.add('card-face', 'card-back');
+                cardBack.style.backgroundImage = `url(${imageSrc})`;
+                cardInner.appendChild(cardBack);
+
+                card.addEventListener('click', flipCard);
+                memoryGameContainer.appendChild(card);
+            });
         }
 
-        function collision(b, p) {
-            return (
-                b.x + b.radius > p.x &&
-                b.x - b.radius < p.x + p.width &&
-                b.y + b.radius > p.y &&
-                b.y - b.radius < p.y + p.height
-            );
-        }
-
-        function resetBall() {
-            ball.x = canvas.width / 2;
-            ball.y = canvas.height / 2;
-            ball.speed = 5;
-            ball.velocityX = -ball.velocityX;
-            ball.velocityY = (Math.random() - 0.5) * 10;
-        }
-
-        function render() {
-            drawRect(0, 0, canvas.width, canvas.height, '#000');
-            drawRect(player.x, player.y, player.width, player.height, player.color);
-            drawRect(ai.x, ai.y, ai.width, ai.height, ai.color);
-            drawBall(ball.x, ball.y, ball.radius, ball.color);
-        }
-
-        game();
+        initializeMemoryGame();
     </script>
-
-<div>
-    <h1 class="witregel2">Gebruik je muis in de verticale richting om de linkerspeler te besturen</h1>
-</div>
+</section>
 
 </body>
 
-    <?php include('footer.php'); ?> 
-    </div>
-    </div>
-    </div>
-    <script src="../logic/app.js"></script>
+<?php include('footer.php'); ?> 
+    
+<script src="../logic/app.js"></script>
