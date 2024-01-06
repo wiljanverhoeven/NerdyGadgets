@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styling/carts.css">
     <link rel="stylesheet" href="styling/logincss.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styling/footer.css">
 
 
 </head>
@@ -57,12 +58,12 @@
                 <?php
                 if (isset($_COOKIE['email'])) {
                 ?>
-                    <nav>
-                        <div class="account">
-                            <a class="paginas" title="ga naar uw account" href="pages/logout.php">log uit</a>
-                        </div>
-                    </nav>
+                    <div class="account">
+                        <a href="pages/logout.php"><img class="user" src="images/loguit.png" alt="Account" width="40" height="40">
+                        </a>
+                    </div>
                 <?php
+                
                 } else {
                 ?>
                     <div class="account">
@@ -212,7 +213,7 @@
             </span>
 
             <div class="form-box login">
-            <a href="../pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="pages/login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -231,26 +232,41 @@
 
                 </form>
             </div>
-            <div class="form-box register">
+            <div class="form-box register" >
 
-                <form action="../logic/loginB.php" method="post">
+                <form action="pages/register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
-                        <input type="text" placeholder="username" required name="usernamelogin">
-                        <i class='bx bxs-user'></i>
+                        <input type="text" placeholder="firstname" required name="name">
                     </div>
                     <div class="input-box">
-                        <input type="text" placeholder="E-mail" required name="Email">
+                        <input type="text" placeholder="prefix" name="prefix">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Last name" required name="Lname">
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="password" required name="pass">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="E-mail" required name="mail">
                         <i class='bx bx-envelope'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Password" required name="passwordlogin">
-                        <i class='bx bxs-lock-alt'></i>
+                        <input type="text" placeholder="street" required name="street">
                     </div>
-                    <div class="agree">
-                        <label><input type="checkbox"> Agree to the terms and services</label>
+                    <div class="input-box">
+                        <input type="text" placeholder="House number" required name="HNM">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Postal code" required name="Pcode">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="City" required name="city">
+                    </div>
 
-                        <button type="submit" class="btn">Make account</button>
+                        <button type="submit" class="btn" name="apply">Make account</button>
                         <div class="register-login">
                             <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
                         </div>
@@ -319,7 +335,6 @@
                 $appel = $_SESSION['search'];
             }
 
-            $used = 0;
 
             if ($appel != null) {
                 $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
@@ -340,9 +355,8 @@
                             </div>
                             <?php
                             $cata = $row[4];
-                            $pid = $row[0];
                         } elseif ($row == null) {
-                            $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = ' . $pid . ' AND NOT productid = ' . $used . ' ';
+                            $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%'. $cata. '%";';
                             if ($result2 = mysqli_query($conn, $sql2)) {
                                 $row2 = mysqli_fetch_row($result2);
                                 $used = $row2[0];
@@ -484,14 +498,8 @@
     // Bijvoorbeeld: implementeer een algoritme om een unieke code te maken
     return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
   }
-</script>
-
-
-
-
-    
-    <footer>
-
+</script> 
+<footer>
         <div class="inhoudFooter">
             <div class="contactgegevens">
                 <h3 style="color: #fff" ;>Contactgegevens</h3>
