@@ -281,7 +281,7 @@
             <a href="categorie.php?categorie=telefoons"><img class="filter" height="200px" src="../images/telefoons.Jfif" alt="telefoons"></a>
 
         </section>
-        <a href="../pages/memory.html" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+        <a href="../pages/memory.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
         <section class="producten">
             <div class="sliders">
                 <div id="slide1">
