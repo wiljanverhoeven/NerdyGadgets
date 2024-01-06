@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link rel="stylesheet" href="../styling/basic-style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../styling/recensie.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../styling/footer.css">
@@ -57,7 +57,7 @@
 
             <div class="icons">
 
-            <?php
+                <?php
                 if (isset($_COOKIE['email'])) {
                 ?>
                     <div class="account">
@@ -65,7 +65,7 @@
                         </a>
                     </div>
                 <?php
-                
+
                 } else {
                 ?>
                     <div class="account">
@@ -89,6 +89,7 @@
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
+            //adding items to cart array
             if (isset($_POST['add'])) {
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
@@ -97,6 +98,7 @@
                 $proid = $_POST['proid'];
                 $item_exists = false;
 
+                //checks if item exists
                 foreach ($_SESSION['cart'] as &$item) {
                     if ($item['proid'] == $proid) {
                         // If the item already exists, update its quantity and exit the loop
@@ -119,6 +121,7 @@
                 header("Location: {$_SERVER['REQUEST_URI']}");
                 exit;
             }
+            //when removing something out of the cart
             if (!empty($_SESSION['cart'])) {
                 if (isset($_POST['minus'])) {
                     $proid = $_POST['proid'];
@@ -128,6 +131,7 @@
 
                     foreach ($_SESSION['cart'] as $index => &$item) {
                         if ($item['proid'] == $proid) {
+                            //lower the quantity of an item
                             $item['quantity'] -= 1;
 
                             if ($item['quantity'] <= 0) {
@@ -145,36 +149,43 @@
                     }
                 }
             }
+            //uses the productID's in the cart array to get all the product information out of the DB
             if (!empty($_SESSION['cart'])) {
                 $set = 0;
-                foreach ($_SESSION['cart'] as $item) { 
+                foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
                     $line = 'SELECT * FROM producten WHERE productid = ?';
                     $prepare = mysqli_prepare($conn, $line);
                     mysqli_stmt_bind_param($prepare, 'i', $proid);
                     mysqli_stmt_execute($prepare);
                     $end = mysqli_stmt_get_result($prepare);
-                    if ($rows = mysqli_fetch_assoc($end)) { 
+                    //increases the price with the quantity
+                    if ($rows = mysqli_fetch_assoc($end)) {
                         $set += $rows['prijs'] * $item['quantity'];
                     }
                 }
-                ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
-            }
-            if (!empty($_SESSION['cart'])) {
-                foreach ($_SESSION['cart'] as $item) {
-                    $proid = $item['proid'];
+                //uses the prices and quantity to give the full price
+            ?> <div class="name">
+                    <p>Totaal prijs: €<?php echo $set; ?></p>
+                </div> <?php
+                    }    //uses the productID's in the cart array to get all the product information out of the DB
+                    if (!empty($_SESSION['cart'])) {
+                        foreach ($_SESSION['cart'] as $item) {
+                            $proid = $item['proid'];
 
-                    // Use prepared statement to fetch product information
-                    $sql = 'SELECT * FROM producten WHERE productid = ?';
-                    $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, 'i', $proid);
-                    mysqli_stmt_execute($stmt);
-                    $result = mysqli_stmt_get_result($stmt);
+                            // Use prepared statement to fetch product information
+                            $sql = 'SELECT * FROM producten WHERE productid = ?';
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, 'i', $proid);
+                            mysqli_stmt_execute($stmt);
+                            $result = mysqli_stmt_get_result($stmt);
 
-                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                            //display all of the products in the cart array in the HTML
+                            if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
-                            <div class="image"><a href="../pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="image"><a href="product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
+                            <div class="name"><?php echo $row['productnaam']; ?><p><?php echo $item['quantity']; ?>X</p>
+                            </div>
                             <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
@@ -182,15 +193,19 @@
                                 <button type="submit" name="minus">-</button>
                             </form>
                         </div>
+
             <?php
+                            }
+                        }
+                    } else {
+                        // Display a message or take other actions when the cart is empty
+                        echo "Your shopping cart is empty.";
                     }
-                }
-            } else {
-                // Display a message or take other actions when the cart is empty
-                echo "Your shopping cart is empty.";
-            }
+
+
 
             ?>
+
 
 
         </div>
@@ -205,9 +220,9 @@
             <span class="close-icon">
                 <i class='bx bx-x'></i>
             </span>
-
+            <!-- login pop up screen -->
             <div class="form-box login">
-            <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -226,8 +241,8 @@
 
                 </form>
             </div>
-            <div class="form-box register" >
-
+            <div class="form-box register">
+                <!-- register pop up screen-->
                 <form action="register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
@@ -260,10 +275,10 @@
                         <input type="text" placeholder="City" required name="city">
                     </div>
 
-                        <button type="submit" class="btn" name="apply">Make account</button>
-                        <div class="register-login">
-                            <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
-                        </div>
+                    <button type="submit" class="btn" name="apply">Make account</button>
+                    <div class="register-login">
+                        <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -271,144 +286,86 @@
 
     <script src="../logic/script.js"></script>
 
-</header>
+    </header>
 
-<section id="review" class=""section>
-    <div class="container">
-        <div class="board">
-            <h2 class="text-light">Onze reviews</h2>
-            <p class="text-light">Top reviews</p>
-            <!-- Slider main container -->
-            <div class="swiper">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->               
+    <section id="review" class="" section>
+        <div class="container">
+            <div class="board">
+                <h2 class="text-light">Onze reviews</h2>
+                <p class="text-light">Top reviews</p>
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
                         <?php
+                        //gets top reviews
                         $sql = "SELECT r.*, u.first_name, u.surname_prefix, u.surname
                         FROM recensies r
                         JOIN user u ON r.User_id = u.id
                         Where rating > 2
                         ORDER BY rating DESC";
                         $result = $conn->query($sql);
-                        if($result->num_rows > 0) {
-                        while ($row3 = $result->fetch_assoc()) {
-                        $product_id = $row3['Product_id'];
-                        $inhoud = $row3['inhoud'];
-                        $rating = $row3['rating'];
-                        $name = $row3['first_name'] ." ". $row3['surname_prefix'] ." ". $row3['surname'];              
-                        ?>                
-                    <div class="swiper-slide">
-                        <div class="flex">
-                            <?php
-                                if ($rating == 1) {
-                                    echo "<span>&starf;&star;&star;&star;&star;</span>";
-                                } else if ($rating == 2) {
-                                    echo "<span>&starf;&starf;&star;&star;&star;</span>";
-                                }else if ($rating == 3) {
-                                    echo "<span>&starf;&starf;&starf;&star;&star;</span>";
-                                }else if ($rating == 4) {
-                                    echo "<span>&starf;&starf;&starf;&starf;&star;</span>";
-                                }else if ($rating == 5) {
-                                    echo "<span>&starf;&starf;&starf;&starf;&starf;</span>";
-                                }
-                            ?>
-                            <div class="comments">
-                                <p><?=$inhoud?></p>
-                            </div>
-                            <div class="profile">
-                                <h4></h4><?=$name?></h4>
-                            </div>
-                         </div>
+                        if ($result->num_rows > 0) {
+                            while ($row3 = $result->fetch_assoc()) {
+                                $product_id = $row3['Product_id'];
+                                $inhoud = $row3['inhoud'];
+                                $rating = $row3['rating'];
+                                $name = $row3['first_name'] . " " . $row3['surname_prefix'] . " " . $row3['surname'];
+                        ?>
+                                <div class="swiper-slide">
+                                    <div class="flex">
+                                        <?php
+                                        //displays stars
+                                        if ($rating == 1) {
+                                            echo "<span>&starf;&star;&star;&star;&star;</span>";
+                                        } else if ($rating == 2) {
+                                            echo "<span>&starf;&starf;&star;&star;&star;</span>";
+                                        } else if ($rating == 3) {
+                                            echo "<span>&starf;&starf;&starf;&star;&star;</span>";
+                                        } else if ($rating == 4) {
+                                            echo "<span>&starf;&starf;&starf;&starf;&star;</span>";
+                                        } else if ($rating == 5) {
+                                            echo "<span>&starf;&starf;&starf;&starf;&starf;</span>";
+                                        }
+                                        ?>
+                                        <div class="comments">
+                                            <p><?= $inhoud ?></p>
+                                        </div>
+                                        <div class="profile">
+                                            <h4></h4><?= $name ?></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        } ?>
                     </div>
-                    <?php
-                    } }?>  
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <!-- If we need scrollbar -->
+                    <div class="swiper-scrollbar"></div>
                 </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-
-                <!-- If we need scrollbar -->
-                <div class="swiper-scrollbar"></div>
             </div>
         </div>
-    </div>
 
-</section>
+    </section>
 
 
-<section id="klantrecensies" class="section">
+    <section id="klantrecensies" class="section">
 
-    <script>
-        let reviews = [];
+    </section>
 
-        // Dummy recensies (voorbeeld)
-        const dummyReviews = [
-            { review: "Goede service en snelle levering! Zal zeker weer bestellen.", rating: 5, date: "2023-10-02" },
-            { review: "NerdyGadgets heeft een geweldig assortiment producten. Erg blij met mijn aankoop.", rating: 4, date: "2023-09-30" },
-            // Voeg meer recensies toe zoals hierboven
-        ];
+    <footer>
 
-        const reviewForm = document.getElementById('reviewForm');
-        const reviewsContainer = document.getElementById('reviews');
-
-        // Functie om recensies weer te geven
-        function displayReviews() {
-            reviewsContainer.innerHTML = '';
-            reviews.forEach(review => {
-                const reviewDiv = document.createElement('div');
-                reviewDiv.classList.add('review');
-                reviewDiv.innerHTML = `
-                      <p>${review.review}</p>
-                      <div class="review-info">
-                          <span>Beoordeling: ${review.rating}/5</span>
-                          <span>Geplaatst op: ${review.date}</span>
-                      </div>
-                  `;
-                reviewsContainer.appendChild(reviewDiv);
-            });
-        }
-
-        // Voeg event listener toe aan het formulier om een recensie te plaatsen
-        reviewForm.addEventListener('submit', event => {
-            event.preventDefault();
-            const reviewText = document.getElementById('review').value;
-            const rating = document.getElementById('rating').value;
-            const currentDate = new Date().toISOString().split('T')[0]; // Vandaag's datum
-            const newReview = { review: reviewText, rating: rating, date: currentDate };
-            reviews.push(newReview);
-            displayReviews(); // Update de weergave van recensies
-            reviewForm.reset(); // Reset het formulier
-        });
-
-        // Laad de initiÃ«le recensies bij het laden van de pagina
-        reviews = dummyReviews.slice(); // Kopieer de dummy recensies naar de reviews-array
-        displayReviews();
-
-        // Functie om recensies te sorteren op basis van geselecteerde optie
-        function sortReviews() {
-            const sortOption = document.getElementById('sort').value;
-
-            if (sortOption === 'relevantie') {
-                // Geen actie nodig, de volgorde is al zoals de recensies zijn toegevoegd
-            } else if (sortOption === 'datum') {
-                reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
-            } else if (sortOption === 'waardering') {
-                reviews.sort((a, b) => b.rating - a.rating);
-            }
-
-            displayReviews(); // Update de weergave van recensies na sorteren
-        }
-    </script>
-</section>
-
-<footer>
-
-<?php include('footer.php'); ?> 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="../logic/main.js"></script>
+        <?php include('footer.php'); ?>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <script src="../logic/main.js"></script>
 </body>
 <script src="../logic/app.js"></script>
 

@@ -6,11 +6,10 @@ let body = document.querySelector("body");
 let closeCart = document.querySelector(".close");
 let products = [];
 let cart = [];
-
+//opens and closes cart
 iconCart.addEventListener("click", () => {
   body.classList.toggle("showCart");
 });
 closeCart.addEventListener("click", () => {
   body.classList.toggle("showCart");
 });
-

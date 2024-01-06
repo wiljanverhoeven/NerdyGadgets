@@ -27,8 +27,6 @@
 </head>
 
 <body class="">
-
-
     <div class="container2">
         <header>
             <div class="logo">
@@ -63,7 +61,7 @@
                         </a>
                     </div>
                 <?php
-                
+
                 } else {
                 ?>
                     <div class="account">
@@ -87,6 +85,7 @@
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
+            //adding items to cart array
             if (isset($_POST['add'])) {
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
@@ -95,6 +94,7 @@
                 $proid = $_POST['proid'];
                 $item_exists = false;
 
+                //checks if item exists
                 foreach ($_SESSION['cart'] as &$item) {
                     if ($item['proid'] == $proid) {
                         // If the item already exists, update its quantity and exit the loop
@@ -117,6 +117,7 @@
                 header("Location: {$_SERVER['REQUEST_URI']}");
                 exit;
             }
+            //when removing something out of the cart
             if (!empty($_SESSION['cart'])) {
                 if (isset($_POST['minus'])) {
                     $proid = $_POST['proid'];
@@ -126,6 +127,7 @@
 
                     foreach ($_SESSION['cart'] as $index => &$item) {
                         if ($item['proid'] == $proid) {
+                            //lower the quantity of an item
                             $item['quantity'] -= 1;
 
                             if ($item['quantity'] <= 0) {
@@ -143,37 +145,43 @@
                     }
                 }
             }
+            //uses the productID's in the cart array to get all the product information out of the DB
             if (!empty($_SESSION['cart'])) {
-            $set = 0;
-            foreach ($_SESSION['cart'] as $item) { 
-                $proid = $item['proid'];
-                $line = 'SELECT * FROM producten WHERE productid = ?';
-                $prepare = mysqli_prepare($conn, $line);
-                mysqli_stmt_bind_param($prepare, 'i', $proid);
-                mysqli_stmt_execute($prepare);
-                $end = mysqli_stmt_get_result($prepare);
-                if ($rows = mysqli_fetch_assoc($end)) { 
-                    $set += $rows['prijs'] * $item['quantity'];
-                }
-            }
-            ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
-        }
-            if (!empty($_SESSION['cart'])) {
+                $set = 0;
                 foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
+                    $line = 'SELECT * FROM producten WHERE productid = ?';
+                    $prepare = mysqli_prepare($conn, $line);
+                    mysqli_stmt_bind_param($prepare, 'i', $proid);
+                    mysqli_stmt_execute($prepare);
+                    $end = mysqli_stmt_get_result($prepare);
+                    //increases the price with the quantity
+                    if ($rows = mysqli_fetch_assoc($end)) {
+                        $set += $rows['prijs'] * $item['quantity'];
+                    }
+                }
+                //uses the prices and quantity to give the full price
+            ?> <div class="name">
+                    <p>Totaal prijs: €<?php echo $set; ?></p>
+                </div> <?php
+                    }    //uses the productID's in the cart array to get all the product information out of the DB
+                    if (!empty($_SESSION['cart'])) {
+                        foreach ($_SESSION['cart'] as $item) {
+                            $proid = $item['proid'];
 
-                    // Use prepared statement to fetch product information
-                    $sql = 'SELECT * FROM producten WHERE productid = ?';
-                    $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, 'i', $proid);
-                    mysqli_stmt_execute($stmt);
-                    $result = mysqli_stmt_get_result($stmt);
-                    
+                            // Use prepared statement to fetch product information
+                            $sql = 'SELECT * FROM producten WHERE productid = ?';
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, 'i', $proid);
+                            mysqli_stmt_execute($stmt);
+                            $result = mysqli_stmt_get_result($stmt);
 
-                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                            //display all of the products in the cart array in the HTML
+                            if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
                             <div class="image"><a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="name"><?php echo $row['productnaam']; ?><p><?php echo $item['quantity']; ?>X</p>
+                            </div>
                             <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
@@ -181,19 +189,19 @@
                                 <button type="submit" name="minus">-</button>
                             </form>
                         </div>
-                        
+
             <?php
+                            }
+                        }
+                    } else {
+                        // Display a message or take other actions when the cart is empty
+                        echo "Your shopping cart is empty.";
                     }
-                }
-            } else {
-                // Display a message or take other actions when the cart is empty
-                echo "Your shopping cart is empty.";
-            }
-        
+
 
 
             ?>
-            
+
 
 
         </div>
@@ -211,9 +219,9 @@
             <span class="close-icon">
                 <i class='bx bx-x'></i>
             </span>
-
+            <!-- login pop up screen -->
             <div class="form-box login">
-            <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <a href="pages/pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="pages/login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -232,8 +240,8 @@
 
                 </form>
             </div>
-            <div class="form-box register" >
-
+            <div class="form-box register">
+                <!-- register pop up screen-->
                 <form action="pages/register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
@@ -266,10 +274,10 @@
                         <input type="text" placeholder="City" required name="city">
                     </div>
 
-                        <button type="submit" class="btn" name="apply">Make account</button>
-                        <div class="register-login">
-                            <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
-                        </div>
+                    <button type="submit" class="btn" name="apply">Make account</button>
+                    <div class="register-login">
+                        <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -280,6 +288,7 @@
     <div class="main">
         <section id="home" class="section">
             <div class="welkom">
+                <!-- homepage welkom text -->
                 <h1 class="WNG">Welkom bij NerdyGadgets</h1>
                 <p class="slogan" behavior="scroll" direction="left"><?php
                                                                         $strings = array('Ontdek geweldige producten voor de beste prijzen!', 'Eenvoudige navigatie om snel te vinden wat u zoekt!', 'Veilige betalingsmogelijkheden voor uw gemoedsrust!', 'Snelle levering om uw producten op tijd te ontvangen!', 'Niet tevreden met uw product? Geld terug!', 'Wij behandelen de recensies van onze klanten als feedback!', 'Het vertrouwen van de klant is voor ons het belangrijkst!');
@@ -288,8 +297,7 @@
             <img id="scrollBtn" src="images/arrow.png">
         </section>
 
-
-
+        <!-- button that appears and scrolls down to the rest of the page -->
         <script>
             ;
             (() => {
@@ -314,12 +322,15 @@
             <h1>Onze aanbevolen producten</h1>
 
             <?php
+            $used = null;
 
+            //if the searchbar has not been used yet it will display standard products from the database
             if (empty($_SESSION['search'])) {
                 for ($i = 0; $i < 3; $i++) {
                     $sql = "SELECT * FROM producten WHERE productid=$i";
                     $prod = mysqli_query($conn, $sql);
                     ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
+
                     <div class="product ">
                         <a href="pages/product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "images/", ${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
                         <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
@@ -330,52 +341,81 @@
                             <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
                         </form>
                     </div>
+
                     <?php }
             } else {
+                //sets $appel to the data from the searchbar
                 $appel = $_SESSION['search'];
-            }
 
+                //uses the data from the search bar to show items with information similar to what's in the search bar
+                if ($appel != null) {
+                    $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
+                    if ($result = mysqli_query($conn, $sql)) {
 
-            if ($appel != null) {
-                $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
-                if ($result = mysqli_query($conn, $sql)) {
+                        for ($i = 0; $i < 3; $i++) {
+                            $row = mysqli_fetch_assoc($result);
 
-                    for ($i = 0; $i < 3; $i++) {
-                        $row = mysqli_fetch_row($result);
-                        if ($row != null) { ?>
-                            <div class="product">
-                                <a href="pages/product.php?product=<?php echo $row[0]; ?>"><img height="200px" src="<?php echo "images/", $row[5]; ?>" alt="Product"></a>
-                                <h3><?php echo $row[1]; ?></h3>
-                                <p><?php echo "€", $row[3]; ?></p>
-                                <p><?php echo $row[8]; ?></p>
-                                <form method="post">
-                                    <input type="hidden" name="proid" value="<?php echo $row[0]; ?>">
-                                    <button class="add-to-cart" name="add" value=" <?php echo $row[0]; ?>"> Voeg toe aan winkelwagen</button>
-                                </form>
-                            </div>
-                            <?php
-                            $cata = $row[4];
-                        } elseif ($row == null) {
-                            $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%'. $cata. '%";';
-                            if ($result2 = mysqli_query($conn, $sql2)) {
-                                $row2 = mysqli_fetch_row($result2);
-                                $used = $row2[0];
-                            ?>
+                            if ($row != null) { ?>
                                 <div class="product">
-                                    <a href="pages/product.php?product=<?php echo $row2[0]; ?>"><img height="200px" src="<?php echo "images/", $row2[5]; ?>" alt="Product"></a>
-                                    <h3><?php echo $row2[1]; ?></h3>
-                                    <p><?php echo "€", $row2[3]; ?></p>
-                                    <p><?php echo $row2[8]; ?></p>
+                                    <a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="200px" src="<?php echo "images/", $row['imagesrc']; ?>" alt="Product"></a>
+                                    <h3><?php echo $row['productnaam']; ?></h3>
+                                    <p><?php echo "€", $row['prijs']; ?></p>
+                                    <p><?php echo $row['productinformatie']; ?></p>
                                     <form method="post">
-                                        <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
-                                        <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
+                                        <input type="hidden" name="proid" value="<?php echo $row['productid']; ?>">
+                                        <button class="add-to-cart" name="add" value=" <?php echo $row['productid']; ?>"> Voeg toe aan winkelwagen</button>
                                     </form>
                                 </div>
-            <?php }
+                                <?php
+                                $cata = $row['categorie'];
+                                $id = $row['productid'];
+                                //if there are not enough similar products it will start basing it on items of the same category
+                            } elseif ($row == null && $cata != null && $used == null) {
+
+                                $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = ' . $id;
+                                if ($result2 = mysqli_query($conn, $sql2)) {
+                                    $row2 = mysqli_fetch_assoc($result2);
+                                    $used = $row2['productid'];
+                                ?>
+                                    <div class="product">
+                                        <a href="pages/product.php?product=<?php echo $row2['productid']; ?>"><img height="200px" src="<?php echo "images/", $row2['imagesrc']; ?>" alt="Product"></a>
+                                        <h3><?php echo $row2['productnaam']; ?></h3>
+                                        <p><?php echo "€", $row2['prijs']; ?></p>
+                                        <p><?php echo $row2['productinformatie']; ?></p>
+                                        <form method="post">
+                                            <input type="hidden" name="proid" value="<?php echo $row2['productid']; ?>">
+                                            <button class="add-to-cart" name="add" value=" <?php echo $row2['productid']; ?>"> Voeg toe aan winkelwagen</button>
+                                        </form>
+                                    </div>
+                                    <?php
+                                }
+                            } elseif ($used != null) {
+                                $sql3 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT (productid = ' . $id . ') AND NOT (productid = ' . $used . ')';
+                                if ($result3 = mysqli_query($conn, $sql3)) {
+                                    $row3 = mysqli_fetch_assoc($result3);
+                                    if ($row3 != null) {
+                                    ?>
+                                        <div class="product">
+                                            <a href="pages/product.php?product=<?php echo $row3['productid']; ?>"><img height="200px" src="<?php echo "images/", $row3['imagesrc']; ?>" alt="Product"></a>
+                                            <h3><?php echo $row3['productnaam']; ?></h3>
+                                            <p><?php echo "€", $row3['prijs']; ?></p>
+                                            <p><?php echo $row3['productinformatie']; ?></p>
+                                            <form method="post">
+                                                <input type="hidden" name="proid" value="<?php echo $row3['productid']; ?>">
+                                                <button class="add-to-cart" name="add" value=" <?php echo $row3['productid']; ?>"> Voeg toe aan winkelwagen</button>
+                                            </form>
+                                        </div>
+            <?php } else {
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            } ?>
+            }
+            ?>
+
 
         </section>
 
@@ -421,85 +461,89 @@
     </div>
     <button style="opacity: 0;" id="easterEggButton">Geheime Knop</button>
 
-<div id="easterEggQuiz" style="display: none;">
-  <h2>Nerd Quiz</h2>
-  <div id="questionContainer"></div>
+    <div id="easterEggQuiz" style="display: none;">
+        <h2>Nerd Quiz</h2>
+        <div id="questionContainer"></div>
 
-  <button onclick="checkAnswers()">Indienen</button>
-</div>
+        <button onclick="checkAnswers()">Indienen</button>
+    </div>
 
-<div id="quizResult" style="display: none;">
-  <h2>Resultaat</h2>
-  <p id="resultText"></p>
-</div>
+    <div id="quizResult" style="display: none;">
+        <h2>Resultaat</h2>
+        <p id="resultText"></p>
+    </div>
 
-<script>
-  const questions = [
-    {
-      question: "Wat is de favoriete programmeertaal van een computer?",
-      options: ["Java", "Binary", "C-sharp"],
-      correctAnswer: "Binary"
-    },
-    {
-      question: "Hoe lost een programmeur een gebroken hart op?",
-      options: ["Met een algoritme", "Door de code te debuggen", "Door een nieuwe relatieklasse te maken"],
-      correctAnswer: "Door de code te debuggen"
-    },
-    {
-      question: "Hoe noem je een programmeur zonder koffie?",
-      options: ["Ontnuchterd", "Slaperig", "Niet-gecompileerd"],
-      correctAnswer: "Niet-gecompileerd"
-    }
-  ];
+    <script>
+        //easter egg Shahzaib: Nerd quiz
+        //vragen
+        const questions = [{
+                question: "Wat is de favoriete programmeertaal van een computer?",
+                options: ["Java", "Binary", "C-sharp"],
+                correctAnswer: "Binary"
+            },
+            {
+                question: "Hoe lost een programmeur een gebroken hart op?",
+                options: ["Met een algoritme", "Door de code te debuggen", "Door een nieuwe relatieklasse te maken"],
+                correctAnswer: "Door de code te debuggen"
+            },
+            {
+                question: "Hoe noem je een programmeur zonder koffie?",
+                options: ["Ontnuchterd", "Slaperig", "Niet-gecompileerd"],
+                correctAnswer: "Niet-gecompileerd"
+            }
+        ];
 
-  let currentQuestion = null;
+        let currentQuestion = null;
 
-  document.getElementById('easterEggButton').addEventListener('click', function() {
-    const questionContainer = document.getElementById('questionContainer');
+        document.getElementById('easterEggButton').addEventListener('click', function() {
+            const questionContainer = document.getElementById('questionContainer');
 
-    // Controleer of er al een vraag is weergegeven
-    if (!currentQuestion) {
-      currentQuestion = getRandomQuestion();
-      displayQuestion(currentQuestion);
-      document.getElementById('easterEggQuiz').style.display = 'block';
-    }
-  });
+            // Controleer of er al een vraag is weergegeven
+            if (!currentQuestion) {
+                currentQuestion = getRandomQuestion();
+                displayQuestion(currentQuestion);
+                document.getElementById('easterEggQuiz').style.display = 'block';
+            }
+        });
 
-  function getRandomQuestion() {
-    return questions[Math.floor(Math.random() * questions.length)];
-  }
+        //kiest een willekeurige vraag
+        function getRandomQuestion() {
+            return questions[Math.floor(Math.random() * questions.length)];
+        }
 
-  function displayQuestion(question) {
-    const questionContainer = document.getElementById('questionContainer');
-    questionContainer.innerHTML = `<p>${question.question}</p>`;
+        //laat de craag zien
+        function displayQuestion(question) {
+            const questionContainer = document.getElementById('questionContainer');
+            questionContainer.innerHTML = `<p>${question.question}</p>`;
 
-    question.options.forEach((option, index) => {
-      questionContainer.innerHTML += `<input type="radio" name="question" value="${option}"> ${option}<br>`;
-    });
-  }
+            question.options.forEach((option, index) => {
+                questionContainer.innerHTML += `<input type="radio" name="question" value="${option}"> ${option}<br>`;
+            });
+        }
 
-  function checkAnswers() {
-    const selectedAnswer = document.querySelector('input[name="question"]:checked');
-    const resultText = document.getElementById('resultText');
+        //controleerd je antwoord
+        function checkAnswers() {
+            const selectedAnswer = document.querySelector('input[name="question"]:checked');
+            const resultText = document.getElementById('resultText');
 
-    if (selectedAnswer && selectedAnswer.value === currentQuestion.correctAnswer) {
-      const discountCode = generateDiscountCode();
-      resultText.innerHTML = `Gefeliciteerd! Je hebt een kortingscode van 15% ontvangen: ${discountCode}`;
-    } else {
-      resultText.innerHTML = 'Helaas, probeer het opnieuw voor de easter egg-expertstatus.';
-    }
+            if (selectedAnswer && selectedAnswer.value === currentQuestion.correctAnswer) {
+                const discountCode = generateDiscountCode();
+                resultText.innerHTML = `Gefeliciteerd! Je hebt een kortingscode van 15% ontvangen: ${discountCode}`;
+            } else {
+                resultText.innerHTML = 'Helaas, probeer het opnieuw voor de easter egg-expertstatus.';
+            }
 
-    document.getElementById('quizResult').style.display = 'block';
-    document.getElementById('easterEggQuiz').style.display = 'none';
-  }
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('easterEggQuiz').style.display = 'none';
+        }
 
-  function generateDiscountCode() {
-    // Hier kun je een functie toevoegen om een willekeurige kortingscode te genereren
-    // Bijvoorbeeld: implementeer een algoritme om een unieke code te maken
-    return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
-  }
-</script> 
-<footer>
+        function generateDiscountCode() {
+            // Hier kun je een functie toevoegen om een willekeurige kortingscode te genereren
+            // Bijvoorbeeld: implementeer een algoritme om een unieke code te maken
+            return 'EASTER15'; // Dit is slechts een voorbeeld, pas aan zoals nodig
+        }
+    </script>
+    <footer>
         <div class="inhoudFooter">
             <div class="contactgegevens">
                 <h3 style="color: #fff" ;>Contactgegevens</h3>
