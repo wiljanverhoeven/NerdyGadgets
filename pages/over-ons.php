@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <?php
     require '../dbconnect.php';
@@ -13,18 +14,19 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over Ons | NerdyGadgets</title> 
+    <title>Over Ons | NerdyGadgets</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../styling/carts.css">
     <link rel="stylesheet" href="../styling/over-ons.css">
     <link rel="stylesheet" href="../styling/basic-style.css">
     <link rel="stylesheet" href="../styling/logincss.css">
     <link rel="stylesheet" href="../styling/footer.css">
-    
+
 
 </head>
+
 <body>
-<header>
+    <header>
         <div class="logo">
             <a href="../index.php">
                 <img src="../images/NerdyGadgets_logo 5.png" alt="Logo" width="250" height="90">
@@ -49,31 +51,31 @@
 
         <div class="icons">
 
-        <?php
-                if (isset($_COOKIE['email'])) {
-                ?>
-                    <div class="account">
-                        <a href="logout.php"><img class="user" src="../images/loguit.png" alt="Account" width="40" height="40">
-                        </a>
-                    </div>
-                <?php
-                
-                } else {
-                ?>
-                    <div class="account">
-                        <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
-                            <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
-                        </a>
-                    </div>
-
-                <?php
-                }
-                ?>
-            <div class="icon-cart">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
-                    </svg>
+            <?php
+            if (isset($_COOKIE['email'])) {
+            ?>
+                <div class="account">
+                    <a href="logout.php"><img class="user" src="../images/loguit.png" alt="Account" width="40" height="40">
+                    </a>
                 </div>
+            <?php
+
+            } else {
+            ?>
+                <div class="account">
+                    <a class="btnlogin-popup"><img class="user" src="../images/account_icon.png" alt="Account" width="40" height="40">
+                        <img class="user_neon" src="../images/account_icon_neon.png" alt="Account" width="40" height="40"> </a>
+                    </a>
+                </div>
+
+            <?php
+            }
+            ?>
+            <div class="icon-cart">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                </svg>
+            </div>
         </div>
 
     </header>
@@ -82,6 +84,7 @@
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
+            //adding items to cart array
             if (isset($_POST['add'])) {
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
@@ -90,6 +93,7 @@
                 $proid = $_POST['proid'];
                 $item_exists = false;
 
+                //checks if item exists
                 foreach ($_SESSION['cart'] as &$item) {
                     if ($item['proid'] == $proid) {
                         // If the item already exists, update its quantity and exit the loop
@@ -112,6 +116,7 @@
                 header("Location: {$_SERVER['REQUEST_URI']}");
                 exit;
             }
+            //when removing something out of the cart
             if (!empty($_SESSION['cart'])) {
                 if (isset($_POST['minus'])) {
                     $proid = $_POST['proid'];
@@ -121,6 +126,7 @@
 
                     foreach ($_SESSION['cart'] as $index => &$item) {
                         if ($item['proid'] == $proid) {
+                            //lower the quantity of an item
                             $item['quantity'] -= 1;
 
                             if ($item['quantity'] <= 0) {
@@ -138,37 +144,43 @@
                     }
                 }
             }
+            //uses the productID's in the cart array to get all the product information out of the DB
             if (!empty($_SESSION['cart'])) {
-            $set = 0;
-            foreach ($_SESSION['cart'] as $item) { 
-                $proid = $item['proid'];
-                $line = 'SELECT * FROM producten WHERE productid = ?';
-                $prepare = mysqli_prepare($conn, $line);
-                mysqli_stmt_bind_param($prepare, 'i', $proid);
-                mysqli_stmt_execute($prepare);
-                $end = mysqli_stmt_get_result($prepare);
-                if ($rows = mysqli_fetch_assoc($end)) { 
-                    $set += $rows['prijs'] * $item['quantity'];
-                }
-            }
-            ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
-        }
-            if (!empty($_SESSION['cart'])) {
+                $set = 0;
                 foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
+                    $line = 'SELECT * FROM producten WHERE productid = ?';
+                    $prepare = mysqli_prepare($conn, $line);
+                    mysqli_stmt_bind_param($prepare, 'i', $proid);
+                    mysqli_stmt_execute($prepare);
+                    $end = mysqli_stmt_get_result($prepare);
+                    //increases the price with the quantity
+                    if ($rows = mysqli_fetch_assoc($end)) {
+                        $set += $rows['prijs'] * $item['quantity'];
+                    }
+                }
+                //uses the prices and quantity to give the full price
+            ?> <div class="name">
+                    <p>Totaal prijs: €<?php echo $set; ?></p>
+                </div> <?php
+                    }    //uses the productID's in the cart array to get all the product information out of the DB
+                    if (!empty($_SESSION['cart'])) {
+                        foreach ($_SESSION['cart'] as $item) {
+                            $proid = $item['proid'];
 
-                    // Use prepared statement to fetch product information
-                    $sql = 'SELECT * FROM producten WHERE productid = ?';
-                    $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, 'i', $proid);
-                    mysqli_stmt_execute($stmt);
-                    $result = mysqli_stmt_get_result($stmt);
-                    
+                            // Use prepared statement to fetch product information
+                            $sql = 'SELECT * FROM producten WHERE productid = ?';
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, 'i', $proid);
+                            mysqli_stmt_execute($stmt);
+                            $result = mysqli_stmt_get_result($stmt);
 
-                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                            //display all of the products in the cart array in the HTML
+                            if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
                             <div class="image"><a href="product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="name"><?php echo $row['productnaam']; ?><p><?php echo $item['quantity']; ?>X</p>
+                            </div>
                             <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
@@ -176,19 +188,19 @@
                                 <button type="submit" name="minus">-</button>
                             </form>
                         </div>
-                        
+
             <?php
+                            }
+                        }
+                    } else {
+                        // Display a message or take other actions when the cart is empty
+                        echo "Your shopping cart is empty.";
                     }
-                }
-            } else {
-                // Display a message or take other actions when the cart is empty
-                echo "Your shopping cart is empty.";
-            }
-        
+
 
 
             ?>
-            
+
 
 
         </div>
@@ -198,17 +210,14 @@
         </div>
     </div>
 
-
-
-
     <section id="block">
         <div class="wrapper">
             <span class="close-icon">
                 <i class='bx bx-x'></i>
             </span>
-
+            <!-- login pop up screen -->
             <div class="form-box login">
-            <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -227,8 +236,8 @@
 
                 </form>
             </div>
-            <div class="form-box register" >
-
+            <div class="form-box register">
+                <!-- register pop up screen-->
                 <form action="register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
@@ -261,10 +270,10 @@
                         <input type="text" placeholder="City" required name="city">
                     </div>
 
-                        <button type="submit" class="btn" name="apply">Make account</button>
-                        <div class="register-login">
-                            <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
-                        </div>
+                    <button type="submit" class="btn" name="apply">Make account</button>
+                    <div class="register-login">
+                        <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -272,107 +281,108 @@
 
     <script src="logic/script.js"></script>
 
-<main>
-    <section id="over-ons" class="section">
-        <div class="container">
-            <h1 class="title">Over Ons</h1>
-            <div class="about-content">
-                <div class="image">
-                    <img src="../images/overons.jpg" alt="Over Ons">
-                </div>
-                <div class="content">
-                    <p>Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
-                        Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
-                        U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
-                        Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.</p>
-                    <a href="" class="leesmeer">Lees Meer</a>
-                </div>
-            </div>
-        </div>
-        <div id="secret-code" style="display: none;">Gefeliciteerd, Je hebt een geheime kortingscode ontdekt! Gebruik code: HieuChinees30</div>
-    </section>
-
-    <section>
-        <div class="over-ons-section">
-        <h2>Ons Team</h2>
-        <div class="persoon-cards">
-            <div class="persoon-card">
-            
-                    <img class="pimg" src="../images/Hieu!.jpg" alt="Hieu Phan">
-      
-                <div class="card-content">
-                    <h3>Hieu Phan:</h3>
-                    <p>Leerling en 's werelds eerste Covid 19 patiënt</p>
+    <main>
+        <section id="over-ons" class="section">
+            <div class="container">
+                <h1 class="title">Over Ons</h1>
+                <div class="about-content">
+                    <div class="image">
+                        <img src="../images/overons.jpg" alt="Over Ons">
+                    </div>
+                    <div class="content">
+                        <p>Welkom bij NerdyGadgets. Hier kunt u meer te weten komen over onze organisatie, onze missie en wat wij te bieden hebben aan onze klanten.
+                            Wij streven ernaar om geweldige producten aan te bieden voor de beste prijzen, met eenvoudige navigatie om snel te vinden wat u zoekt.
+                            U kunt vertrouwen op veilige betalingsmogelijkheden voor uw gemoedsrust, en we zorgen ervoor dat uw producten snel worden geleverd, zodat u ze op tijd ontvangt.
+                            Als u niet tevreden bent met uw product, bieden wij geld-terug-garantie. We behandelen de recensies van onze klanten als waardevolle feedback, omdat het vertrouwen van de klant voor ons het belangrijkste is.</p>
+                        <a href="" class="leesmeer">Lees Meer</a>
+                    </div>
                 </div>
             </div>
+            <div id="secret-code" style="display: none;">Gefeliciteerd, Je hebt een geheime kortingscode ontdekt! Gebruik code: HieuChinees30</div>
+        </section>
 
-            <div class="persoon-card">
-              
-                    <img  class="pimg" src="../images/Danyaal_web.jpeg" alt="Danyaal Burney">
-                
-                <div class="card-content">
-                    <h3>Danyaal Burney:</h3>
-                    <p>Baas van Hieu/ervaren webontwikkelaar</p>
+        <section>
+            <div class="over-ons-section">
+                <h2>Ons Team</h2>
+                <div class="persoon-cards">
+                    <div class="persoon-card">
+
+                        <img class="pimg" src="../images/Hieu!.jpg" alt="Hieu Phan">
+
+                        <div class="card-content">
+                            <h3>Hieu Phan:</h3>
+                            <p>Leerling en 's werelds eerste Covid 19 patiënt</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+
+                        <img class="pimg" src="../images/Danyaal_web.jpeg" alt="Danyaal Burney">
+
+                        <div class="card-content">
+                            <h3>Danyaal Burney:</h3>
+                            <p>Baas van Hieu/ervaren webontwikkelaar</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+
+                        <img class="pimg" src="../images/Shahzaib!.jpg" alt="Shahzaib Saleem">
+
+                        <div class="card-content">
+                            <h3>Shahzaib Saleem:</h3>
+                            <p>Gecertificeerde Hieu hater/ervaren webontwikkelaar</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+
+                        <img class="pimg" src="../images/Wiljan!!!.jpg" alt="Wiljan Verhoeven">
+
+                        <div class="card-content">
+                            <h3>Wiljan Verhoeven:</h3>
+                            <p>Lead Developer/Alleskunner</p>
+                        </div>
+                    </div>
+
+                    <div class="persoon-card">
+
+                        <img class="pimg" src="../images/Alex_web.jpg" alt="Alexander Dijkhuizen">
+
+                        <div class="card-content">
+                            <h3>Alexander Dijkhuizen:</h3>
+                            <p>Aangewezen project leider. (Scrum master van niks.)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="persoon-card">
-              
-                    <img class="pimg" src="../images/Shahzaib!.jpg" alt="Shahzaib Saleem">
-               
-                <div class="card-content">
-                    <h3>Shahzaib Saleem:</h3>
-                    <p>Gecertificeerde Hieu hater/ervaren webontwikkelaar</p>
-                </div>
-            </div>
+    <script src="../logic/script.js"></script>
 
-            <div class="persoon-card">
-                
-                    <img class="pimg" src="../images/Wiljan!!!.jpg" alt="Wiljan Verhoeven">
-           
-                <div class="card-content">
-                    <h3>Wiljan Verhoeven:</h3>
-                    <p>Lead Developer/Alleskunner</p>
-                </div>
-            </div>
+    <script>
+        var secretCodeVisible = false;
 
-            <div class="persoon-card">
-              
-                    <img class="pimg" src="../images/Alex_web.jpg" alt="Alexander Dijkhuizen">
-              
-                <div class="card-content">
-                    <h3>Alexander Dijkhuizen:</h3>
-                    <p>Aangewezen project leider. (Scrum master van niks.)</p>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-</main>
+        // Voeg een keydown event listener toe aan het document
+        document.addEventListener('keydown', function(event) {
+            // Controleer of de toets 'e' is ingedrukt
+            if (event.key === 'e') {
+                // Wissel de zichtbaarheid van de geheime code
+                secretCodeVisible = !secretCodeVisible;
 
-<script src="../logic/script.js"></script>
-
-<script>
-    var secretCodeVisible = false;
-
-    // Voeg een keydown event listener toe aan het document
-    document.addEventListener('keydown', function(event) {
-        // Controleer of de toets 'e' is ingedrukt
-        if (event.key === 'e') {
-            // Wissel de zichtbaarheid van de geheime code
-            secretCodeVisible = !secretCodeVisible;
-
-            // Toon de geheime code als deze zichtbaar moet zijn
-            if (secretCodeVisible) {
-                document.getElementById('secret-code').style.display = 'block';
-            } else {
-                document.getElementById('secret-code').style.display = 'none';
+                // Toon de geheime code als deze zichtbaar moet zijn
+                if (secretCodeVisible) {
+                    document.getElementById('secret-code').style.display = 'block';
+                } else {
+                    document.getElementById('secret-code').style.display = 'none';
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
-    <?php include('footer.php'); ?> 
+    <?php include('footer.php'); ?>
 </body>
 <script src="../logic/app.js"></script>
+
 </html>

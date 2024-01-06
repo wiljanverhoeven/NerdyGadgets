@@ -3,7 +3,7 @@
 require '../dbconnect.php';
 require '../logic/functions.php';
 
-
+//gathers data from the form to log in
 
 if (isset($_POST["apply"])) {
 
