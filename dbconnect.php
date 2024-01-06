@@ -3,7 +3,7 @@
 //defined variabelen voor de database connectie
 $dbServername = "localhost";
 $dbUsername = "root";
-$dbPassword = "poep12";
+$dbPassword = "";
 $dbName = "mydb";
 
 //connectie met de database

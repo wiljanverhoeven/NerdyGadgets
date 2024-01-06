@@ -1,6 +1,6 @@
 <?php
 require '../dbconnect.php';
-
+//stops all sessions and cookies
 session_start();
 session_unset();
 session_destroy();

@@ -58,7 +58,7 @@
 
             <div class="icons">
 
-            <?php
+                <?php
                 if (isset($_COOKIE['email'])) {
                 ?>
                     <div class="account">
@@ -66,7 +66,7 @@
                         </a>
                     </div>
                 <?php
-                
+
                 } else {
                 ?>
                     <div class="account">
@@ -83,30 +83,33 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                     </svg>
                 </div>
-            </div> 
+            </div>
         </header>
     </div>
-    <?php 
-        if (isset($_POST['keyword']) && $_POST['keyword'] == "maxwell") {
-            ?><img class="maxwell" src="../images/maxwell-cat.gif">
-             <audio src="../audio/maxwell.mp3" visible="false"  type="audio/mpeg" autoplay loop></audio> 
-            <?php
-            exit;
-        }
-    
+    <?php
+    //easter egg Wiljan: wanneer het juiste keyword word verstuurd laat het een gif zien en speelt er muziek af
+    if (isset($_POST['keyword']) && $_POST['keyword'] == "maxwell") {
+    ?><img class="maxwell" src="../images/maxwell-cat.gif">
+        <audio src="../audio/maxwell.mp3" visible="false" type="audio/mpeg" autoplay loop></audio>
+    <?php
+        exit;
+    }
+
     ?>
     <div class="cartTab" id="exampleList">
         <h1>Shopping Cart</h1>
         <div class="listCart">
             <?php
+            //adding items to cart array
             if (isset($_POST['add'])) {
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
                 }
-            
+
                 $proid = $_POST['proid'];
                 $item_exists = false;
-            
+
+                //checks if item exists
                 foreach ($_SESSION['cart'] as &$item) {
                     if ($item['proid'] == $proid) {
                         // If the item already exists, update its quantity and exit the loop
@@ -115,7 +118,7 @@
                         break;
                     }
                 }
-            
+
                 if (!$item_exists) {
                     // If the item does not exist, add it to the cart
                     $item_array = array(
@@ -124,42 +127,14 @@
                     );
                     $_SESSION['cart'][] = $item_array;
                 }
-            
+
                 // Redirect to the same or a different page after processing the form
                 header("Location: {$_SERVER['REQUEST_URI']}");
                 exit;
             }
-
-            $like = isset($_SESSION['search']) ? $_SESSION['search'] : '';
-            $sanword = mysqli_real_escape_string($conn, $like);
-            $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%' or `merk` LIKE '%{$sanword}%'";
-
-            $sort = isset($_SESSION['sort']) ? $_SESSION['sort'] : '';
-            $sansort = mysqli_real_escape_string($conn, $sort);
-
-                switch ($sansort) {
-                    case 1:
-                        $order = "ORDER BY datum DESC";
-                        break;
-                    case 2:
-                        $order = "ORDER BY datum ASC";
-                        break;
-                    case 3:
-                        $order = "ORDER BY prijs ASC";
-                        break;
-                    case 4:
-                        $order = "ORDER BY prijs desc";
-                        break;
-
-                    default:
-                }
-            
-        
-
-
+            //when removing something out of the cart
             if (!empty($_SESSION['cart'])) {
                 if (isset($_POST['minus'])) {
-
                     $proid = $_POST['proid'];
 
                     // Store the index to unset after the loop
@@ -167,6 +142,7 @@
 
                     foreach ($_SESSION['cart'] as $index => &$item) {
                         if ($item['proid'] == $proid) {
+                            //lower the quantity of an item
                             $item['quantity'] -= 1;
 
                             if ($item['quantity'] <= 0) {
@@ -182,40 +158,45 @@
                     if ($index_to_unset !== null) {
                         unset($_SESSION['cart'][$index_to_unset]);
                     }
-                    
                 }
-                
             }
+            //uses the productID's in the cart array to get all the product information out of the DB
             if (!empty($_SESSION['cart'])) {
                 $set = 0;
-                foreach ($_SESSION['cart'] as $item) { 
+                foreach ($_SESSION['cart'] as $item) {
                     $proid = $item['proid'];
                     $line = 'SELECT * FROM producten WHERE productid = ?';
                     $prepare = mysqli_prepare($conn, $line);
                     mysqli_stmt_bind_param($prepare, 'i', $proid);
                     mysqli_stmt_execute($prepare);
                     $end = mysqli_stmt_get_result($prepare);
-                    if ($rows = mysqli_fetch_assoc($end)) { 
+                    //increases the price with the quantity
+                    if ($rows = mysqli_fetch_assoc($end)) {
                         $set += $rows['prijs'] * $item['quantity'];
                     }
                 }
-                ?> <div class="name"><p>Totaal prijs: €<?php echo $set;?></p></div> <?php
-            }
-            if (!empty($_SESSION['cart'])) {
-                foreach ($_SESSION['cart'] as $item) {
-                    $proid = $item['proid'];
+                //uses the prices and quantity to give the full price
+            ?> <div class="name">
+                    <p>Totaal prijs: €<?php echo $set; ?></p>
+                </div> <?php
+                    }    //uses the productID's in the cart array to get all the product information out of the DB
+                    if (!empty($_SESSION['cart'])) {
+                        foreach ($_SESSION['cart'] as $item) {
+                            $proid = $item['proid'];
 
-                    // Use prepared statement to fetch product information
-                    $sql = 'SELECT * FROM producten WHERE productid = ?';
-                    $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, 'i', $proid);
-                    mysqli_stmt_execute($stmt);
-                    $result = mysqli_stmt_get_result($stmt);
+                            // Use prepared statement to fetch product information
+                            $sql = 'SELECT * FROM producten WHERE productid = ?';
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, 'i', $proid);
+                            mysqli_stmt_execute($stmt);
+                            $result = mysqli_stmt_get_result($stmt);
 
-                    if ($row = mysqli_fetch_assoc($result)) { ?>
+                            //display all of the products in the cart array in the HTML
+                            if ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="item">
-                            <div class="image"><a href="../pages/product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
-                            <div class="name"><?php echo $row['productnaam'];?><p><?php echo $item['quantity'];?>X</p></div>
+                            <div class="image"><a href="product.php?product=<?php echo $row['productid']; ?>"><img height="100px" width="100px" src="<?php echo "../images/", $row['imagesrc']; ?>" alt="Product"></a></div>
+                            <div class="name"><?php echo $row['productnaam']; ?><p><?php echo $item['quantity']; ?>X</p>
+                            </div>
                             <div class="totalprice">€<?php echo $row['prijs'] * $item['quantity']; ?></div>
                             <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                 <input type="hidden" name="proid" value="<?php echo $proid; ?>">
@@ -223,15 +204,19 @@
                                 <button type="submit" name="minus">-</button>
                             </form>
                         </div>
+
             <?php
+                            }
+                        }
+                    } else {
+                        // Display a message or take other actions when the cart is empty
+                        echo "Your shopping cart is empty.";
                     }
-                }
-            } else {
-                // Display a message or take other actions when the cart is empty
-                echo "Your shopping cart is empty.";
-            }
+
+
 
             ?>
+
 
 
         </div>
@@ -246,9 +231,9 @@
             <span class="close-icon">
                 <i class='bx bx-x'></i>
             </span>
-
+            <!-- login pop up screen -->
             <div class="form-box login">
-            <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
+                <a href="pong_easter_egg.php" style="opacity: 0;" class="knopNaarPong">Ontzichtbare knop naar Pong easter egg</a>
                 <form action="login.php" method="post">
                     <h1> Login </h1>
                     <div class="input-box">
@@ -267,8 +252,8 @@
 
                 </form>
             </div>
-            <div class="form-box register" >
-
+            <div class="form-box register">
+                <!-- register pop up screen-->
                 <form action="register.php" method="post">
                     <h1> Register </h1>
                     <div class="input-box">
@@ -301,10 +286,10 @@
                         <input type="text" placeholder="City" required name="city">
                     </div>
 
-                        <button type="submit" class="btn" name="apply">Make account</button>
-                        <div class="register-login">
-                            <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
-                        </div>
+                    <button type="submit" class="btn" name="apply">Make account</button>
+                    <div class="register-login">
+                        <p>Already have a account?<a href="#" class="login-link"> Log in</a></p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -317,6 +302,7 @@
         <div class="producten section">
 
             <?php
+            //maakt een query aan van het gezochte keyword
             if (isset($_POST['keyword'])) {
                 $like = $_POST['keyword'];
                 $_SESSION['search'] = $like;
@@ -324,12 +310,14 @@
                 $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%' or `merk` LIKE '%{$sanword}%'";
             }
 
+            //checkt of er er gesorteerd moet worden
             if (isset($_POST['sort'])) {
                 if (is_numeric($_POST['sort']) && $_POST['sort'] > 0) {
                     $sort = $_POST['sort'];
                     $_SESSION['sort'] = $sort;
                     $sansort = mysqli_real_escape_string($conn, $sort);
 
+                    //kiest welke order by clause er gebruikt moet worden in de query
                     switch ($sansort) {
                         case 1:
                             $order = "ORDER BY datum DESC";
@@ -349,8 +337,8 @@
                 }
             }
 
-            
 
+            //laat resultaten zien van de zoekopdracht zonder sorting
             if ($sort == NULL) {
                 $sql =  'SELECT * FROM producten ' . $where . '';
                 if ($result = mysqli_query($conn, $sql)) {
@@ -371,6 +359,7 @@
 
                     <?php }
                 }
+                //laat de resultaten van de zoekopdracht zien met sorting
             } elseif ($sort !== NULL) {
 
                 $sql = 'SELECT * FROM producten ' . $where . ' ' . $order . '';
@@ -414,7 +403,7 @@
 
         </div>
     </section>
-    <?php include('footer.php'); ?> 
+    <?php include('footer.php'); ?>
 
 </body>
 <script src="../logic/app.js"></script>

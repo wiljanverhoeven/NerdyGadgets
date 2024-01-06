@@ -1,8 +1,8 @@
 <?php
-    require '../dbconnect.php';
-    require '../logic/functions.php';
+require '../dbconnect.php';
+require '../logic/functions.php';
 
-
+//zet de ingevulde gegevens in variabelen 
 if (isset($_POST["apply"])) {
     $Fname = $_POST["name"];
     $prefix = $_POST["prefix"];
@@ -14,6 +14,7 @@ if (isset($_POST["apply"])) {
     $Pcode = $_POST["Pcode"];
     $city = $_POST["city"];
 
+    //checkt of deze mail al in gebruik is
     $check = "SELECT email FROM user WHERE email = ?";
     $stmt = $conn->prepare($check) or die("prepare failed.");
     $stmt->bind_param('s', $mail);
@@ -21,7 +22,7 @@ if (isset($_POST["apply"])) {
     $resultSet = $stmt->get_result();
     $row = $resultSet->fetch_all();
 
-
+    //kijkt of alle ingevulde velden de juiste format zijn
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         echo "Invalid email format";
     } elseif (PostcodeCheck($Pcode) === false) {
@@ -32,6 +33,3 @@ if (isset($_POST["apply"])) {
         createuser($conn, $Fname, $prefix, $Lname, $mail, $pass, $street, $HNM, $Pcode, $city);
     }
 }
-
-
-?>

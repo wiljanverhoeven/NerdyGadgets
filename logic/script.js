@@ -4,6 +4,7 @@ const registerlink = document.querySelector(".register-link");
 const btnPopup = document.querySelector(".btnlogin-popup");
 const iconClose = document.querySelector(".close-icon");
 
+//this code checks for clicks and opens or closes the login/signup pop up
 if (registerlink != null) {
   registerlink.addEventListener("click", () => {
     wrapper.classList.add("active");

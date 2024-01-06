@@ -1,16 +1,14 @@
-
 .canvas {
-    display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-
 .witregel1 {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .witregel2 {
-    text-align: center;
+  text-align: center;
 }
