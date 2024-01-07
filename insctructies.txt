@@ -1,5 +1,8 @@
 instructies website runnen in XAMPP
 
+
+plaats de NerdyGadgets-1 folder in de htdocs folder in de Xampp files
+
 start apache en mysql op in XAMPP.
 
 zoek op localhost/phpmyadmin.
