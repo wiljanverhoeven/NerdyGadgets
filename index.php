@@ -10,6 +10,7 @@
     session_start();
     $_SESSION['token'] = uniqid();
     $appel = "";
+    $cata = null;
     ?>
 
     <meta charset="UTF-8">
@@ -324,7 +325,7 @@
             <?php
             $used = null;
 
-            //if the searchbar has not been used yet it will display standard products from the database
+            // If the search bar has not been used yet, display standard products from the database
             if (empty($_SESSION['search'])) {
                 for ($i = 0; $i < 3; $i++) {
                     $sql = "SELECT * FROM producten WHERE productid=$i";
@@ -344,18 +345,22 @@
 
                     <?php }
             } else {
-                //sets $appel to the data from the searchbar
+                // Sets $appel to the data from the search bar
                 $appel = $_SESSION['search'];
 
-                //uses the data from the search bar to show items with information similar to what's in the search bar
+                // Uses the data from the search bar to show items with information similar to what's in the search bar
                 if ($appel != null) {
                     $sql = 'SELECT * FROM producten WHERE productnaam LIKE "%' . $appel . '%" OR categorie LIKE "%' . $appel . '%" or merk LIKE "%' . $appel . '%"';
                     if ($result = mysqli_query($conn, $sql)) {
 
+                        $found = false;
+
                         for ($i = 0; $i < 3; $i++) {
                             $row = mysqli_fetch_assoc($result);
 
-                            if ($row != null) { ?>
+                            if ($row != null) {
+                                $found = true; ?>
+
                                 <div class="product">
                                     <a href="pages/product.php?product=<?php echo $row['productid']; ?>"><img height="200px" src="<?php echo "images/", $row['imagesrc']; ?>" alt="Product"></a>
                                     <h3><?php echo $row['productnaam']; ?></h3>
@@ -369,14 +374,13 @@
                                 <?php
                                 $cata = $row['categorie'];
                                 $id = $row['productid'];
-                                //if there are not enough similar products it will start basing it on items of the same category
+                                // If there are not enough similar products, it will start basing it on items of the same category
                             } elseif ($row == null && $cata != null && $used == null) {
 
                                 $sql2 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT productid = ' . $id;
                                 if ($result2 = mysqli_query($conn, $sql2)) {
                                     $row2 = mysqli_fetch_assoc($result2);
-                                    $used = $row2['productid'];
-                                ?>
+                                    $used = $row2['productid']; ?>
                                     <div class="product">
                                         <a href="pages/product.php?product=<?php echo $row2['productid']; ?>"><img height="200px" src="<?php echo "images/", $row2['imagesrc']; ?>" alt="Product"></a>
                                         <h3><?php echo $row2['productnaam']; ?></h3>
@@ -393,8 +397,7 @@
                                 $sql3 = 'SELECT * FROM producten WHERE categorie LIKE "%' . $cata . '%" AND NOT (productid = ' . $id . ') AND NOT (productid = ' . $used . ')';
                                 if ($result3 = mysqli_query($conn, $sql3)) {
                                     $row3 = mysqli_fetch_assoc($result3);
-                                    if ($row3 != null) {
-                                    ?>
+                                    if ($row3 != null) { ?>
                                         <div class="product">
                                             <a href="pages/product.php?product=<?php echo $row3['productid']; ?>"><img height="200px" src="<?php echo "images/", $row3['imagesrc']; ?>" alt="Product"></a>
                                             <h3><?php echo $row3['productnaam']; ?></h3>
@@ -405,16 +408,43 @@
                                                 <button class="add-to-cart" name="add" value=" <?php echo $row3['productid']; ?>"> Voeg toe aan winkelwagen</button>
                                             </form>
                                         </div>
-            <?php } else {
+                                <?php
+                                    } else {
+                                        // If there is no response from the database at the final try, go back to the initial code block
                                         break;
                                     }
                                 }
+                            }
+                        }
+
+                        // If there is no response from the database at the final try, go back to the initial code block
+                        if (!$found) {
+                            for ($i = 0; $i < 3; $i++) {
+                                $sql = "SELECT * FROM producten WHERE productid=$i";
+                                $prod = mysqli_query($conn, $sql);
+                                ${"producten$i"} = mysqli_fetch_assoc($prod); ?>
+
+                                <div class="product ">
+                                    <a href="pages/product.php?product=<?php echo ${"producten$i"}['productid']; ?>"><img height="200px" src="<?php echo "images/", ${"producten$i"}['imagesrc']; ?>" alt="Product 1"></a>
+                                    <h3><?php echo ${"producten$i"}["productnaam"]; ?></h3>
+                                    <p><?php echo "€", ${"producten$i"}["prijs"]; ?></p>
+                                    <p><?php echo ${"producten$i"}["productinformatie"]; ?></p>
+                                    <form method="post">
+                                        <input type="hidden" name="proid" value="<?php echo ${"producten$i"}["productid"]; ?>">
+                                        <button class="add-to-cart" name="add" value="<?php echo ${"producten$i"}["productid"]; ?>">Voeg toe aan winkelwagen</button>
+                                    </form>
+                                </div>
+
+            <?php
                             }
                         }
                     }
                 }
             }
             ?>
+
+
+
 
 
         </section>

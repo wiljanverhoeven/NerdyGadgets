@@ -308,6 +308,11 @@
                 $_SESSION['search'] = $like;
                 $sanword = mysqli_real_escape_string($conn, $like);
                 $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%' or `merk` LIKE '%{$sanword}%'";
+            } elseif (isset($_SESSION['search'])) {
+                // Check if the search keyword is stored in the session (from previous load)
+                $like = $_SESSION['search'];
+                $sanword = mysqli_real_escape_string($conn, $like);
+                $where = "WHERE `productnaam` LIKE '%{$sanword}%' OR `categorie` LIKE '%{$sanword}%' or `merk` LIKE '%{$sanword}%'";
             }
 
             //checkt of er er gesorteerd moet worden
@@ -372,7 +377,6 @@
                             <h3><?php echo $row2[1]; ?></h3>
                             <p><?php echo "€", $row2[3]; ?></p>
                             <p><?php echo $row2[8]; ?></p>
-                            <form method="post">
                                 <input type="hidden" name="proid" value="<?php echo $row2[0]; ?>">
                                 <button class="add-to-cart" name="add" value=" <?php echo $row2[0]; ?>"> Voeg toe aan winkelwagen</button>
                             </form>
