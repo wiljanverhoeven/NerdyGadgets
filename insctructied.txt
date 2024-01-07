@@ -1,0 +1,23 @@
+instructies website runnen in XAMPP
+
+start apache en mysql op in XAMPP.
+
+zoek op localhost/phpmyadmin.
+hierin kan je bovenin op SQL klikken, als je 
+hierop hebt geklikt zie je een canvas. In het 
+canvas moet je het script plaatsen uit mydb.mysql.
+druk op start en de database zou moeten werken.
+
+zoek hierna de juiste link op in uw browser:
+Link = localhost/NerdyGadgets-1
+
+
+
+
+(als het nodig is kunt u  de naam van de database veranderen door in de mydb.sql folder bij de volgende lijn de woorden mydb te veranderen:
+
+CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `mydb`;
+
+let op als u het hiet veranderd moet u ook in dbconnect de waarde van $DBName veranderen naar dezelfde naam)
+
